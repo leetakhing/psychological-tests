@@ -1,0 +1,35 @@
+#!/bin/bash
+# BM25 Memory Search - Quick Alias
+# Usage: bm25-search "query" [--json] [--top=N]
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+BM25_DIR="$SCRIPT_DIR/../skills/bm25-memory"
+
+cd "$BM25_DIR"
+
+if [ -z "$1" ]; then
+    echo "Usage: bm25-search \"query\" [--json] [--top=N]"
+    echo ""
+    echo "Examples:"
+    echo '  bm25-search "Leo 的狗"'
+    echo '  bm25-search "board games" --json'
+    echo '  bm25-search "工作" --top=3'
+    exit 0
+fi
+
+# Parse arguments
+JSON_FLAG=""
+TOP_FLAG=""
+
+for arg in "$@"; do
+    case $arg in
+        --json|-j)
+            JSON_FLAG="--json"
+            ;;
+        --top=*)
+            TOP_FLAG="${arg}"
+            ;;
+    esac
+done
+
+node scripts/search-memory.js "$1" $TOP_FLAG $JSON_FLAG 2>&1 | grep -v "^/bin/sh:" | grep -v "^$" | grep -v "^Usage:" | grep -v "^Commands:" | grep -v "^Options:" | grep -v "An extremely fast" | grep -v "Use \`uv help\`"

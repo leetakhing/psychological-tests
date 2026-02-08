@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "skills": {
+    "searxng": {
+      "version": "1.0.3",
+      "installedAt": 1770275419630
+    },
+    "notion-sync": {
+      "version": "1.0.3",
+      "installedAt": 1770527227723
+    },
+    "markdown-formatter": {
+      "version": "1.0.0",
+      "installedAt": 1770527229205
+    },
+    "browserless-agent": {
+      "version": "0.1.0",
+      "installedAt": 1770527246030
+    }
+  }
+}
