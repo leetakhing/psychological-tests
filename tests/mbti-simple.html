@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBTI 人格测试</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.5s ease;
+            border-radius: 10px;
+        }
+        .test-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .test-title {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .test-progress {
+            color: #999;
+            font-size: 1.1em;
+        }
+        .question-card {
+            animation: fadeIn 0.5s ease;
+        }
+        .question-text {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            text-align: center;
+        }
+        .options-grid {
+            display: grid;
+            gap: 15px;
+        }
+        .option-card {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1em;
+            text-align: left;
+        }
+        .option-card:hover {
+            background: #667eea;
+            border-color: #667eea;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+        .result-card {
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+        .result-title {
+            font-size: 2em;
+            color: #667eea;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .result-description {
+            font-size: 1.3em;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+        .result-traits {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        .trait-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.95em;
+        }
+        .result-tips {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            text-decoration: none;
+            margin: 5px;
+        }
+        .btn:hover {
+            opacity: 0.9;
+        }
+        .btn-secondary {
+            background: #6c757d;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .hidden {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+            }
+            .test-title {
+                font-size: 1.5em;
+            }
+            .question-text {
+                font-size: 1.3em;
+            }
+            .option-card {
+                padding: 15px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div class="test-header">
+            <h1 class="test-title">🧠 MBTI 人格测试</h1>
+            <p class="test-progress" id="testProgress">问题 1 / 10</p>
+        </div>
+
+        <div id="questionContainer">
+            <!-- 问题将在这里动态显示 -->
+        </div>
+
+        <div class="result-card hidden" id="resultCard">
+            <h2 class="result-title" id="resultTitle">你的结果是...</h2>
+            <p class="result-description" id="resultDescription"></p>
+            <div class="result-traits" id="resultTraits"></div>
+            <div class="result-tips">
+                <strong>💡 建议：</strong>
+                <span id="resultTips"></span>
+            </div>
+            <div>
+                <a href="index.html" class="btn">返回首页</a>
+                <button class="btn btn-secondary" onclick="restartTest()">重新测试</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 测试数据（嵌入在 HTML 中）
+        const testData = {
+            questions: [
+                {
+                    id: 1,
+                    question: "当需要和陌生人交流时，你会感到：",
+                    options: [
+                        { id: "E", text: "比较轻松，甚至期待认识新朋友" },
+                        { id: "I", text: "有些紧张，更喜欢和熟悉的人聊天" }
+                    ]
+                },
+                {
+                    id: 2,
+                    question: "周末更倾向于：",
+                    options: [
+                        { id: "E", text: "和朋友聚会，参加活动" },
+                        { id: "I", text: "宅在家里看书、打游戏或休息" }
+                    ]
+                },
+                {
+                    id: 3,
+                    question: "做决定时，你更看重：",
+                    options: [
+                        { id: "T", text: "逻辑分析和客观事实" },
+                        { id: "F", text: "个人感受和对他人的影响" }
+                    ]
+                },
+                {
+                    id: 4,
+                    question: "面对突发状况，你的反应是：",
+                    options: [
+                        { id: "J", text: "立即制定计划，有条不紊地处理" },
+                        { id: "P", text: "先观察情况，灵活应对" }
+                    ]
+                },
+                {
+                    id: 5,
+                    question: "你更喜欢的工作方式是：",
+                    options: [
+                        { id: "J", text: "制定详细计划，按部就班完成" },
+                        { id: "P", text: "留出灵活空间，随时调整方向" }
+                    ]
+                },
+                {
+                    id: 6,
+                    question: "在团队讨论中，你通常：",
+                    options: [
+                        { id: "E", text: "积极发言，提出自己的观点" },
+                        { id: "I", text: "多听少说，内心思考后再表达" }
+                    ]
+                },
+                {
+                    id: 7,
+                    question: "对人或事的判断，你更相信：",
+                    options: [
+                        { id: "S", text: "亲身经历和具体细节" },
+                        { id: "N", text: "直觉和整体感知" }
+                    ]
+                },
+                {
+                    id: 8,
+                    question: "你在意的是：",
+                    options: [
+                        { id: "S", text: "当下现实和实际效用" },
+                        { id: "N", text: "未来可能性和抽象概念" }
+                    ]
+                },
+                {
+                    id: 9,
+                    question: "帮助朋友时，你更倾向于：",
+                    options: [
+                        { id: "T", text: "提供解决方案和具体建议" },
+                        { id: "F", text: "给予情感支持和耐心倾听" }
+                    ]
+                },
+                {
+                    id: 10,
+                    question: "你的朋友圈通常是：",
+                    options: [
+                        { id: "E", text: "广泛社交，认识很多人" },
+                        { id: "I", text: "深度交往，几个知心朋友就好" }
+                    ]
+                }
+            ],
+            results: {
+                "ENTJ": {
+                    title: "指挥官 - ENTJ",
+                    description: "你是天生的领导者和战略家！你自信果断，善于制定长远目标并带领团队实现它。你有很强的野心，相信通过自己的努力可以改变世界。",
+                    traits: ["领导者", "目标导向", "果断", "有野心"],
+                    tips: "在追求卓越的同时，别忘了偶尔放慢脚步，倾听他人感受。"
+                },
+                "ENTP": {
+                    title: "发明家 - ENTP",
+                    description: "你充满创意和好奇心，喜欢挑战和创新！你的思维敏捷，总是有很多新点子，是团队中的创新发动机。",
+                    traits: ["创意", "灵活", "善辩", "充满活力"],
+                    tips: "保持专注，避免因兴趣广泛而半途而废。选一个项目坚持到底！"
+                },
+                "ESTP": {
+                    title: "冒险家 - ESTP",
+                    description: "你是行动派！你喜欢冒险和挑战，善于抓住机会。你反应快，适应力强，活在当下，享受生活的每一刻。",
+                    traits: ["行动力强", "适应力快", "实际", "冒险"],
+                    tips: "在做决定时也要考虑长远影响，不要只顾眼前的刺激。"
+                },
+                "ESFP": {
+                    title: "表演者 - ESFP",
+                    description: "你是团队的活宝！热情洋溢，喜欢与人互动，总能给周围的人带来欢乐。你活得很真实，富有艺术气息。",
+                    traits: ["热情", "受欢迎", "活在当下", "有艺术细胞"],
+                    tips: "为未来做些规划，不要只享受当下。坚持一件事情会带来更大的成就。"
+                },
+                "ENFJ": {
+                    title: "主人公 - ENFJ",
+                    description: "你是天生的团队领袖！你有很强的同理心，善于激发他人的潜能。你希望帮助每个人成长，是团队的精神支柱。",
+                    traits: ["有魅力", "富有同情心", "鼓励他人", "有组织能力"],
+                    tips: "不要过度付出，也要照顾好自己的感受。学会说\"不\"。"
+                },
+                "ENFP": {
+                    title: "竞选者 - ENFP",
+                    description: "你充满热情和想象力！你总是给周围的人带来正能量。你善于发现可能性，懂得鼓舞人心，是团队的快乐源泉。",
+                    traits: ["热情", "有创意", "灵活", "鼓舞人心"],
+                    tips: "保持专注，避免因兴趣广泛而半途而废。完成一件小事也很重要！"
+                },
+                "ESTJ": {
+                    title: "总经理 - ESTJ",
+                    description: "你是天生的组织者和领导者！你喜欢制定规则和计划，并监督执行。你追求效率和秩序，是团队中的定心丸。",
+                    traits: ["有组织", "务实", "果断", "责任感强"],
+                    tips: "尝试接受一些变化，不必总是按规则办。有时候灵活一点效果更好。"
+                },
+                "ESFJ": {
+                    title: "执政官 - ESFJ",
+                    description: "你是团队的粘合剂！你热心肠，总是主动帮助他人。你善于营造和谐的气氛，是团队中不可缺少的成员。",
+                    traits: ["热心", "有爱心", "重视和谐", "务实"],
+                    tips: "不要过度取悦他人，保留自己的边界。你的感受也很重要。"
+                },
+                "INTJ": {
+                    title: "策划者 - INTJ",
+                    description: "你是战略家！你独立思考，喜欢规划和分析。你有很强的目标感，会为了实现目标而制定详细计划并严格执行。",
+                    traits: ["独立", "果断", "有远见", "追求完美"],
+                    tips: "适当放松对自己的要求，多关注当下的人际关系和情感连接。"
+                },
+                "INTP": {
+                    title: "逻辑家 - INTP",
+                    description: "你是思想家和探究者！你对理论和概念非常着迷，喜欢深入思考问题的本质。你好奇心强，爱探索未知。",
+                    traits: ["好奇心强", "逻辑强", "独立", "善于分析"],
+                    tips: "将想法付诸实践，行动比思考更重要。开始做一个小项目吧！"
+                },
+                "ISTP": {
+                    title: "鉴赏家 - ISTP",
+                    description: "你喜欢动手实践，善于解决问题！你冷静、理性，喜欢探索事物的运作方式。你适应力强，总能找到巧妙解决问题的方法。",
+                    traits: ["实际", "灵活", "冷静", "善于解决问题"],
+                    tips: "多沟通你的想法，不要总是闷头做事。分享你的见解吧。"
+                },
+                "ISFP": {
+                    title: "探险家 - ISFP",
+                    description: "你是一位温和的灵魂，富有艺术气息！你重视个人体验，追求真实的自我。你随和友好，做事凭直觉和感觉。",
+                    traits: ["温和", "富有创造力", "随和", "真实"],
+                    tips: "设定一些实际的目标，一步步实现。这会让你的才华得到更好的展示。"
+                },
+                "INFJ": {
+                    title: "提倡者 - INFJ",
+                    description: "你是理想主义者！你有强烈的价值观和使命感。你富有同情心，善于理解他人，总是希望帮助他人成长和实现目标。",
+                    traits: ["理想主义", "富有同情心", "洞察力强", "有毅力"],
+                    tips: "不要为了他人而忽视自己的需要。照顾好自己才能更好地帮助别人。"
+                },
+                "INFP": {
+                    title: "调停者 - INFP",
+                    description: "你富有创造力和想象力！你的内心世界丰富多彩。你重视真实的自我和深层连接，追求内在的和谐与意义。",
+                    traits: ["富有创造力", "真诚", "理想主义", "灵活"],
+                    tips: "设定一些小目标并坚持完成，这会显著增强你的行动力。"
+                },
+                "ISTJ": {
+                    title: "物流师 - ISTJ",
+                    description: "你是可靠的实干家！你追求秩序和效率，责任感强，值得信赖。你总是能把事情做好，是团队中的支柱。",
+                    traits: ["可靠", "有条理", "责任感强", "注重细节"],
+                    tips: "尝试接受一些变化，不要太循规蹈矩。小小的冒险会带来意想不到的收获。"
+                },
+                "ISFJ": {
+                    title: "守卫者 - ISFJ",
+                    description: "你是温暖而可靠的守护者！你善良、务实，总是默默地为他人着想。你在意细节，对承诺非常认真，是团队的后盾。",
+                    traits: ["可靠", "有爱心", "注重细节", "责任感强"],
+                    tips: "多表达自己的需求，不要总是默默付出。你的感受也需要被看见。"
+                }
+            }
+        };
+
+        let currentQuestion = 0;
+        let answers = [];
+
+        // 初始化
+        renderQuestion();
+
+        function renderQuestion() {
+            const question = testData.questions[currentQuestion];
+            const container = document.getElementById('questionContainer');
+
+            // 更新进度
+            document.getElementById('testProgress').textContent = `问题 ${currentQuestion + 1} / ${testData.questions.length}`;
+            document.getElementById('progressFill').style.width = `${(currentQuestion / testData.questions.length) * 100}%`;
+
+            // 渲染问题
+            let html = '<div class="question-card">';
+            html += '<p class="question-text">' + question.question + '</p>';
+            html += '<div class="options-grid">';
+
+            question.options.forEach(option => {
+                html += '<div class="option-card" onclick="selectAnswer(\'' + option.id + '\')">';
+                html += '<span style="font-weight:bold;">' + option.id + '.</span> ' + option.text;
+                html += '</div>';
+            });
+
+            html += '</div></div>';
+            container.innerHTML = html;
+        }
+
+        function selectAnswer(optionId) {
+            answers.push(optionId);
+
+            if (currentQuestion < testData.questions.length - 1) {
+                currentQuestion++;
+                renderQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            // 更新进度100%
+            document.getElementById('progressFill').style.width = '100%';
+
+            // 计算结果
+            const scores = {};
+            answers.forEach(answer => {
+                scores[answer] = (scores[answer] || 0) + 1;
+            });
+
+            const resultType =
+                (scores['E'] >= scores['I'] ? 'E' : 'I') +
+                (scores['N'] >= scores['S'] ? 'N' : 'S') +
+                (scores['T'] >= scores['F'] ? 'T' : 'F') +
+                (scores['J'] >= scores['P'] ? 'J' : 'P');
+
+            const result = testData.results[resultType] || testData.results['INTJ'];
+
+            // 显示结果
+            document.getElementById('questionContainer').classList.add('hidden');
+            document.getElementById('testProgress').classList.add('hidden');
+
+            const resultCard = document.getElementById('resultCard');
+            resultCard.classList.remove('hidden');
+
+            document.getElementById('resultTitle').textContent = result.title;
+            document.getElementById('resultDescription').textContent = result.description;
+
+            const traitsContainer = document.getElementById('resultTraits');
+            traitsContainer.innerHTML = result.traits.map(trait =>
+                '<span class="trait-badge">' + trait + '</span>'
+            ).join('');
+
+            document.getElementById('resultTips').textContent = result.tips || '暂无建议';
+        }
+
+        function restartTest() {
+            currentQuestion = 0;
+            answers = [];
+            document.getElementById('questionContainer').classList.remove('hidden');
+            document.getElementById('testProgress').classList.remove('hidden');
+            document.getElementById('resultCard').classList.add('hidden');
+            renderQuestion();
+        }
+    </script>
+</body>
+</html>

@@ -10,42 +10,35 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
         }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
         }
-
         header {
             text-align: center;
             color: white;
             margin-bottom: 50px;
         }
-
         h1 {
             font-size: 3em;
             margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
-
         .subtitle {
             font-size: 1.2em;
             opacity: 0.9;
         }
-
         .test-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 30px;
         }
-
         .test-card {
             background: white;
             border-radius: 20px;
@@ -54,12 +47,18 @@
             transition: transform 0.3s, box-shadow 0.3s;
             cursor: pointer;
         }
-
         .test-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 40px rgba(0,0,0,0.3);
         }
-
+        .test-card.disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        .test-card.disabled:hover {
+            transform: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
         .test-cover {
             height: 200px;
             background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
@@ -69,11 +68,9 @@
             font-size: 4em;
             color: white;
         }
-
         .test-content {
             padding: 25px;
         }
-
         .test-badge {
             display: inline-block;
             background: #667eea;
@@ -83,28 +80,30 @@
             font-size: 0.85em;
             margin-bottom: 10px;
         }
-
+        .test-badge.pro {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .test-badge.coming {
+            background: #999;
+        }
         .test-title {
             font-size: 1.4em;
             font-weight: bold;
             margin-bottom: 10px;
             color: #333;
         }
-
         .test-description {
             color: #666;
             font-size: 0.95em;
             line-height: 1.6;
             margin-bottom: 15px;
         }
-
         .test-info {
             display: flex;
             justify-content: space-between;
             color: #999;
             font-size: 0.85em;
         }
-
         .btn-start {
             display: block;
             width: 100%;
@@ -119,23 +118,28 @@
             transition: opacity 0.3s;
             margin-top: 15px;
         }
-
         .btn-start:hover {
             opacity: 0.9;
         }
-
-        footer {
+        .btn-start.coming {
+            background: #999;
+            cursor: default;
+        }
+        .footer {
             text-align: center;
             color: white;
             margin-top: 50px;
             opacity: 0.8;
         }
-
+        .footer a {
+            color: white;
+            text-decoration: underline;
+            margin-left: 10px;
+        }
         @media (max-width: 768px) {
             h1 {
                 font-size: 2em;
             }
-
             .test-grid {
                 grid-template-columns: 1fr;
             }
@@ -149,19 +153,75 @@
             <p class="subtitle">探索自我，发现内心的秘密</p>
         </header>
 
-        <div class="test-grid" id="testGrid">
-            <!-- 测试卡片将通过JS加载 -->
+        <div class="test-grid">
+            <div class="test-card" onclick="window.location.href='test.html?test=mbti-pro'">
+                <div class="test-cover" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                    <span>🧠</span>
+                </div>
+                <div class="test-content">
+                    <span class="test-badge pro">MBTI 专业版</span>
+                    <h2 class="test-title">MBTI 人格测试</h2>
+                    <p class="test-description">通过12个专业问题深入分析你的人格类型，揭示真实的自我，更准确！</p>
+                    <div class="test-info">
+                        <span>🔥热门</span>
+                        <span>12 道题目</span>
+                    </div>
+                    <button class="btn-start">开始测试 →</button>
+                </div>
+            </div>
+
+            <div class="test-card">
+                <div class="test-cover" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                    <span>⭐</span>
+                </div>
+                <div class="test-content">
+                    <span class="test-badge coming">星座</span>
+                    <h2 class="test-title">星座守护神测试</h2>
+                    <p class="test-description">找出你的星座守护神，揭示你内心的力量来源。即将上线...</p>
+                    <div class="test-info">
+                        <span>敬请期待</span>
+                        <span>12 道题目</span>
+                    </div>
+                    <button class="btn-start coming">准备中</button>
+                </div>
+            </div>
+
+            <div class="test-card">
+                <div class="test-cover" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
+                    <span>💝</span>
+                </div>
+                <div class="test-content">
+                    <span class="test-badge coming">情感</span>
+                    <h2 class="test-title">爱情性格测试</h2>
+                    <p class="test-description">了解你在爱情中的表现，找到真实的恋爱模式。即将上线...</p>
+                    <div class="test-info">
+                        <span>敬请期待</span>
+                        <span>10 道题目</span>
+                    </div>
+                    <button class="btn-start coming">准备中</button>
+                </div>
+            </div>
+
+            <div class="test-card">
+                <div class="test-cover" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                    <span>💯</span>
+                </div>
+                <div class="test-content">
+                    <span class="test-badge coming">智商</span>
+                    <h2 class="test-title">趣味 IQ 测试</h2>
+                    <p class="test-description">通过趣味问题测试你的逻辑思维和智商水平。即将上线...</p>
+                    <div class="test-info">
+                        <span>敬请期待</span>
+                        <span>15 道题目</span>
+                    </div>
+                    <button class="btn-start coming">准备中</button>
+                </div>
+            </div>
         </div>
 
-        <footer>
-            <p>© 2026 心理测试中心 | 用心发现真实的你</p>
-        </footer>
+        <div class="footer">
+            <p>© 2026 心理测试中心 | 用心发现真实的你 <a href="admin.html">管理后台</a></p>
+        </div>
     </div>
-
-    <script src="js/loader.js"></script>
-    <script>
-        // 加载测试列表
-        loadTestList();
-    </script>
 </body>
 </html>
