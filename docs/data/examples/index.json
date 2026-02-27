@@ -1,10 +1,10 @@
 [
   {
     "id": "mbti-001",
-    "file": "mbti-test.json"
+    "file": "mbti-test"
   },
   {
     "id": "constellation-001",
-    "file": "constellation-test.json"
+    "file": "constellation-test"
   }
 ]

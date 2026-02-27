@@ -34,8 +34,8 @@ async function loadTestList() {
         } else {
             // 如果 index.json 不存在，使用默认列表
             tests = [
-                { id: 'mbti-001', file: 'mbti-test.json' },
-                { id: 'constellation-001', file: 'constellation-test.json' }
+                { id: 'mbti-001', file: 'mbti-test' },
+                { id: 'constellation-001', file: 'constellation-test' }
             ];
         }
 
@@ -48,7 +48,9 @@ async function loadTestList() {
         const loadedTests = [];
         for (const test of tests) {
             try {
-                const data = await loadTest(test.file);
+                // 移除 .json 后缀（如果有）
+                const fileName = test.file.replace('.json', '');
+                const data = await loadTest(fileName);
                 loadedTests.push(data);
             } catch (err) {
                 console.warn(`加载测试 ${test.file} 失败:`, err.message);
