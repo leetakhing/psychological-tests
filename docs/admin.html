@@ -5,431 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>管理后台 | 心灵方舟</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f7fa; min-height: 100vh; }
         
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: #f5f7fa;
-            min-height: 100vh;
-        }
+        .login-page { display: flex; justify-content: center; align-items: center; min-height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .login-box { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); width: 100%; max-width: 400px; }
+        .login-title { text-align: center; margin-bottom: 30px; color: #333; font-size: 24px; font-weight: 600; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; color: #666; font-weight }
+        .form: 500;-group input { width: 100%; padding: 12px; border: 2px solid #e1e8ed; border-radius: 8px; font-size: 14px; transition: border-color 0.3s; }
+        .form-group input:focus { outline: none; border-color: #667eea; }
+        .btn { width: 100%; padding: 14px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: opacity 0.3s; }
+        .btn:hover { opacity: 0.9; }
         
-        /* 登录页 */
-        .login-page {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
+        .admin-layout { display: none; }
+        .admin-header { background: white; padding: 16px 32px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+        .admin-brand { font-size: 20px; font-weight: 600; color: #333; }
+        .admin-brand span { color: #667eea; }
+        .btn-logout { padding: 8px 20px; background: #ef4444; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; }
         
-        .login-box {
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            width: 100%;
-            max-width: 400px;
-        }
+        .admin-content { max-width: 900px; margin: 0 auto; padding: 32px; }
+        .section-title { font-size: 18px; color: #333; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
         
-        .login-title {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #333;
-            font-size: 24px;
-            font-weight: 600;
-        }
+        .test-list { background: white; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); overflow: hidden; }
+        .test-list-header { display: grid; grid-template-columns: 1fr 100px 100px 160px; gap: 16px; padding: 16px 24px; background: #f8fafc; border-bottom: 1px solid #e2e8f0; font-weight: 600; color: #64748b; font-size: 14px; }
+        .test-item { display: grid; grid-template-columns: 1fr 100px 100px 160px; gap: 16px; padding: 20px 24px; border-bottom: 1px solid #f1f5f9; align-items: center; }
+        .test-item:last-child { border-bottom: none; }
+        .test-name { font-weight: 600; color: #1e293b; font-size: 16px; }
+        .test-id { font-size: 13px; color: #94a3b8; margin-top: 4px; }
+        .test-status { padding: 4px 12px; border-radius: 50px; font-size: 12px; font-weight: 500; text-align: center; }
+        .status-enabled { background: #dcfce7; color: #166534; }
+        .status-disabled { background: #f1f5f9; color: #94a3b8; }
         
-        .form-group {
-            margin-bottom: 20px;
-        }
+        .test-actions { display: flex; gap: 8px; }
+        .btn-toggle { padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; font-size: 13px; min-width: 60px; }
+        .btn-toggle.enable { background: #10b981; color: white; }
+        .btn-toggle.disable { background: #f59e0b; color: white; }
+        .btn-delete { padding: 8px 16px; background: #fee2e2; color: #dc2626; border: none; border-radius: 6px; cursor: pointer; font-size: 13px; transition: all 0.2s; }
+        .btn-delete:hover { background: #dc2626; color: white; }
         
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #666;
-            font-weight: 500;
-        }
+        .alert { padding: 16px; border-radius: 8px; margin-bottom: 20px; display: none; }
+        .alert-success { background: #dcfce7; color: #166534; }
         
-        .form-group input {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e1e8ed;
-            border-radius: 8px;
-            font-size: 14px;
-            transition: border-color 0.3s;
-        }
+        .config-section { background: white; border-radius: 12px; padding: 24px; margin-top: 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .config-section h3 { font-size: 16px; color: #1e293b; margin-bottom: 16px; }
+        .config-code { background: #1e293b; color: #e2e8f0; padding: 20px; border-radius: 8px; font-family: monospace; font-size: 13px; line-height: 1.6; overflow-x: auto; white-space: pre; }
         
-        .form-group input:focus {
-            outline: none;
-            border-color: #667eea;
-        }
+        .btn-download { padding: 12px 32px; background: #10b981; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: 600; margin-top: 16px; }
         
-        .btn {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: opacity 0.3s;
-        }
-        
-        .btn:hover {
-            opacity: 0.9;
-        }
-        
-        /* 后台布局 */
-        .admin-layout {
-            display: none;
-            min-height: 100vh;
-        }
-        
-        .admin-header {
-            background: white;
-            padding: 16px 32px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .admin-brand {
-            font-size: 20px;
-            font-weight: 600;
-            color: #333;
-        }
-        
-        .admin-brand span {
-            color: #667eea;
-        }
-        
-        .btn-logout {
-            padding: 8px 20px;
-            background: #ef4444;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        
-        .admin-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 32px;
-        }
-        
-        .section-title {
-            font-size: 18px;
-            color: #333;
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .btn-add {
-            padding: 10px 20px;
-            background: #10b981;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        
-        /* 测试列表 */
-        .test-list {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            overflow: hidden;
-        }
-        
-        .test-list-header {
-            display: grid;
-            grid-template-columns: 1fr 100px 100px 150px;
-            gap: 16px;
-            padding: 16px 24px;
-            background: #f8fafc;
-            border-bottom: 1px solid #e2e8f0;
-            font-weight: 600;
-            color: #64748b;
-            font-size: 14px;
-        }
-        
-        .test-item {
-            display: grid;
-            grid-template-columns: 1fr 100px 100px 150px;
-            gap: 16px;
-            padding: 20px 24px;
-            border-bottom: 1px solid #f1f5f9;
-            align-items: center;
-        }
-        
-        .test-item:last-child {
-            border-bottom: none;
-        }
-        
-        .test-item:hover {
-            background: #f8fafc;
-        }
-        
-        .test-name {
-            font-weight: 600;
-            color: #1e293b;
-            font-size: 16px;
-        }
-        
-        .test-id {
-            font-size: 13px;
-            color: #94a3b8;
-            margin-top: 4px;
-        }
-        
-        .test-count {
-            color: #64748b;
-            font-size: 14px;
-        }
-        
-        .test-status {
-            padding: 4px 12px;
-            border-radius: 50px;
-            font-size: 12px;
-            font-weight: 500;
-            text-align: center;
-        }
-        
-        .status-enabled {
-            background: #dcfce7;
-            color: #166534;
-        }
-        
-        .status-disabled {
-            background: #f1f5f9;
-            color: #94a3b8;
-        }
-        
-        .test-actions {
-            display: flex;
-            gap: 8px;
-        }
-        
-        .btn-edit {
-            padding: 8px 16px;
-            background: #667eea;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 13px;
-        }
-        
-        .btn-delete {
-            padding: 8px 16px;
-            background: #fee2e2;
-            color: #dc2626;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 13px;
-            transition: all 0.2s;
-        }
-        
-        .btn-delete:hover {
-            background: #dc2626;
-            color: white;
-        }
-        
-        .btn-toggle {
-            padding: 8px 16px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 13px;
-            min-width: 70px;
-        }
-        
-        .btn-toggle.enable {
-            background: #10b981;
-            color: white;
-        }
-        
-        .btn-toggle.disable {
-            background: #f59e0b;
-            color: white;
-        }
-            padding: 8px 16px;
-            background: #ef4444;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 13px;
-        }
-        
-        /* 编辑器 */
-        .editor-section {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            margin-top: 24px;
-            padding: 24px;
-            display: none;
-        }
-        
-        .editor-section.active {
-            display: block;
-        }
-        
-        .editor-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: #1e293b;
-            margin-bottom: 20px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid #e2e8f0;
-        }
-        
-        .form-row {
-            margin-bottom: 20px;
-        }
-        
-        .form-row label {
-            display: block;
-            margin-bottom: 8px;
-            color: #475569;
-            font-weight: 500;
-            font-size: 14px;
-        }
-        
-        .form-row input,
-        .form-row select,
-        .form-row textarea {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e2e8ed;
-            border-radius: 8px;
-            font-size: 14px;
-            font-family: monospace;
-        }
-        
-        .form-row input:focus,
-        .form-row select:focus,
-        .form-row textarea:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-        
-        .form-row textarea {
-            min-height: 300px;
-            line-height: 1.6;
-        }
-        
-        .form-row-small {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 16px;
-        }
-        
-        .btn-group {
-            display: flex;
-            gap: 12px;
-            margin-top: 24px;
-        }
-        
-        .btn-save {
-            padding: 12px 32px;
-            background: #10b981;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 15px;
-            font-weight: 600;
-        }
-        
-        .btn-cancel {
-            padding: 12px 32px;
-            background: #64748b;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 15px;
-        }
-        
-        .btn-download {
-            padding: 12px 32px;
-            background: #667eea;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 15px;
-        }
-        
-        /* 提示 */
-        .alert {
-            padding: 16px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            display: none;
-        }
-        
-        .alert-success {
-            background: #dcfce7;
-            color: #166534;
-        }
-        
-        .alert-error {
-            background: #fef2f2;
-            color: #dc2626;
-        }
-        
-        /* 空状态 */
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-            color: #94a3b8;
-        }
-        
-        .empty-state svg {
-            width: 64px;
-            height: 64px;
-            margin-bottom: 16px;
-            opacity: 0.5;
-        }
-        
-        /* 响应式 */
-        @media (max-width: 768px) {
-            .test-list-header {
-                display: none;
-            }
-            
-            .test-item {
-                grid-template-columns: 1fr;
-                gap: 12px;
-            }
-            
-            .form-row-small {
-                grid-template-columns: 1fr;
-            }
-        }
+        .tip { background: #fef3c7; border: 1px solid #fde68a; border-radius: 8px; padding: 16px; margin-top: 16px; color: #92400e; font-size: 14px; line-height: 1.6; }
     </style>
 </head>
 <body>
-    <!-- 登录页 -->
     <div class="login-page" id="loginPage">
         <div class="login-box">
             <h2 class="login-title">🔐 管理后台</h2>
@@ -441,7 +68,6 @@
         </div>
     </div>
 
-    <!-- 后台页面 -->
     <div class="admin-layout" id="adminPage">
         <div class="admin-header">
             <div class="admin-brand">心灵方舟 <span>管理后台</span></div>
@@ -452,8 +78,7 @@
             <div id="alert" class="alert"></div>
             
             <div class="section-title">
-                <h2>测试列表</h2>
-                <button class="btn-add" onclick="showEditor()">+ 添加新测试</button>
+                <h2>测试列表管理</h2>
             </div>
             
             <div class="test-list">
@@ -463,76 +88,45 @@
                     <span>状态</span>
                     <span>操作</span>
                 </div>
-                <div id="testListContainer">
-                    <!-- 动态加载测试列表 -->
-                </div>
+                <div id="testListContainer"></div>
             </div>
             
-            <!-- 编辑器 -->
-            <div class="editor-section" id="editor">
-                <h3 class="editor-title" id="editorTitle">添加新测试</h3>
-                
-                <div class="form-row">
-                    <label>测试 ID（唯一标识）</label>
-                    <input type="text" id="testId" placeholder="例如: my-test-001">
-                </div>
-                
-                <div class="form-row">
-                    <label>JSON 文件名</label>
-                    <input type="text" id="testFile" placeholder="例如: my-test.json">
-                </div>
-                
-                <div class="form-row">
-                    <label>测试标题</label>
-                    <input type="text" id="testTitle" placeholder="测试标题">
-                </div>
-                
-                <div class="form-row-small">
-                    <div class="form-row">
-                        <label>分类</label>
-                        <select id="testCategory">
-                            <option value="MBTI">MBTI</option>
-                            <option value="星座">星座</option>
-                            <option value="IQ">IQ</option>
-                            <option value="情感">情感</option>
-                            <option value="情商">情商</option>
-                            <option value="职场">职场</option>
-                            <option value="其他">其他</option>
-                        </select>
-                    </div>
-                    <div class="form-row">
-                        <label>题数</label>
-                        <input type="number" id="testCount" placeholder="10">
-                    </div>
-                    <div class="form-row">
-                        <label>状态</label>
-                        <select id="testEnabled">
-                            <option value="true">启用</option>
-                            <option value="false">禁用</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <label>JSON 数据（编辑测试内容）</label>
-                    <textarea id="jsonEditor" placeholder="粘贴 JSON 测试数据..."></textarea>
-                </div>
-                
-                <div class="btn-group">
-                    <button class="btn-save" onclick="saveTest()">保存测试</button>
-                    <button class="btn-download" onclick="downloadJSON()">下载 JSON</button>
-                    <button class="btn-cancel" onclick="hideEditor()">取消</button>
-                </div>
+            <div class="config-section">
+                <h3>📝 配置文件</h3>
+                <p style="color:#64748b;margin-bottom:12px;">点击下方按钮下载 config.js 文件，然后上传到网站根目录即可生效。</p>
+                <div class="config-code" id="configPreview"></div>
+                <button class="btn-download" onclick="downloadConfig()">⬇️ 下载 config.js</button>
+            </div>
+            
+            <div class="tip">
+                <strong>💡 使用说明：</strong><br>
+                1. 点击「禁用/启用」按钮调整测试状态<br>
+                2. 点击「删除」移除测试<br>
+                3. 点击「下载 config.js」保存配置<br>
+                4. 将下载的 config.js 上传到网站根目录<br>
+                5. 首页会自动读取该配置
             </div>
         </div>
     </div>
 
     <script>
         const ADMIN_PASSWORD = 'test2026';
-        let tests = [];
-        let editingIndex = -1;
         
-        // 检查登录
+        // 默认测试列表
+        const defaultTests = [
+            { id: 'mbti-pro', title: 'MBTI 人格测试', category: 'MBTI', questionCount: 12, enabled: true },
+            { id: 'mbti-full', title: 'MBTI 深度人格测评', category: 'MBTI', questionCount: 28, enabled: true },
+            { id: 'constellation-guardian', title: '星座守护神测试', category: '星座', questionCount: 12, enabled: true },
+            { id: 'iq-test', title: 'IQ 智商测试', category: 'IQ', questionCount: 30, enabled: true },
+            { id: 'love-personality', title: '爱情性格测试', category: '情感', questionCount: 15, enabled: true },
+            { id: 'eq-test', title: 'EQ 情商测试', category: '情商', questionCount: 20, enabled: true },
+            { id: 'career-test', title: '职业性格测试', category: '职场', questionCount: 18, enabled: true },
+            { id: 'social-phobia', title: '社恐等级测试', category: '趣味', questionCount: 10, enabled: true },
+            { id: 'cow-horse', title: '牛马类型测试', category: '趣味', questionCount: 8, enabled: true }
+        ];
+        
+        let tests = [...defaultTests];
+        
         function checkAuth() {
             if (sessionStorage.getItem('adminLoggedIn') === 'true') {
                 document.getElementById('loginPage').style.display = 'none';
@@ -541,7 +135,6 @@
             }
         }
         
-        // 登录
         function login() {
             const password = document.getElementById('password').value;
             if (password === ADMIN_PASSWORD) {
@@ -550,54 +143,34 @@
                 document.getElementById('adminPage').style.display = 'block';
                 loadTests();
             } else {
-                showAlert('密码错误', 'error');
+                alert('密码错误');
             }
         }
         
-        // 退出
         function logout() {
             sessionStorage.removeItem('adminLoggedIn');
             location.reload();
         }
         
-        // 加载测试列表
-        async function loadTests() {
-            try {
-                const res = await fetch('data/examples/index.json');
-                tests = await res.json();
-                renderTestList();
-            } catch (e) {
-                console.error(e);
-                showAlert('加载测试列表失败', 'error');
+        function loadTests() {
+            // 从 localStorage 读取
+            const stored = localStorage.getItem('testsList');
+            if (stored) {
+                tests = JSON.parse(stored);
             }
+            renderTestList();
+            updateConfigPreview();
         }
         
-        // 渲染测试列表
         function renderTestList() {
             const container = document.getElementById('testListContainer');
-            
-            if (tests.length === 0) {
-                container.innerHTML = `
-                    <div class="empty-state">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                            <polyline points="14 2 14 8 20 8"/>
-                            <line x1="12" y1="18" x2="12" y2="12"/>
-                            <line x1="9" y1="15" x2="15" y2="15"/>
-                        </svg>
-                        <p>暂无测试，点击上方按钮添加</p>
-                    </div>
-                `;
-                return;
-            }
-            
             container.innerHTML = tests.map((test, index) => `
                 <div class="test-item">
                     <div>
-                        <div class="test-name">${test.title || '未命名'}</div>
+                        <div class="test-name">${test.title}</div>
                         <div class="test-id">${test.id}</div>
                     </div>
-                    <div class="test-count">${test.questionCount || 0} 题</div>
+                    <div>${test.questionCount} 题</div>
                     <div class="test-status ${test.enabled ? 'status-enabled' : 'status-disabled'}">
                         ${test.enabled ? '已启用' : '已禁用'}
                     </div>
@@ -605,170 +178,67 @@
                         <button class="btn-toggle ${test.enabled ? 'disable' : 'enable'}" onclick="toggleTest(${index})">
                             ${test.enabled ? '禁用' : '启用'}
                         </button>
-                        <button class="btn-edit" onclick="editTest(${index})">编辑</button>
                         <button class="btn-delete" onclick="deleteTest(${index})">删除</button>
                     </div>
                 </div>
             `).join('');
         }
         
-        // 显示编辑器
-        function showEditor() {
-            editingIndex = -1;
-            document.getElementById('editorTitle').textContent = '添加新测试';
-            document.getElementById('testId').value = '';
-            document.getElementById('testFile').value = '';
-            document.getElementById('testTitle').value = '';
-            document.getElementById('testCount').value = '';
-            document.getElementById('testEnabled').value = 'true';
-            document.getElementById('jsonEditor').value = '';
-            document.getElementById('editor').classList.add('active');
-            document.getElementById('testId').focus();
-        }
-        
-        // 隐藏编辑器
-        function hideEditor() {
-            document.getElementById('editor').classList.remove('active');
-            editingIndex = -1;
-        }
-        
-        // 编辑测试
-        async function editTest(index) {
-            const test = tests[index];
-            editingIndex = index;
-            
-            document.getElementById('editorTitle').textContent = '编辑测试';
-            document.getElementById('testId').value = test.id;
-            document.getElementById('testFile').value = test.file;
-            document.getElementById('testTitle').value = test.title;
-            document.getElementById('testCategory').value = test.category || '其他';
-            document.getElementById('testCount').value = test.questionCount;
-            document.getElementById('testEnabled').value = test.enabled ? 'true' : 'false';
-            
-            // 尝试加载 JSON 内容
-            try {
-                const res = await fetch('data/examples/' + test.file);
-                const json = await res.json();
-                document.getElementById('jsonEditor').value = JSON.stringify(json, null, 2);
-            } catch (e) {
-                document.getElementById('jsonEditor').value = '// 无法加载 JSON 文件';
-            }
-            
-            document.getElementById('editor').classList.add('active');
-            document.getElementById('testId').focus();
-        }
-        
-        // 删除测试
-        function deleteTest(index) {
-            if (confirm('确定要删除这个测试吗？此操作不可恢复！')) {
-                tests.splice(index, 1);
-                saveIndex();
-            }
-        }
-        
-        // 切换启用/禁用状态
         function toggleTest(index) {
             tests[index].enabled = !tests[index].enabled;
-            saveIndex();
+            saveTests();
         }
         
-        // 保存测试（更新索引）- 同时保存到 localStorage
-        function saveIndex() {
-            // 保存到 localStorage（实时生效）
+        function deleteTest(index) {
+            if (confirm('确定要删除这个测试吗？')) {
+                tests.splice(index, 1);
+                saveTests();
+            }
+        }
+        
+        function saveTests() {
             localStorage.setItem('testsList', JSON.stringify(tests));
-            
-            showAlert('已保存！主页将立即更新', 'success');
             renderTestList();
+            updateConfigPreview();
+            showAlert('已保存！记得下载 config.js 并上传');
         }
         
-        // 保存测试（完整保存）
-        function saveTest() {
-            const id = document.getElementById('testId').value.trim();
-            const file = document.getElementById('testFile').value.trim();
-            const title = document.getElementById('testTitle').value.trim();
-            const category = document.getElementById('testCategory').value;
-            const count = parseInt(document.getElementById('testCount').value) || 0;
-            const enabled = document.getElementById('testEnabled').value === 'true';
-            
-            if (!id || !file || !title) {
-                showAlert('请填写测试 ID、文件名和标题', 'error');
-                return;
-            }
-            
-            const testData = {
-                id: id,
-                file: file,
-                title: title,
-                category: category,
-                questionCount: count,
-                enabled: enabled
-            };
-            
-            if (editingIndex >= 0) {
-                tests[editingIndex] = testData;
-            } else {
-                tests.push(testData);
-            }
-            
-            // 保存 index.json
-            saveIndex();
-            
-            // 如果有 JSON 内容，提示下载
-            const jsonContent = document.getElementById('jsonEditor').value.trim();
-            if (jsonContent && jsonContent.startsWith('{')) {
-                showAlert('测试已保存！如果有编辑 JSON 内容，请点击"下载 JSON"保存测试数据', 'success');
-            } else {
-                showAlert('测试已保存到索引列表', 'success');
-            }
-            
-            hideEditor();
-            renderTestList();
+        function updateConfigPreview() {
+            const enabledTests = tests.filter(t => t.enabled);
+            const config = `// 心灵方舟测试配置
+// 将此文件上传到网站根目录
+window.TESTS_CONFIG = ${JSON.stringify(enabledTests, null, 2)};`;
+            document.getElementById('configPreview').textContent = config;
         }
         
-        // 下载 JSON
-        function downloadJSON() {
-            const jsonContent = document.getElementById('jsonEditor').value.trim();
-            const fileName = document.getElementById('testFile').value.trim() || 'test.json';
+        function downloadConfig() {
+            const enabledTests = tests.filter(t => t.enabled);
+            const config = `// 心灵方舟测试配置
+// 将此文件上传到网站根目录
+window.TESTS_CONFIG = ${JSON.stringify(enabledTests, null, 2)};`;
             
-            if (!jsonContent) {
-                showAlert('请先填写 JSON 数据', 'error');
-                return;
-            }
+            const blob = new Blob([config], { type: 'application/javascript' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'config.js';
+            a.click();
             
-            try {
-                JSON.parse(jsonContent);
-                
-                const blob = new Blob([jsonContent], { type: 'application/json' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = fileName;
-                a.click();
-                
-                showAlert('JSON 文件已下载', 'success');
-            } catch (e) {
-                showAlert('JSON 格式错误: ' + e.message, 'error');
-            }
+            showAlert('✅ config.js 已下载！请上传到网站根目录');
         }
         
-        // 显示提示
-        function showAlert(message, type) {
+        function showAlert(message) {
             const alert = document.getElementById('alert');
             alert.textContent = message;
-            alert.className = `alert alert-${type}`;
+            alert.className = 'alert alert-success';
             alert.style.display = 'block';
-            
-            setTimeout(() => {
-                alert.style.display = 'none';
-            }, 3000);
+            setTimeout(() => { alert.style.display = 'none'; }, 3000);
         }
         
-        // 回车登录
         document.getElementById('password').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') login();
         });
         
-        // 初始化
         window.onload = checkAuth;
     </script>
 </body>

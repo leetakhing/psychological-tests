@@ -486,32 +486,30 @@
             '其他': ''
         };
         
-        // 加载测试列表 - 优先从 localStorage 读取
-        async function loadTests() {
-            try {
-                // 先尝试从 localStorage 读取（实时同步）
-                const stored = localStorage.getItem('testsList');
-                let tests;
-                
-                if (stored) {
-                    tests = JSON.parse(stored);
-                } else {
-                    // 没有 localStorage 则从 JSON 文件读取
-                    const res = await fetch('data/examples/index.json');
-                    tests = await res.json();
-                }
-                
-                // 只显示已启用的测试
-                allTests = tests.filter(t => t.enabled !== false);
-                
-                document.getElementById('testCount').textContent = allTests.length;
-                document.getElementById('loading').style.display = 'none';
-                
-                renderTests();
-            } catch (e) {
-                console.error(e);
-                document.getElementById('loading').textContent = '加载失败，请刷新页面';
+        // 加载测试列表 - 优先从 config.js 读取
+        function loadTests() {
+            // 优先从 config.js 读取
+            if (window.TESTS_CONFIG) {
+                allTests = window.TESTS_CONFIG;
+            } else {
+                // 没有 config.js 则用默认列表
+                allTests = [
+                    { id: 'mbti-pro', title: 'MBTI 人格测试', category: 'MBTI', questionCount: 12 },
+                    { id: 'mbti-full', title: 'MBTI 深度人格测评', category: 'MBTI', questionCount: 28 },
+                    { id: 'constellation-guardian', title: '星座守护神测试', category: '星座', questionCount: 12 },
+                    { id: 'iq-test', title: 'IQ 智商测试', category: 'IQ', questionCount: 30 },
+                    { id: 'love-personality', title: '爱情性格测试', category: '情感', questionCount: 15 },
+                    { id: 'eq-test', title: 'EQ 情商测试', category: '情商', questionCount: 20 },
+                    { id: 'career-test', title: '职业性格测试', category: '职场', questionCount: 18 },
+                    { id: 'social-phobia', title: '社恐等级测试', category: '趣味', questionCount: 10 },
+                    { id: 'cow-horse', title: '牛马类型测试', category: '趣味', questionCount: 8 }
+                ];
             }
+            
+            document.getElementById('testCount').textContent = allTests.length;
+            document.getElementById('loading').style.display = 'none';
+            renderTests();
+        }
         }
         
         // 渲染测试卡片
