@@ -7,37 +7,29 @@
     <meta name="description" content="专业心理测试平台 - MBTI、IQ、性格、爱情心理测试，深度分析你的内心世界">
     <meta name="keywords" content="心理测试,MBTI,性格测试,IQ测试,爱情心理测试">
     
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            /* 专业配色方案 */
-            --primary: #2563EB;        /* 专业蓝 */
+            --primary: #2563EB;
             --primary-dark: #1D4ED8;
             --primary-light: #3B82F6;
-            --accent: #F59E0B;         /* 活力橙 */
-            --accent-light: #FCD34D;
+            --accent: #F59E0B;
             --success: #10B981;
             --warning: #F59E0B;
             --danger: #EF4444;
             
-            /* 背景色 */
             --bg-gradient-start: #0F172A;
             --bg-gradient-end: #1E3A5F;
             
-            /* 卡片背景 */
             --card-bg: rgba(255, 255, 255, 0.95);
-            --card-bg-dark: rgba(30, 41, 59, 0.95);
             
-            /* 文字颜色 */
             --text-primary: #1E293B;
             --text-secondary: #64748B;
             --text-light: #94A3B8;
             
-            /* 间距 */
             --space-xs: 4px;
             --space-sm: 8px;
             --space-md: 16px;
@@ -45,19 +37,16 @@
             --space-xl: 32px;
             --space-2xl: 48px;
             
-            /* 圆角 */
             --radius-sm: 8px;
             --radius-md: 12px;
             --radius-lg: 16px;
             --radius-xl: 24px;
             
-            /* 阴影 */
             --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
             --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
             --shadow-lg: 0 10px 40px rgba(0,0,0,0.2);
             --shadow-xl: 0 20px 60px rgba(0,0,0,0.3);
             
-            /* 过渡 */
             --transition-fast: 0.15s ease;
             --transition-normal: 0.3s ease;
             --transition-slow: 0.5s ease;
@@ -78,7 +67,6 @@
             overflow-x: hidden;
         }
         
-        /* 背景装饰 */
         body::before {
             content: '';
             position: fixed;
@@ -102,7 +90,6 @@
             z-index: 1;
         }
         
-        /* Header */
         header {
             text-align: center;
             padding: var(--space-2xl) 0;
@@ -110,14 +97,8 @@
         }
         
         @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .logo {
@@ -160,7 +141,6 @@
             margin: 0 auto;
         }
         
-        /* 统计数据 */
         .stats {
             display: flex;
             justify-content: center;
@@ -185,7 +165,6 @@
             color: rgba(255,255,255,0.6);
         }
         
-        /* 测试分类 */
         .categories {
             display: flex;
             justify-content: center;
@@ -211,14 +190,12 @@
             transition: all var(--transition-normal);
         }
         
-        .category-tag:hover,
-        .category-tag.active {
+        .category-tag:hover, .category-tag.active {
             background: var(--primary);
             border-color: var(--primary);
             color: white;
         }
         
-        /* 测试卡片网格 */
         .test-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -226,7 +203,6 @@
             margin-top: var(--space-xl);
         }
         
-        /* 测试卡片 */
         .test-card {
             background: var(--card-bg);
             border-radius: var(--radius-xl);
@@ -237,35 +213,14 @@
             animation: fadeInUp 0.6s ease both;
         }
         
-        .test-card:nth-child(1) { animation-delay: 0.1s; }
-        .test-card:nth-child(2) { animation-delay: 0.2s; }
-        .test-card:nth-child(3) { animation-delay: 0.3s; }
-        .test-card:nth-child(4) { animation-delay: 0.4s; }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
         .test-card:hover {
             transform: translateY(-8px);
             box-shadow: var(--shadow-xl);
         }
         
-        .test-card.disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        
-        .test-card.disabled:hover {
-            transform: none;
-            box-shadow: var(--shadow-lg);
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .test-cover {
@@ -385,17 +340,6 @@
             box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
         }
         
-        .btn-start.coming {
-            background: var(--text-light);
-            cursor: default;
-        }
-        
-        .btn-start.coming:hover {
-            transform: none;
-            box-shadow: none;
-        }
-        
-        /* Footer */
         footer {
             text-align: center;
             padding: var(--space-2xl) 0;
@@ -422,66 +366,27 @@
             flex-wrap: wrap;
         }
         
-        /* 响应式 */
+        .loading {
+            text-align: center;
+            padding: var(--space-2xl);
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: var(--space-2xl);
+            color: rgba(255,255,255,0.5);
+        }
+        
         @media (max-width: 768px) {
-            .logo-text {
-                font-size: 1.5em;
-            }
-            
-            .subtitle {
-                font-size: 0.9em;
-            }
-            
-            .stats {
-                gap: var(--space-md);
-            }
-            
-            .stat-value {
-                font-size: 1.3em;
-            }
-            
-            .test-cover {
-                height: 100px;
-                font-size: 2em;
-            }
-            
-            .test-badge {
-                padding: 2px 6px;
-                font-size: 0.6em;
-                top: 6px;
-                left: 6px;
-            }
-            
-            .test-content {
-                padding: var(--space-md);
-            }
-            
-            .test-title {
-                font-size: 1.1em;
-            }
-            
-            .test-description {
-                font-size: 0.85em;
-                -webkit-line-clamp: 2;
-            }
-            
-            .test-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .container {
-                padding: var(--space-md);
-            }
-        }
-        
-        /* 加载动画 */
-        .loading-pulse {
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+            .logo-text { font-size: 1.5em; }
+            .subtitle { font-size: 1em; }
+            .stats { gap: var(--space-lg); }
+            .stat-value { font-size: 1.5em; }
+            .test-grid { grid-template-columns: 1fr; }
+            .container { padding: var(--space-md); }
+            .test-cover { height: 100px; font-size: 2em; }
+            .test-badge { padding: 2px 6px; font-size: 0.6em; top: 6px; left: 6px; }
         }
     </style>
 </head>
@@ -506,7 +411,7 @@
                     <div class="stat-label">测试完成</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-value">12</div>
+                    <div class="stat-value" id="testCount">0</div>
                     <div class="stat-label">专业测试</div>
                 </div>
                 <div class="stat-item">
@@ -516,328 +421,22 @@
             </div>
             
             <div class="categories">
-                <span class="category-tag active">全部</span>
-                <span class="category-tag">人格</span>
-                <span class="category-tag">智商</span>
-                <span class="category-tag">情感</span>
-                <span class="category-tag">职场</span>
+                <span class="category-tag active" data-category="all">全部</span>
+                <span class="category-tag" data-category="MBTI">人格</span>
+                <span class="category-tag" data-category="趣味">趣味</span>
+                <span class="category-tag" data-category="情感">情感</span>
+                <span class="category-tag" data-category="职场">职场</span>
             </div>
         </header>
 
-        <div class="test-grid">
-            <!-- MBTI 专业版 -->
-            <div class="test-card" onclick="window.location.href='test.html?test=mbti-pro'">
-                <div class="test-cover" style="background: linear-gradient(135deg, #1E40AF 0%, #3B82F6 50%, #06B6D4 100%);">
-                    <span class="test-badge hot">热门</span>
-                    🧠
-                </div>
-                <div class="test-content">
-                    <h2 class="test-title">
-                        <svg class="test-title-icon" viewBox="0 0 24 24" fill="none" stroke="#1E40AF" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M12 6v6l4 2"/>
-                        </svg>
-                        MBTI 人格测试
-                    </h2>
-                    <p class="test-description">基于现代心理学理论，12道题深度分析你的人格类型，揭示内在潜能与职业倾向。</p>
-                    <div class="test-meta">
-                        <span class="test-meta-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"/>
-                                <path d="M12 6v6l4 2"/>
-                            </svg>
-                            约 8 分钟
-                        </span>
-                        <span class="test-meta-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                                <circle cx="9" cy="7" r="4"/>
-                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                            </svg>
-                            12,345 人测过
-                        </span>
-                    </div>
-                    <button class="btn-start">开始测试 →</button>
-                </div>
-            </div>
+        <div class="loading" id="loading">加载中...</div>
+        
+        <div class="test-grid" id="testGrid">
+            <!-- 动态加载测试卡片 -->
+        </div>
 
-            <!-- MBTI 深度版 -->
-            <div class="test-card" onclick="window.location.href='test.html?test=mbti-full'">
-                <div class="test-cover" style="background: linear-gradient(135deg, #059669 0%, #10B981 50%, #34D399 100%);">
-                    <span class="test-badge new">新版</span>
-                    🧩
-                </div>
-                <div class="test-content">
-                    <h2 class="test-title">
-                        <svg class="test-title-icon" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                            <path d="M2 17l10 5 10-5"/>
-                            <path d="M2 12l10 5 10-5"/>
-                        </svg>
-                        MBTI 深度人格测评
-                    </h2>
-                    <p class="test-description">28道题全面深度分析，揭示人格潜在优势、性格盲点、职业建议和关系模式。</p>
-                    <div class="test-meta">
-                        <span class="test-meta-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"/>
-                                <path d="M12 6v6l4 2"/>
-                            </svg>
-                            约 15 分钟
-                        </span>
-                        <span class="test-meta-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"/>
-                            </svg>
-                            28 题
-                        </span>
-                    </div>
-                    <button class="btn-start">开始测试 →</button>
-                </div>
-            </div>
-
-            <!-- 星座守护神 -->
-            <div class="test-card" onclick="window.location.href='test.html?test=constellation-guardian'">
-                <div class="test-cover" style="background: linear-gradient(135deg, #7C3AED 0%, #A855F7 50%, #EC4899 100%);">
-                    <span class="test-badge new">新版</span>
-                    ⭐
-                </div>
-                <div class="test-content">
-                    <h2 class="test-title">
-                        <svg class="test-title-icon" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2">
-                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-                        </svg>
-                        星座守护神测试
-                    </h2>
-                    <p class="test-description">探索你的星座守护神，揭示内心深处的力量源泉与命运指引。</p>
-                    <div class="test-meta">
-                        <span class="test-meta-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"/>
-                                <path d="M12 6v6l4 2"/>
-                            </svg>
-                            约 8 分钟
-                        </span>
-                        <span class="test-meta-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"/>
-                            </svg>
-                            12 题
-                        </span>
-                    </div>
-                    <button class="btn-start">开始测试 →</button>
-                </div>
-            </div>
-
-            <!-- IQ 智商测试 -->
-            <div class="test-card" onclick="window.location.href='test.html?test=iq-test'">
-                <div class="test-cover" style="background: linear-gradient(135deg, #059669 0%, #10B981 50%, #34D399 100%);">
-                    <span class="test-badge hot">热门</span>
-                    🧩
-                    🧩
-                </div>
-                <div class="test-content">
-                    <h2 class="test-title">
-                        <svg class="test-title-icon" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                            <path d="M2 17l10 5 10-5"/>
-                            <path d="M2 12l10 5 10-5"/>
-                        </svg>
-                        IQ 智商测试
-                    </h2>
-                    <p class="test-description">国际标准IQ测试，科学评估你的逻辑思维、推理能力和问题解决能力。</p>
-                    <div class="test-meta">
-                        <span class="test-meta-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"/>
-                                <path d="M12 6v6l4 2"/>
-                            </svg>
-                            约 20 分钟
-                        </span>
-                        <span class="test-meta-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"/>
-                            </svg>
-                            30 题
-                        </span>
-                    </div>
-                    <button class="btn-start">开始测试 →</button>
-                </div>
-            </div>
-
-            <!-- 爱情性格测试 -->
-            <div class="test-card" onclick="window.location.href='test.html?test=love-personality'">
-                <div class="test-cover" style="background: linear-gradient(135deg, #DC2626 0%, #EF4444 50%, #F97316 100%);">
-                    <span class="test-badge new">新版</span>
-                    💕
-                </div>
-                <div class="test-content">
-                    <h2 class="test-title">
-                        <svg class="test-title-icon" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2">
-                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-                        </svg>
-                        爱情性格测试
-                    </h2>
-                    <p class="test-description">深度解析你的恋爱性格，了解在亲密关系中的表现与需求，找到理想伴侣。</p>
-                    <div class="test-meta">
-                        <span class="test-meta-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"/>
-                                <path d="M12 6v6l4 2"/>
-                            </svg>
-                            约 12 分钟
-                        </span>
-                        <span class="test-meta-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"/>
-                            </svg>
-                            15 题
-                        </span>
-                    </div>
-                    <button class="btn-start">开始测试 →</button>
-                </div>
-            </div>
-
-            <!-- 情商测试 -->
-            <div class="test-card" onclick="window.location.href='test.html?test=eq-test'">
-                <div class="test-cover" style="background: linear-gradient(135deg, #0891B2 0%, #06B6D4 50%, #22D3EE 100%);">
-                    <span class="test-badge new">新版</span>
-                    💎
-                </div>
-                <div class="test-content">
-                    <h2 class="test-title">
-                        <svg class="test-title-icon" viewBox="0 0 24 24" fill="none" stroke="#0891B2" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
-                            <line x1="9" y1="9" x2="9.01" y2="9"/>
-                            <line x1="15" y1="9" x2="15.01" y2="9"/>
-                        </svg>
-                        EQ 情商测试
-                    </h2>
-                    <p class="test-description">评估你的情绪智力，了解自我认知、人际交往和情绪管理能力。</p>
-                    <div class="test-meta">
-                        <span class="test-meta-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"/>
-                                <path d="M12 6v6l4 2"/>
-                            </svg>
-                            约 15 分钟
-                        </span>
-                        <span class="test-meta-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"/>
-                            </svg>
-                            20 题
-                        </span>
-                    </div>
-                    <button class="btn-start">开始测试 →</button>
-                </div>
-            </div>
-
-            <!-- 职业倾向测试 -->
-            <div class="test-card" onclick="window.location.href='test.html?test=career-test'">
-                <div class="test-cover" style="background: linear-gradient(135deg, #4F46E5 0%, #6366F1 50%, #818CF8 100%);">
-                    <span class="test-badge new">新版</span>
-                    💼
-                </div>
-                <div class="test-content">
-                    <h2 class="test-title">
-                        <svg class="test-title-icon" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2">
-                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
-                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
-                        </svg>
-                        职业性格测试
-                    </h2>
-                    <p class="test-description">根据你的性格特点，推荐最适合的职业方向，助你规划职业发展路径。</p>
-                    <div class="test-meta">
-                        <span class="test-meta-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"/>
-                                <path d="M12 6v6l4 2"/>
-                            </svg>
-                            约 10 分钟
-                        </span>
-                        <span class="test-meta-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"/>
-                            </svg>
-                            18 题
-                        </span>
-                    </div>
-                    <button class="btn-start">开始测试 →</button>
-                </div>
-            </div>
-
-            <!-- 社恐等级测试 -->
-            <div class="test-card" onclick="window.location.href='test.html?test=social-phobia'">
-                <div class="test-cover" style="background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #A855F7 100%);">
-                    <span class="test-badge new">爆款</span>
-                    😅
-                </div>
-                <div class="test-content">
-                    <h2 class="test-title">
-                        <svg class="test-title-icon" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
-                            <line x1="9" y1="9" x2="9.01" y2="9"/>
-                            <line x1="15" y1="9" x2="15.01" y2="9"/>
-                        </svg>
-                        社恐等级测试
-                    </h2>
-                    <p class="test-description">10道题测出你的社恐等级！看看你是轻度社恐还是重度社恐？</p>
-                    <div class="test-meta">
-                        <span class="test-meta-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"/>
-                                <path d="M12 6v6l4 2"/>
-                            </svg>
-                            约 3 分钟
-                        </span>
-                        <span class="test-meta-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"/>
-                            </svg>
-                            10 题
-                        </span>
-                    </div>
-                    <button class="btn-start">开始测试 →</button>
-                </div>
-            </div>
-
-            <!-- 牛马类型测试 -->
-            <div class="test-card" onclick="window.location.href='test.html?test=cow-horse'">
-                <div class="test-cover" style="background: linear-gradient(135deg, #F59E0B 0%, #F97316 50%, #EF4444 100%);">
-                    <span class="test-badge hot">爆款</span>
-                    🐂
-                </div>
-                <div class="test-content">
-                    <h2 class="test-title">
-                        <svg class="test-title-icon" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                        </svg>
-                        牛马类型测试
-                    </h2>
-                    <p class="test-description">打工人の终极灵魂拷问！测测你是哪种牛马？</p>
-                    <div class="test-meta">
-                        <span class="test-meta-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"/>
-                                <path d="M12 6v6l4 2"/>
-                            </svg>
-                            约 2 分钟
-                        </span>
-                        <span class="test-meta-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"/>
-                            </svg>
-                            8 题
-                        </span>
-                    </div>
-                    <button class="btn-start">开始测试 →</button>
-                </div>
-            </div>
+        <div class="empty-state" id="emptyState" style="display:none;">
+            <p>暂无测试，敬请期待！</p>
         </div>
 
         <footer>
@@ -853,23 +452,147 @@
     </div>
 
     <script>
-        // 分类筛选功能
+        let allTests = [];
+        let currentCategory = 'all';
+        
+        // 测试图标映射
+        const icons = {
+            'MBTI': '🧠',
+            '星座': '⭐',
+            'IQ': '🧩',
+            '情感': '💕',
+            '情商': '💎',
+            '职场': '💼',
+            '趣味': '😄',
+            '其他': '📝'
+        };
+        
+        // 背景渐变映射
+        const gradients = {
+            'MBTI': 'linear-gradient(135deg, #1E40AF 0%, #3B82F6 50%, #06B6D4 100%)',
+            '星座': 'linear-gradient(135deg, #7C3AED 0%, #A855F7 50%, #EC4899 100%)',
+            'IQ': 'linear-gradient(135deg, #059669 0%, #10B981 50%, #34D399 100%)',
+            '情感': 'linear-gradient(135deg, #DC2626 0%, #EF4444 50%, #F97316 100%)',
+            '情商': 'linear-gradient(135deg, #0891B2 0%, #06B6D4 50%, #22D3EE 100%)',
+            '职场': 'linear-gradient(135deg, #4F46E5 0%, #6366F1 50%, #818CF8 100%)',
+            '趣味': 'linear-gradient(135deg, #F59E0B 0%, #F97316 50%, #EF4444 100%)',
+            '其他': 'linear-gradient(135deg, #64748B 0%, #94A3B8 50%, #CBD5E1 100%)'
+        };
+        
+        // 标签映射
+        const badges = {
+            'MBTI': '热门',
+            '趣味': '爆款',
+            '其他': ''
+        };
+        
+        // 加载测试列表
+        async function loadTests() {
+            try {
+                const res = await fetch('data/examples/index.json');
+                const tests = await res.json();
+                
+                // 只显示已启用的测试
+                allTests = tests.filter(t => t.enabled !== false);
+                
+                document.getElementById('testCount').textContent = allTests.length;
+                document.getElementById('loading').style.display = 'none';
+                
+                renderTests();
+            } catch (e) {
+                console.error(e);
+                document.getElementById('loading').textContent = '加载失败，请刷新页面';
+            }
+        }
+        
+        // 渲染测试卡片
+        function renderTests() {
+            const grid = document.getElementById('testGrid');
+            const empty = document.getElementById('emptyState');
+            
+            // 按分类筛选
+            const filtered = currentCategory === 'all' 
+                ? allTests 
+                : allTests.filter(t => t.category === currentCategory);
+            
+            if (filtered.length === 0) {
+                grid.style.display = 'none';
+                empty.style.display = 'block';
+                return;
+            }
+            
+            grid.style.display = 'grid';
+            empty.style.display = 'none';
+            
+            grid.innerHTML = filtered.map((test, index) => {
+                const icon = icons[test.category] || '📝';
+                const gradient = gradients[test.category] || gradients['其他'];
+                const badge = badges[test.category] || '';
+                const categoryBadge = test.category || '其他';
+                
+                return `
+                    <div class="test-card" onclick="window.location.href='test.html?test=${test.id}'" style="animation-delay: ${index * 0.1}s">
+                        <div class="test-cover" style="background: ${gradient}">
+                            ${badge ? `<span class="test-badge hot">${badge}</span>` : ''}
+                            ${icon}
+                        </div>
+                        <div class="test-content">
+                            <h2 class="test-title">
+                                ${test.title}
+                            </h2>
+                            <p class="test-description">${getDescription(test.category)}</p>
+                            <div class="test-meta">
+                                <span class="test-meta-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <path d="M12 6v6l4 2"/>
+                                    </svg>
+                                    ${getDuration(test.questionCount)}
+                                </span>
+                                <span class="test-meta-item">
+                                    ${test.questionCount} 题
+                                </span>
+                            </div>
+                            <button class="btn-start">开始测试 →</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        // 获取描述
+        function getDescription(category) {
+            const descs = {
+                'MBTI': '基于现代心理学理论，深度分析你的人格类型',
+                '星座': '探索你的星座守护神，揭示内心深处的力量',
+                'IQ': '国际标准IQ测试，评估你的逻辑思维',
+                '情感': '深度解析你的恋爱性格，了解情感需求',
+                '情商': '评估你的情绪智力，了解自我认知',
+                '职场': '根据性格特点，推荐最适合的职业方向',
+                '趣味': '有趣的心理测试，发现真实的自己'
+            };
+            return descs[category] || '发现真实的自己';
+        }
+        
+        // 获取时长
+        function getDuration(count) {
+            if (!count) return '约5分钟';
+            const minutes = Math.max(3, Math.ceil(count * 0.4));
+            return `约${minutes}分钟`;
+        }
+        
+        // 分类筛选
         document.querySelectorAll('.category-tag').forEach(tag => {
             tag.addEventListener('click', function() {
                 document.querySelectorAll('.category-tag').forEach(t => t.classList.remove('active'));
                 this.classList.add('active');
-                // TODO: 实现分类筛选
+                currentCategory = this.dataset.category;
+                renderTests();
             });
         });
         
-        // 添加页面加载动画
-        window.addEventListener('load', function() {
-            document.body.style.opacity = '0';
-            document.body.style.transition = 'opacity 0.5s ease';
-            setTimeout(() => {
-                document.body.style.opacity = '1';
-            }, 100);
-        });
+        // 页面加载
+        window.addEventListener('load', loadTests);
     </script>
 </body>
 </html>
