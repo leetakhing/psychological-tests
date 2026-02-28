@@ -3,173 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>心理测试</title>
+    <title>开始测试 | 心灵方舟</title>
+    <meta name="description" content="专业心理测试平台">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
     <style>
+        :root {
+            --primary: #2563EB;
+            --primary-dark: #1D4ED8;
+            --primary-light: #3B82F6;
+            --accent: #F59E0B;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+            
+            --bg-gradient-start: #0F172A;
+            --bg-gradient-end: #1E3A5F;
+            
+            --card-bg: rgba(255, 255, 255, 0.98);
+            
+            --text-primary: #1E293B;
+            --text-secondary: #64748B;
+            --text-light: #94A3B8;
+            
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --space-2xl: 48px;
+            
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 40px rgba(0,0,0,0.2);
+            --shadow-xl: 0 20px 60px rgba(0,0,0,0.3);
+            
+            --transition-fast: 0.15s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.5s ease;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
             min-height: 100vh;
-            padding: 20px;
+            color: var(--text-primary);
+            line-height: 1.6;
         }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(37, 99, 235, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(245, 158, 11, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
         .container {
             max-width: 800px;
             margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: var(--space-lg);
+            position: relative;
+            z-index: 1;
         }
+        
+        /* 顶部导航 */
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-xl);
+        }
+        
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 0.95em;
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--radius-md);
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all var(--transition-normal);
+            cursor: pointer;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+        
+        .back-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .test-info {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.95em;
+        }
+        
+        /* 进度条 */
+        .progress-container {
+            margin-bottom: var(--space-2xl);
+        }
+        
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-sm);
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9em;
+        }
+        
         .progress-bar {
             width: 100%;
             height: 8px;
-            background: #f0f0f0;
-            border-radius: 10px;
-            margin-bottom: 30px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 50px;
             overflow: hidden;
+            position: relative;
         }
+        
         .progress-fill {
             height: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            transition: width 0.5s ease;
-            border-radius: 10px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 50%, var(--accent) 100%);
+            border-radius: 50px;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
         }
-        .test-header {
-            text-align: center;
-            margin-bottom: 40px;
+        
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
         }
-        .test-title {
-            font-size: 2em;
-            color: #333;
-            margin-bottom: 15px;
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
-        .test-progress {
-            color: #999;
-            font-size: 1.1em;
+        
+        /* 测试卡片 */
+        .test-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-xl);
+            padding: var(--space-2xl);
+            box-shadow: var(--shadow-xl);
+            animation: slideIn 0.5s ease;
         }
-        .loading {
-            text-align: center;
-            padding: 100px 0;
-            color: #999;
-            font-size: 1.2em;
-        }
-        .question-card {
-            animation: fadeIn 0.5s ease;
-        }
-        .question-text {
-            font-size: 1.5em;
-            color: #333;
-            margin-bottom: 30px;
-            line-height: 1.6;
-            text-align: center;
-        }
-        .options-grid {
-            display: grid;
-            gap: 15px;
-        }
-        .option-card {
-            background: #f8f9fa;
-            border: 2px solid #e9ecef;
-            border-radius: 15px;
-            padding: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1.1em;
-            text-align: left;
-        }
-        .option-card:hover {
-            background: #667eea;
-            border-color: #667eea;
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
-        }
-        .result-card {
-            text-align: center;
-            animation: fadeIn 0.5s ease;
-        }
-        .result-title {
-            font-size: 2em;
-            color: #667eea;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-        .result-description {
-            font-size: 1.3em;
-            color: #666;
-            line-height: 1.8;
-            margin-bottom: 30px;
-        }
-        .result-traits {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 30px;
-        }
-        .trait-badge {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 0.95em;
-        }
-        .result-tips {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: left;
-            margin-bottom: 30px;
-        }
-        .result-career {
-            background: #e7f3ff;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: left;
-            margin-bottom: 30px;
-        }
-        .result-career h4 {
-            color: #667eea;
-            margin-bottom: 10px;
-        }
-        .career-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-        .career-tag {
-            background: white;
-            color: #667eea;
-            padding: 6px 15px;
-            border-radius: 15px;
-            font-size: 0.9em;
-        }
-        .btn {
-            display: inline-block;
-            padding: 15px 40px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.1em;
-            font-weight: bold;
-            cursor: pointer;
-            transition: opacity 0.3s;
-            text-decoration: none;
-            margin: 5px;
-        }
-        .btn:hover {
-            opacity: 0.9;
-        }
-        .btn-secondary {
-            background: #6c757d;
-        }
-        @keyframes fadeIn {
+        
+        @keyframes slideIn {
             from {
                 opacity: 0;
                 transform: translateY(20px);
@@ -179,79 +192,497 @@
                 transform: translateY(0);
             }
         }
-        .hidden {
-            display: none;
+        
+        .test-title {
+            text-align: center;
+            margin-bottom: var(--space-xl);
         }
+        
+        .test-title h1 {
+            font-size: 1.8em;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .test-title p {
+            color: var(--text-secondary);
+            font-size: 0.95em;
+        }
+        
+        /* 问题区域 */
+        .question-container {
+            margin-bottom: var(--space-xl);
+        }
+        
+        .question-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            border-radius: 50%;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-bottom: var(--space-md);
+        }
+        
+        .question-text {
+            font-size: 1.4em;
+            color: var(--text-primary);
+            line-height: 1.7;
+            margin-bottom: var(--space-xl);
+            font-weight: 500;
+        }
+        
+        /* 选项列表 */
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+        
+        .option-item {
+            position: relative;
+            padding: var(--space-lg);
+            background: #F8FAFC;
+            border: 2px solid #E2E8F0;
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-md);
+        }
+        
+        .option-item:hover {
+            border-color: var(--primary);
+            background: #EFF6FF;
+            transform: translateX(8px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .option-item.selected {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, #EFF6FF, #DBEAFE);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        
+        .option-letter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 36px;
+            height: 36px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            font-weight: 600;
+            font-size: 0.9em;
+            flex-shrink: 0;
+        }
+        
+        .option-item.selected .option-letter {
+            background: var(--success);
+        }
+        
+        .option-text {
+            font-size: 1.05em;
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-top: 4px;
+        }
+        
+        /* 底部操作 */
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: var(--space-xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid #E2E8F0;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-md) var(--space-xl);
+            border-radius: var(--radius-md);
+            font-size: 1em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            text-decoration: none;
+            border: none;
+        }
+        
+        .btn-prev {
+            background: #F1F5F9;
+            color: var(--text-secondary);
+            border: 1px solid #E2E8F0;
+        }
+        
+        .btn-prev:hover:not(:disabled) {
+            background: #E2E8F0;
+            color: var(--text-primary);
+        }
+        
+        .btn-prev:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .btn-next {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        }
+        
+        .btn-next:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+        }
+        
+        .btn svg {
+            width: 20px;
+            height: 20px;
+        }
+        
+        /* 加载状态 */
+        .loading {
+            text-align: center;
+            padding: var(--space-2xl);
+            color: var(--text-secondary);
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #E2E8F0;
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            margin: 0 auto var(--space-lg);
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* 错误状态 */
         .error {
             text-align: center;
-            padding: 100px 0;
-            color: #dc3545;
+            padding: var(--space-2xl);
         }
+        
         .error h2 {
-            font-size: 2em;
-            margin-bottom: 20px;
+            color: var(--danger);
+            margin-bottom: var(--space-md);
         }
-        .error a {
-            color: #667eea;
-            text-decoration: underline;
+        
+        .error p {
+            color: var(--text-secondary);
+            margin-bottom: var(--space-lg);
         }
+        
+        /* 结果页面样式（复用） */
+        .result-container {
+            display: none;
+        }
+        
+        .result-container.active {
+            display: block;
+        }
+        
+        .result-header {
+            text-align: center;
+            margin-bottom: var(--space-xl);
+        }
+        
+        .result-type {
+            font-size: 2.5em;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--space-sm);
+        }
+        
+        .result-subtitle {
+            font-size: 1.3em;
+            color: var(--text-primary);
+            margin-bottom: var(--space-md);
+        }
+        
+        .result-description {
+            color: var(--text-secondary);
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin-bottom: var(--space-xl);
+            text-align: left;
+            background: #F8FAFC;
+            padding: var(--space-lg);
+            border-radius: var(--radius-lg);
+            border-left: 4px solid var(--primary);
+        }
+        
+        .result-section {
+            margin-bottom: var(--space-xl);
+        }
+        
+        .result-section h3 {
+            font-size: 1.1em;
+            color: var(--text-primary);
+            margin-bottom: var(--space-md);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+        
+        .result-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+        }
+        
+        .result-tag {
+            padding: var(--space-sm) var(--space-md);
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            border-radius: 50px;
+            font-size: 0.9em;
+        }
+        
+        .result-tips {
+            background: #FFFBEB;
+            border: 1px solid #FDE68A;
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+        }
+        
+        .result-tips h4 {
+            color: #B45309;
+            margin-bottom: var(--space-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+        
+        .result-tips p {
+            color: #92400E;
+            line-height: 1.7;
+        }
+        
+        .result-career {
+            background: #F0FDF4;
+            border: 1px solid #BBF7D0;
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+        }
+        
+        .result-career h4 {
+            color: #166534;
+            margin-bottom: var(--space-md);
+        }
+        
+        .career-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+        }
+        
+        .career-item {
+            padding: var(--space-sm) var(--space-md);
+            background: white;
+            color: #166534;
+            border-radius: var(--radius-sm);
+            font-size: 0.9em;
+            border: 1px solid #BBF7D0;
+        }
+        
+        .result-actions {
+            display: flex;
+            gap: var(--space-md);
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: var(--space-xl);
+        }
+        
+        .btn-share {
+            background: #10B981;
+            color: white;
+        }
+        
+        .btn-share:hover {
+            background: #059669;
+        }
+        
+        .btn-restart {
+            background: #64748B;
+            color: white;
+        }
+        
+        .btn-restart:hover {
+            background: #475569;
+        }
+        
+        /* 响应式 */
         @media (max-width: 768px) {
             .container {
-                padding: 25px;
+                padding: var(--space-md);
             }
-            .test-title {
-                font-size: 1.5em;
+            
+            .test-card {
+                padding: var(--space-lg);
             }
+            
             .question-text {
-                font-size: 1.3em;
+                font-size: 1.2em;
             }
-            .option-card {
-                padding: 15px;
-                font-size: 1em;
+            
+            .option-item {
+                padding: var(--space-md);
+            }
+            
+            .actions {
+                flex-direction: column;
+                gap: var(--space-md);
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="progress-bar">
-            <div class="progress-fill" id="progressFill"></div>
+        <!-- 顶部导航 -->
+        <div class="top-nav">
+            <button class="back-btn" onclick="goBack()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5"/>
+                    <path d="M12 19l-7-7 7-7"/>
+                </svg>
+                返回首页
+            </button>
+            <div class="test-info" id="testInfo">加载中...</div>
         </div>
-
-        <div class="test-header">
-            <h1 class="test-title" id="testTitle">加载中...</h1>
-            <p class="test-progress" id="testProgress"></p>
-        </div>
-
-        <div id="loading" class="loading">
-            <p>正在加载测试...</p>
-        </div>
-
-        <div id="questionContainer">
-            <!-- 问题将在这里动态显示 -->
-        </div>
-
-        <div class="error hidden" id="errorContainer">
-            <h2>加载测试失败</h2>
-            <p id="errorMessage"></p>
-            <a href="index.html" class="btn">返回首页</a>
-        </div>
-
-        <div class="result-card hidden" id="resultCard">
-            <h2 class="result-title" id="resultTitle">你的结果是...</h2>
-            <p class="result-description" id="resultDescription"></p>
-            <div class="result-traits" id="resultTraits"></div>
-            <div class="result-tips">
-                <strong>💡 建议：</strong>
-                <span id="resultTips"></span>
+        
+        <!-- 进度条 -->
+        <div class="progress-container">
+            <div class="progress-header">
+                <span id="questionProgress">问题 1 / 12</span>
+                <span id="progressPercent">8%</span>
             </div>
-            <div class="result-career" id="resultCareer">
-                <h4>🎯 适合的职业方向：</h4>
-                <div class="career-tags" id="careerTags"></div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
             </div>
-            <div>
-                <a href="index.html" class="btn">返回首页</a>
-                <button class="btn btn-secondary" onclick="restartTest()">重新测试</button>
+        </div>
+        
+        <!-- 加载状态 -->
+        <div class="loading" id="loading">
+            <div class="loading-spinner"></div>
+            <p>正在加载测试题目...</p>
+        </div>
+        
+        <!-- 错误状态 -->
+        <div class="error" id="error" style="display: none;">
+            <h2>⚠️ 加载失败</h2>
+            <p id="errorMessage">无法加载测试，请稍后重试</p>
+            <a href="index.html" class="btn btn-next">返回首页</a>
+        </div>
+        
+        <!-- 测试内容 -->
+        <div class="test-card" id="testCard" style="display: none;">
+            <div class="test-title">
+                <h1 id="testTitle">测试标题</h1>
+                <p id="testDesc">请根据你的真实想法选择答案</p>
+            </div>
+            
+            <div class="question-container" id="questionContainer">
+                <!-- 问题内容 -->
+            </div>
+            
+            <div class="actions">
+                <button class="btn btn-prev" id="prevBtn" onclick="prevQuestion()" disabled>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5"/>
+                        <path d="M12 19l-7-7 7-7"/>
+                    </svg>
+                    上一题
+                </button>
+                <button class="btn btn-next" id="nextBtn" onclick="nextQuestion()" disabled>
+                    下一题
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14"/>
+                        <path d="M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- 结果页面 -->
+        <div class="test-card result-container" id="resultCard">
+            <div class="result-header">
+                <div class="result-type" id="resultType">INTJ</div>
+                <div class="result-subtitle" id="resultSubtitle">战略策划者</div>
+            </div>
+            
+            <div class="result-description" id="resultDescription">
+                <!-- 结果描述 -->
+            </div>
+            
+            <div class="result-section">
+                <h3>✨ 性格特质</h3>
+                <div class="result-tags" id="resultTraits">
+                    <!-- 特质标签 -->
+                </div>
+            </div>
+            
+            <div class="result-section">
+                <h3>📋 个人建议</h3>
+                <div class="result-tips">
+                    <h4>💡 发展建议</h4>
+                    <p id="resultTips">暂无建议</p>
+                </div>
+            </div>
+            
+            <div class="result-section" id="careerSection" style="display: none;">
+                <h3>💼 适合职业</h3>
+                <div class="result-career">
+                    <h4>🎯 推荐职业方向</h4>
+                    <div class="career-list" id="resultCareer">
+                        <!-- 职业列表 -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="result-actions">
+                <button class="btn btn-share" onclick="shareResult()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;">
+                        <circle cx="18" cy="5" r="3"/>
+                        <circle cx="6" cy="12" r="3"/>
+                        <circle cx="18" cy="19" r="3"/>
+                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                    </svg>
+                    分享结果
+                </button>
+                <button class="btn btn-next" onclick="restartTest()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;">
+                        <path d="M1 4v6h6"/>
+                        <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
+                    </svg>
+                    重新测试
+                </button>
+                <a href="index.html" class="btn btn-restart">
+                    返回首页
+                </a>
             </div>
         </div>
     </div>
@@ -259,86 +690,110 @@
     <script>
         let testData = null;
         let currentQuestion = 0;
-        let answers = [];
-
-        // 从URL获取测试ID
+        let answers = {};
+        
+        // 从 URL 获取测试 ID
         const urlParams = new URLSearchParams(window.location.search);
         const testId = urlParams.get('test');
-
-        // 默认载入专业版 MBTI
+        
+        // 默认测试
         const DEFAULT_TEST = 'mbti-pro';
-
+        
         // 加载测试数据
-        async function loadTest(testId) {
+        async function loadTest() {
             try {
                 const fileName = testId || DEFAULT_TEST;
                 const response = await fetch(`data/examples/${fileName}.json`);
-
+                
                 if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                    throw new Error(`HTTP ${response.status}`);
                 }
-
-                return await response.json();
-            } catch (error) {
-                console.error('加载测试失败:', error);
-                throw error;
-            }
-        }
-
-        // 页面加载
-        async function init() {
-            try {
-                const loading = document.getElementById('loading');
-                const questionContainer = document.getElementById('questionContainer');
-
-                loading.style.display = 'block';
-                questionContainer.style.display = 'none';
-
-                testData = await loadTest(testId);
-
-                loading.style.display = 'none';
-                questionContainer.style.display = 'block';
-
+                
+                testData = await response.json();
+                
+                // 隐藏加载，显示测试
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('testCard').style.display = 'block';
+                
+                // 设置标题
                 document.getElementById('testTitle').textContent = testData.title;
+                document.getElementById('testInfo').textContent = testData.category || '心理测试';
+                
+                // 渲染第一个问题
                 renderQuestion();
+                
             } catch (error) {
-                const loading = document.getElementById('loading');
-                const errorContainer = document.getElementById('errorContainer');
-                const errorMessage = document.getElementById('errorMessage');
-
-                loading.style.display = 'none';
-                errorContainer.classList.remove('hidden');
-
-                errorMessage.textContent = `错误信息: ${error.message}`;
+                console.error('加载失败:', error);
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('error').style.display = 'block';
+                document.getElementById('errorMessage').textContent = `错误: ${error.message}`;
             }
         }
-
+        
+        // 渲染问题
         function renderQuestion() {
             const question = testData.questions[currentQuestion];
-            const container = document.getElementById('questionContainer');
-
+            const total = testData.questions.length;
+            
             // 更新进度
-            document.getElementById('testProgress').textContent = `问题 ${currentQuestion + 1} / ${testData.questions.length}`;
-            document.getElementById('progressFill').style.width = `${(currentQuestion / testData.questions.length) * 100}%`;
-
+            const percent = Math.round(((currentQuestion + 1) / total) * 100);
+            document.getElementById('questionProgress').textContent = `问题 ${currentQuestion + 1} / ${total}`;
+            document.getElementById('progressPercent').textContent = `${percent}%`;
+            document.getElementById('progressFill').style.width = `${percent}%`;
+            
+            // 更新按钮状态
+            document.getElementById('prevBtn').disabled = currentQuestion === 0;
+            
             // 渲染问题
-            let html = '<div class="question-card">';
-            html += `<p class="question-text">${question.question}</p>`;
-            html += '<div class="options-grid">';
-
-            question.options.forEach(option => {
-                html += `<div class="option-card" onclick="selectAnswer('${option.id}')">`;
-                html += `<span style="font-weight:bold;">${option.id}.</span> ${option.text}`;
-                html += '</div>';
-            });
-
-            html += '</div></div>';
-            container.innerHTML = html;
+            const container = document.getElementById('questionContainer');
+            container.innerHTML = `
+                <div class="question-number">${currentQuestion + 1}</div>
+                <p class="question-text">${question.question}</p>
+                <div class="options-list">
+                    ${question.options.map((option, index) => `
+                        <div class="option-item ${answers[currentQuestion] === option.id ? 'selected' : ''}" 
+                             onclick="selectOption('${option.id}')">
+                            <span class="option-letter">${String.fromCharCode(65 + index)}</span>
+                            <span class="option-text">${option.text}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            
+            // 更新下一题按钮
+            updateNextButton();
         }
-
-        function selectAnswer(optionId) {
-            answers.push(optionId);
-
+        
+        // 选择选项
+        function selectOption(optionId) {
+            answers[currentQuestion] = optionId;
+            renderQuestion();
+        }
+        
+        // 更新下一题按钮状态
+        function updateNextButton() {
+            const nextBtn = document.getElementById('nextBtn');
+            const hasAnswer = answers[currentQuestion] !== undefined;
+            const isLast = currentQuestion === testData.questions.length - 1;
+            
+            nextBtn.disabled = !hasAnswer;
+            nextBtn.innerHTML = isLast 
+                ? '查看结果 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>'
+                : '下一题 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>';
+        }
+        
+        // 上一题
+        function prevQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                renderQuestion();
+            }
+        }
+        
+        // 下一题
+        function nextQuestion() {
+            if (answers[currentQuestion] === undefined) return;
+            
             if (currentQuestion < testData.questions.length - 1) {
                 currentQuestion++;
                 renderQuestion();
@@ -346,17 +801,15 @@
                 showResult();
             }
         }
-
+        
+        // 显示结果
         function showResult() {
-            // 更新进度100%
-            document.getElementById('progressFill').style.width = '100%';
-
             // 计算结果
             const scores = {};
-            answers.forEach(answer => {
+            Object.values(answers).forEach(answer => {
                 scores[answer] = (scores[answer] || 0) + 1;
             });
-
+            
             // 根据测试类型计算结果
             let resultType;
             if (testData.category === 'MBTI') {
@@ -366,58 +819,108 @@
                     (scores['T'] >= scores['F'] ? 'T' : 'F') +
                     (scores['J'] >= scores['P'] ? 'J' : 'P');
             } else {
-                // 默认取得分最高的
                 resultType = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
             }
-
+            
             const result = testData.results[resultType] || Object.values(testData.results)[0];
-
-            // 显示结果
-            document.getElementById('questionContainer').classList.add('hidden');
-            document.getElementById('testProgress').classList.add('hidden');
-
+            
+            // 隐藏测试卡片，显示结果
+            document.getElementById('testCard').style.display = 'none';
+            document.getElementById('progressContainer').style.display = 'none';
+            document.getElementById('testInfo').textContent = '测试完成';
+            
             const resultCard = document.getElementById('resultCard');
-            resultCard.classList.remove('hidden');
-
-            document.getElementById('resultTitle').textContent = result.title || '你的结果';
+            resultCard.classList.add('active');
+            
+            // 填充结果数据
+            document.getElementById('resultType').textContent = resultType;
+            document.getElementById('resultSubtitle').textContent = result.title || '你的结果';
             document.getElementById('resultDescription').textContent = result.description || '';
-
-            // 性格特征
+            document.getElementById('resultTips').textContent = result.tips || '暂无建议';
+            
+            // 性格特质
             const traitsContainer = document.getElementById('resultTraits');
             if (result.traits && result.traits.length > 0) {
-                traitsContainer.innerHTML = result.traits.map(trait =>
-                    `<span class="trait-badge">${trait}</span>`
+                traitsContainer.innerHTML = result.traits.map(trait => 
+                    `<span class="result-tag">${trait}</span>`
                 ).join('');
-            } else {
-                traitsContainer.innerHTML = '';
             }
-
-            document.getElementById('resultTips').textContent = result.tips || '暂无建议';
-
-            // 适合的职业
-            const careerDiv = document.getElementById('resultCareer');
-            const careerTags = document.getElementById('careerTags');
+            
+            // 职业推荐
+            const careerSection = document.getElementById('careerSection');
+            const careerContainer = document.getElementById('resultCareer');
             if (result.career && result.career.length > 0) {
-                careerDiv.style.display = 'block';
-                careerTags.innerHTML = result.career.map(career =>
-                    `<span class="career-tag">${career}</span>`
+                careerSection.style.display = 'block';
+                careerContainer.innerHTML = result.career.map(career => 
+                    `<span class="career-item">${career}</span>`
                 ).join('');
             } else {
-                careerDiv.style.display = 'none';
+                careerSection.style.display = 'none';
             }
+            
+            // 保存到历史记录
+            saveToHistory(resultType, result.title);
         }
-
+        
+        // 保存到历史记录
+        function saveToHistory(type, title) {
+            const history = JSON.parse(localStorage.getItem('testHistory') || '[]');
+            history.unshift({
+                testId: testId || DEFAULT_TEST,
+                type: type,
+                title: title,
+                date: new Date().toISOString()
+            });
+            localStorage.setItem('testHistory', JSON.stringify(history.slice(0, 10)));
+        }
+        
+        // 分享结果
+        function shareResult() {
+            const type = document.getElementById('resultType').textContent;
+            const title = document.getElementById('resultSubtitle').textContent;
+            const text = `我在心灵方舟做了${testData.title}，结果是【${type}】${title}！你也来测测吧！`;
+            
+            // 复制到剪贴板
+            navigator.clipboard.writeText(text).then(() => {
+                alert('结果已复制到剪贴板，快去分享吧！');
+            }).catch(() => {
+                alert(text);
+            });
+        }
+        
+        // 重新测试
         function restartTest() {
             currentQuestion = 0;
-            answers = [];
-            document.getElementById('questionContainer').classList.remove('hidden');
-            document.getElementById('testProgress').classList.remove('hidden');
-            document.getElementById('resultCard').classList.add('hidden');
+            answers = {};
+            document.getElementById('resultCard').classList.remove('active');
+            document.getElementById('testCard').style.display = 'block';
+            document.getElementById('progressContainer').style.display = 'block';
             renderQuestion();
         }
-
+        
+        // 返回首页
+        function goBack() {
+            if (confirm('确定要返回吗？测试进度将会丢失。')) {
+                window.location.href = 'index.html';
+            }
+        }
+        
+        // 键盘快捷键
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' && !document.getElementById('nextBtn').disabled) {
+                nextQuestion();
+            } else if (e.key === 'ArrowLeft' && currentQuestion > 0) {
+                prevQuestion();
+            } else if (e.key >= '1' && e.key <= '4') {
+                const options = testData?.questions[currentQuestion]?.options || [];
+                if (options[parseInt(e.key) - 1]) {
+                    selectOption(options[parseInt(e.key) - 1].id);
+                }
+            }
+        });
+        
         // 页面加载完成后初始化
-        window.addEventListener('DOMContentLoaded', init);
+        window.addEventListener('DOMContentLoaded', loadTest);
     </script>
 </body>
 </html>
