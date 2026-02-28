@@ -244,52 +244,43 @@
         /* 导航按钮 */
         .nav-buttons {
             display: flex;
-            gap: var(--space-md);
+            justify-content: center;
             margin-top: var(--space-lg);
             padding-top: var(--space-md);
             border-top: 1px solid #E2E8F0;
         }
         
         .nav-btn {
-            flex: 1;
-            padding: var(--space-md);
-            border-radius: var(--radius-md);
-            font-size: 0.95em;
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-md) var(--space-xl);
+            border-radius: 50px;
+            font-size: 0.9em;
             font-weight: 500;
             cursor: pointer;
             text-align: center;
-            border: none;
-            transition: all 0.2s ease;
-        }
-        
-        .nav-btn.prev {
-            background: #F1F5F9;
+            border: 2px solid #E2E8F0;
+            background: white;
             color: var(--text-secondary);
+            transition: all 0.3s ease;
         }
         
-        .nav-btn.prev:hover:not(:disabled) {
-            background: #E2E8F0;
-            color: var(--text-primary);
+        .nav-btn:hover:not(:disabled) {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateX(-5px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
         }
         
-        .nav-btn.prev:disabled {
-            opacity: 0.5;
+        .nav-btn:disabled {
+            opacity: 0.3;
             cursor: not-allowed;
         }
         
-        .nav-btn.next {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-        }
-        
-        .nav-btn.next:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-        }
-        
-        .nav-btn.next:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
+        .nav-btn svg {
+            width: 18px;
+            height: 18px;
         }
         
         /* 结果页 */
@@ -712,8 +703,13 @@
                 
                 <!-- 导航按钮 -->
                 <div class="nav-buttons">
-                    <button class="nav-btn prev" id="prevBtn" onclick="prevQuestion()" disabled>← 上一题</button>
-                    <button class="nav-btn next" id="nextBtn" onclick="nextQuestion()" disabled>下一题 →</button>
+                    <button class="nav-btn" id="prevBtn" onclick="prevQuestion()" disabled>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 12H5"/>
+                            <path d="M12 19l-7-7 7-7"/>
+                        </svg>
+                        上一题
+                    </button>
                 </div>
             </div>
         </div>
@@ -858,20 +854,11 @@
                 </div>
             `).join('');
             
-            // 更新按钮状态
+            // 更新上一题按钮状态
             document.getElementById('prevBtn').disabled = currentQ === 0;
-            document.getElementById('nextBtn').disabled = !answers[currentQ];
-            
-            // 最后一题显示"查看结果"
-            const nextBtn = document.getElementById('nextBtn');
-            if (currentQ === total - 1) {
-                nextBtn.textContent = answers[currentQ] ? '查看结果 →' : '下一题 →';
-            } else {
-                nextBtn.textContent = '下一题 →';
-            }
         }
         
-        // 选择选项
+        // 选择选项 - 自动进入下一题
         function selectOption(optId) {
             answers[currentQ] = optId;
             
@@ -880,11 +867,14 @@
                 el.classList.toggle('selected', el.dataset.id === optId);
             });
             
-            // 更新下一题按钮
-            document.getElementById('nextBtn').disabled = false;
-            
-            // 自动进入下一题（可选，如果不需要可以注释掉下面这行）
-            // setTimeout(() => { if (currentQ < testData.questions.length - 1) nextQuestion(); }, 300);
+            // 自动进入下一题
+            setTimeout(() => { 
+                if (currentQ < testData.questions.length - 1) {
+                    nextQuestion();
+                } else {
+                    showResult();
+                }
+            }, 300);
         }
         
         // 上一题
