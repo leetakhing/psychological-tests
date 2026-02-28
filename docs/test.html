@@ -241,6 +241,57 @@
             line-height: 1.5;
         }
         
+        /* 导航按钮 */
+        .nav-buttons {
+            display: flex;
+            gap: var(--space-md);
+            margin-top: var(--space-lg);
+            padding-top: var(--space-md);
+            border-top: 1px solid #E2E8F0;
+        }
+        
+        .nav-btn {
+            flex: 1;
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            font-size: 0.95em;
+            font-weight: 500;
+            cursor: pointer;
+            text-align: center;
+            border: none;
+            transition: all 0.2s ease;
+        }
+        
+        .nav-btn.prev {
+            background: #F1F5F9;
+            color: var(--text-secondary);
+        }
+        
+        .nav-btn.prev:hover:not(:disabled) {
+            background: #E2E8F0;
+            color: var(--text-primary);
+        }
+        
+        .nav-btn.prev:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .nav-btn.next {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+        }
+        
+        .nav-btn.next:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+        
+        .nav-btn.next:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
         /* 结果页 */
         #resultPage {
             display: none;
@@ -393,6 +444,110 @@
             border: 2px solid var(--primary);
         }
         
+        /* 测试介绍页 */
+        #introPage {
+            display: none;
+        }
+        
+        #introPage.active {
+            display: block;
+        }
+        
+        .intro-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .intro-header {
+            text-align: center;
+            margin-bottom: var(--space-xl);
+        }
+        
+        .intro-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-md);
+            font-size: 2em;
+        }
+        
+        .intro-title {
+            font-size: 1.5em;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .intro-subtitle {
+            color: var(--primary);
+            font-size: 1em;
+            margin-bottom: var(--space-md);
+        }
+        
+        .intro-desc {
+            color: var(--text-secondary);
+            font-size: 0.95em;
+            line-height: 1.7;
+            text-align: left;
+            margin-bottom: var(--space-xl);
+        }
+        
+        .intro-stats {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-xl);
+            margin-bottom: var(--space-xl);
+            padding: var(--space-md);
+            background: #F8FAFC;
+            border-radius: var(--radius-md);
+        }
+        
+        .intro-stat {
+            text-align: center;
+        }
+        
+        .intro-stat-value {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .intro-stat-label {
+            font-size: 0.8em;
+            color: var(--text-secondary);
+        }
+        
+        .intro-features {
+            margin-bottom: var(--space-xl);
+        }
+        
+        .intro-feature {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            padding: var(--space-sm) 0;
+            color: var(--text-secondary);
+            font-size: 0.9em;
+        }
+        
+        .intro-feature-icon {
+            width: 24px;
+            height: 24px;
+            background: #DBEAFE;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 0.8em;
+            flex-shrink: 0;
+        }
+        
         /* 加载 */
         .loading {
             text-align: center;
@@ -426,7 +581,7 @@
             margin-bottom: var(--space-md);
         }
         
-        /* Debug 按钮 - 发布时改为 display:none */
+        /* Debug 按钮 */
         .debug-btn {
             position: fixed;
             bottom: 20px;
@@ -440,10 +595,6 @@
             cursor: pointer;
             z-index: 9999;
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        }
-        
-        .debug-btn:hover {
-            background: #DC2626;
         }
         
         /* 响应式 */
@@ -472,7 +623,7 @@
     </style>
 </head>
 <body>
-    <!-- Debug 按钮: 发布时删除此按钮 -->
+    <!-- Debug 按钮 -->
     <button class="debug-btn" onclick="debugMode()">🔧 Debug</button>
     
     <div class="container">
@@ -489,11 +640,49 @@
             <a href="index.html" class="btn btn-primary" style="display:inline-block;margin-top:16px;">返回首页</a>
         </div>
         
+        <!-- 测试介绍页 -->
+        <div id="introPage">
+            <div class="intro-card">
+                <div class="intro-header">
+                    <div class="intro-icon" id="introIcon">🧠</div>
+                    <h1 class="intro-title" id="introTitle">测试标题</h1>
+                    <div class="intro-subtitle" id="introSubtitle">副标题</div>
+                </div>
+                
+                <div class="intro-desc" id="introDesc">
+                    测试描述
+                </div>
+                
+                <div class="intro-stats">
+                    <div class="intro-stat">
+                        <div class="intro-stat-value" id="introCount">0</div>
+                        <div class="intro-stat-label">题数</div>
+                    </div>
+                    <div class="intro-stat">
+                        <div class="intro-stat-value" id="introDuration">0</div>
+                        <div class="intro-stat-label">分钟</div>
+                    </div>
+                </div>
+                
+                <div class="intro-features" id="introFeatures">
+                    <!-- 特点 -->
+                </div>
+                
+                <button class="btn btn-primary" onclick="startTest()" style="width:100%;">
+                    开始测试
+                </button>
+                
+                <div style="text-align:center;margin-top:var(--space-md);">
+                    <a href="index.html" style="color:var(--text-secondary);font-size:0.9em;">返回首页</a>
+                </div>
+            </div>
+        </div>
+        
         <!-- 测试页面 -->
         <div id="testPage" style="display:none;height:100%;flex-direction:column;">
             <div class="header">
                 <button class="back-btn" onclick="goBack()">← 返回</button>
-                <span class="test-label" id="testLabel">MBTI 测试</span>
+                <span class="test-label" id="testLabel">测试</span>
             </div>
             
             <div class="progress-wrap">
@@ -519,6 +708,12 @@
                     <div class="options" id="options">
                         <!-- 选项 -->
                     </div>
+                </div>
+                
+                <!-- 导航按钮 -->
+                <div class="nav-buttons">
+                    <button class="nav-btn prev" id="prevBtn" onclick="prevQuestion()" disabled>← 上一题</button>
+                    <button class="nav-btn next" id="nextBtn" onclick="nextQuestion()" disabled>下一题 →</button>
                 </div>
             </div>
         </div>
@@ -567,6 +762,7 @@
         let testData = null;
         let currentQ = 0;
         let answers = {};
+        let isIntroView = true; // 是否显示介绍页
         
         const urlParams = new URLSearchParams(window.location.search);
         const testId = urlParams.get('test') || 'mbti-pro';
@@ -580,18 +776,61 @@
                 testData = await res.json();
                 
                 document.getElementById('loading').style.display = 'none';
-                document.getElementById('testPage').style.display = 'flex';
                 
-                document.getElementById('testLabel').textContent = testData.title || '心理测试';
-                document.getElementById('testTitle').textContent = testData.title || '测试';
-                
-                renderQuestion();
+                // 显示介绍页
+                showIntro();
             } catch (e) {
                 console.error(e);
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('error').style.display = 'block';
                 document.getElementById('errorMsg').textContent = e.message;
             }
+        }
+        
+        // 显示介绍页
+        function showIntro() {
+            document.getElementById('introPage').classList.add('active');
+            
+            document.getElementById('introTitle').textContent = testData.title || '心理测试';
+            document.getElementById('introSubtitle').textContent = testData.subtitle || '';
+            document.getElementById('introDesc').textContent = testData.description || '';
+            
+            // 题数和时长
+            const qCount = testData.questions ? testData.questions.length : 0;
+            const duration = testData.duration || Math.ceil(qCount * 0.5) + '分钟';
+            document.getElementById('introCount').textContent = qCount + '题';
+            document.getElementById('introDuration').textContent = duration;
+            
+            // 图标
+            const icons = {'MBTI': '🧠', 'IQ': '🧩', '情感': '💕', '职场': '💼', '性格': '👤'};
+            const category = testData.category || 'MBTI';
+            document.getElementById('introIcon').textContent = icons[category] || '📝';
+            
+            // 特点
+            const features = [
+                '基于科学心理学理论',
+                '深度分析个人特质',
+                '提供专业发展建议',
+                '永久保存测试记录'
+            ];
+            document.getElementById('introFeatures').innerHTML = features.map(f => `
+                <div class="intro-feature">
+                    <span class="intro-feature-icon">✓</span>
+                    <span>${f}</span>
+                </div>
+            `).join('');
+        }
+        
+        // 开始测试
+        function startTest() {
+            document.getElementById('introPage').classList.remove('active');
+            document.getElementById('testPage').style.display = 'flex';
+            
+            document.getElementById('testLabel').textContent = testData.title || '心理测试';
+            document.getElementById('testTitle').textContent = testData.title || '测试';
+            
+            isIntroView = false;
+            renderQuestion();
         }
         
         // 渲染问题
@@ -618,6 +857,18 @@
                     <span class="option-text">${opt.text}</span>
                 </div>
             `).join('');
+            
+            // 更新按钮状态
+            document.getElementById('prevBtn').disabled = currentQ === 0;
+            document.getElementById('nextBtn').disabled = !answers[currentQ];
+            
+            // 最后一题显示"查看结果"
+            const nextBtn = document.getElementById('nextBtn');
+            if (currentQ === total - 1) {
+                nextBtn.textContent = answers[currentQ] ? '查看结果 →' : '下一题 →';
+            } else {
+                nextBtn.textContent = '下一题 →';
+            }
         }
         
         // 选择选项
@@ -629,15 +880,31 @@
                 el.classList.toggle('selected', el.dataset.id === optId);
             });
             
-            // 自动进入下一题
-            setTimeout(() => {
-                if (currentQ < testData.questions.length - 1) {
-                    currentQ++;
-                    renderQuestion();
-                } else {
-                    showResult();
-                }
-            }, 200);
+            // 更新下一题按钮
+            document.getElementById('nextBtn').disabled = false;
+            
+            // 自动进入下一题（可选，如果不需要可以注释掉下面这行）
+            // setTimeout(() => { if (currentQ < testData.questions.length - 1) nextQuestion(); }, 300);
+        }
+        
+        // 上一题
+        function prevQuestion() {
+            if (currentQ > 0) {
+                currentQ--;
+                renderQuestion();
+            }
+        }
+        
+        // 下一题
+        function nextQuestion() {
+            if (answers[currentQ] === undefined) return;
+            
+            if (currentQ < testData.questions.length - 1) {
+                currentQ++;
+                renderQuestion();
+            } else {
+                showResult();
+            }
         }
         
         // 显示结果
@@ -669,7 +936,7 @@
             document.getElementById('resultType').textContent = resultType;
             document.getElementById('resultName').textContent = result.title || '';
             document.getElementById('resultDesc').textContent = result.description || '';
-            document.getElementById('resultTips').textContent = result.traits ? result.tips : '暂无建议';
+            document.getElementById('resultTips').textContent = result.tips ? result.tips : '暂无建议';
             
             // 特质标签
             if (result.traits && result.traits.length) {
@@ -707,21 +974,6 @@
             });
         }
         
-        // Debug 模式：所有题目选第一个选项，直接出结果
-        function debugMode() {
-            if (!confirm('确认进入 Debug 模式？将自动完成所有题目。')) return;
-            
-            // 为所有题目选择第一个选项
-            testData.questions.forEach((q, i) => {
-                if (q.options && q.options.length > 0) {
-                    answers[i] = q.options[0].id;
-                }
-            });
-            
-            // 直接显示结果
-            showResult();
-        }
-        
         // 重新测试
         function restartTest() {
             currentQ = 0;
@@ -733,9 +985,31 @@
         
         // 返回
         function goBack() {
-            if (confirm('确定要返回吗？测试进度会丢失。')) {
+            if (isIntroView) {
                 window.location.href = 'index.html';
+            } else {
+                if (confirm('确定要返回吗？测试进度会丢失。')) {
+                    showIntro();
+                }
             }
+        }
+        
+        // Debug 模式
+        function debugMode() {
+            if (!confirm('确认进入 Debug 模式？将自动完成所有题目。')) return;
+            
+            testData.questions.forEach((q, i) => {
+                if (q.options && q.options.length > 0) {
+                    answers[i] = q.options[0].id;
+                }
+            });
+            
+            // 跳过介绍页
+            document.getElementById('introPage').classList.remove('active');
+            document.getElementById('testPage').style.display = 'flex';
+            isIntroView = false;
+            
+            showResult();
         }
         
         // 启动
