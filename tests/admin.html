@@ -235,7 +235,24 @@
             font-size: 13px;
         }
         
-        .btn-delete {
+        .btn-toggle {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            min-width: 70px;
+        }
+        
+        .btn-toggle.enable {
+            background: #10b981;
+            color: white;
+        }
+        
+        .btn-toggle.disable {
+            background: #f59e0b;
+            color: white;
+        }
             padding: 8px 16px;
             background: #ef4444;
             color: white;
@@ -569,6 +586,9 @@
                         ${test.enabled ? '已启用' : '已禁用'}
                     </div>
                     <div class="test-actions">
+                        <button class="btn-toggle ${test.enabled ? 'disable' : 'enable'}" onclick="toggleTest(${index})">
+                            ${test.enabled ? '禁用' : '启用'}
+                        </button>
                         <button class="btn-edit" onclick="editTest(${index})">编辑</button>
                         <button class="btn-delete" onclick="deleteTest(${index})">删除</button>
                     </div>
@@ -628,6 +648,12 @@
                 tests.splice(index, 1);
                 saveIndex();
             }
+        }
+        
+        // 切换启用/禁用状态
+        function toggleTest(index) {
+            tests[index].enabled = !tests[index].enabled;
+            saveIndex();
         }
         
         // 保存测试（更新索引）
