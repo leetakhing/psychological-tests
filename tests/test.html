@@ -387,13 +387,13 @@
             margin-bottom: var(--space-lg);
         }
         
-        /* 结果页面样式（复用） */
+        /* 结果页面样式 */
         .result-container {
-            display: none;
+            display: none !important;
         }
         
         .result-container.active {
-            display: block;
+            display: block !important;
         }
         
         .result-header {
@@ -827,6 +827,7 @@
             // 隐藏测试卡片，显示结果
             document.getElementById('testCard').style.display = 'none';
             document.getElementById('progressContainer').style.display = 'none';
+            document.querySelector('.top-nav').style.display = 'none';
             document.getElementById('testInfo').textContent = '测试完成';
             
             const resultCard = document.getElementById('resultCard');
