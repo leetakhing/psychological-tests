@@ -492,8 +492,32 @@
         // 加载配置
         function loadTests() {
             // 从 config.js 读取
-            const config = window.APP_CONFIG || {};
-            const tests = config.tests || [];
+            let config = {};
+            try {
+                config = window.APP_CONFIG || {};
+            } catch(e) {
+                console.error('Config load error:', e);
+            }
+            
+            let tests = [];
+            if (config.tests) {
+                tests = config.tests;
+            } else {
+                // Fallback: 直接内联测试列表（如果 config.js 加载失败）
+                tests = [
+                    {id: 'mbti-pro', title: 'MBTI 人格测试', category: 'MBTI', questionCount: 12, enabled: true},
+                    {id: 'mbti-full', title: 'MBTI 深度人格测评', category: 'MBTI', questionCount: 28, enabled: true},
+                    {id: 'constellation-guardian', title: '星座守护神测试', category: '星座', questionCount: 12, enabled: true},
+                    {id: 'iq-test', title: 'IQ 智商测试', category: 'IQ', questionCount: 30, enabled: true},
+                    {id: 'love-personality', title: '爱情性格测试', category: '情感', questionCount: 15, enabled: true},
+                    {id: 'eq-test', title: 'EQ 情商测试', category: '情商', questionCount: 20, enabled: true},
+                    {id: 'career-test', title: '职业性格测试', category: '职场', questionCount: 18, enabled: true},
+                    {id: 'social-fear', title: '社恐等级测试', category: '趣味', questionCount: 10, enabled: true},
+                    {id: 'cow-horse', title: '牛马类型测试', category: '趣味', questionCount: 8, enabled: true},
+                    {id: 'talent-test', title: '天赋测试', category: '趣味', questionCount: 10, enabled: true}
+                ];
+                console.log('Using fallback test list');
+            }
             
             // 只显示已启用的测试
             allTests = tests.filter(t => t.enabled !== false);
