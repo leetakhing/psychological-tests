@@ -426,6 +426,26 @@
             margin-bottom: var(--space-md);
         }
         
+        /* Debug 按钮 - 发布时改为 display:none */
+        .debug-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: #EF4444;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            z-index: 9999;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        
+        .debug-btn:hover {
+            background: #DC2626;
+        }
+        
         /* 响应式 */
         @media (max-width: 480px) {
             body {
@@ -452,6 +472,9 @@
     </style>
 </head>
 <body>
+    <!-- Debug 按钮: 发布时删除此按钮 -->
+    <button class="debug-btn" onclick="debugMode()">🔧 Debug</button>
+    
     <div class="container">
         <!-- 加载 -->
         <div class="loading" id="loading">
@@ -674,13 +697,29 @@
         function shareResult() {
             const type = document.getElementById('resultType').textContent;
             const name = document.getElementById('resultName').textContent;
-            const text = `我在心灵方舟做了${testData.title}，结果是【${type}】${name}！你也来测测吧！`;
+            const testUrl = window.location.origin + window.location.pathname + '?test=' + testId;
+            const text = `我在心灵方舟做了【${testData.title}】，结果是【${type}】${name}！\n\n你也来测测吧：${testUrl}`;
             
             navigator.clipboard.writeText(text).then(() => {
                 alert('结果已复制，快去分享吧！');
             }).catch(() => {
                 alert(text);
             });
+        }
+        
+        // Debug 模式：所有题目选第一个选项，直接出结果
+        function debugMode() {
+            if (!confirm('确认进入 Debug 模式？将自动完成所有题目。')) return;
+            
+            // 为所有题目选择第一个选项
+            testData.questions.forEach((q, i) => {
+                if (q.options && q.options.length > 0) {
+                    answers[i] = q.options[0].id;
+                }
+            });
+            
+            // 直接显示结果
+            showResult();
         }
         
         // 重新测试
