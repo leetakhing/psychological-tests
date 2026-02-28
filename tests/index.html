@@ -486,11 +486,20 @@
             '其他': ''
         };
         
-        // 加载测试列表
+        // 加载测试列表 - 优先从 localStorage 读取
         async function loadTests() {
             try {
-                const res = await fetch('data/examples/index.json');
-                const tests = await res.json();
+                // 先尝试从 localStorage 读取（实时同步）
+                const stored = localStorage.getItem('testsList');
+                let tests;
+                
+                if (stored) {
+                    tests = JSON.parse(stored);
+                } else {
+                    // 没有 localStorage 则从 JSON 文件读取
+                    const res = await fetch('data/examples/index.json');
+                    tests = await res.json();
+                }
                 
                 // 只显示已启用的测试
                 allTests = tests.filter(t => t.enabled !== false);

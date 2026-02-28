@@ -672,20 +672,12 @@
             saveIndex();
         }
         
-        // 保存测试（更新索引）
+        // 保存测试（更新索引）- 同时保存到 localStorage
         function saveIndex() {
-            // 保存 index.json
-            const indexJson = JSON.stringify(tests, null, 2);
-            const blob = new Blob([indexJson], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
+            // 保存到 localStorage（实时生效）
+            localStorage.setItem('testsList', JSON.stringify(tests));
             
-            // 触发下载（实际使用时需要后端 API）
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'index.json';
-            a.click();
-            
-            showAlert('已生成 index.json 文件，请下载后上传到服务器', 'success');
+            showAlert('已保存！主页将立即更新', 'success');
             renderTestList();
         }
         
