@@ -16,6 +16,18 @@
     "browserless-agent": {
       "version": "0.1.0",
       "installedAt": 1770527246030
+    },
+    "xiaohongshu-mcp": {
+      "version": "1.0.0",
+      "installedAt": 1772275383117
+    },
+    "memory-setup": {
+      "version": "1.0.0",
+      "installedAt": 1772276282616
+    },
+    "session-memory": {
+      "version": "1.1.0",
+      "installedAt": 1772276293098
     }
   }
 }

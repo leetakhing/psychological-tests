@@ -611,7 +611,22 @@
                 font-size: 0.9em;
             }
         }
+        
+        /* 雷达图 */
+        .radar-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .radar-chart {
+            max-width: 300px;
+            width: 100%;
+        }
     </style>
+    
+    <!-- Chart.js 雷达图 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <!-- Debug 按钮 -->
@@ -722,6 +737,11 @@
                     <div class="result-name" id="resultName">战略策划者</div>
                 </div>
                 
+                <!-- 雷达图 -->
+                <div class="radar-container">
+                    <canvas id="radarChart" class="radar-chart"></canvas>
+                </div>
+                
                 <div class="result-desc" id="resultDesc">
                     结果描述
                 </div>
@@ -762,6 +782,60 @@
         
         const urlParams = new URLSearchParams(window.location.search);
         const testId = urlParams.get('test') || 'mbti-pro';
+        
+        // 绘制雷达图
+        function drawRadarChart(data) {
+            const ctx = document.getElementById('radarChart');
+            if (!ctx) return;
+            
+            // 确保数据是数组
+            let values = Array.isArray(data) ? data : Object.values(data);
+            
+            // 确保有10个数据点，不足则填充
+            while (values.length < 10) {
+                values.push(10);
+            }
+            values = values.slice(0, 10);
+            
+            const labels = ['语言', '逻辑', '操作', '人际', '创意', '音乐', '自然', '空间', '内省', '美学'];
+            
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '你的天赋值',
+                        data: values,
+                        backgroundColor: 'rgba(37, 99, 235, 0.2)',
+                        borderColor: 'rgba(37, 99, 235, 1)',
+                        borderWidth: 2,
+                        pointBackgroundColor: 'rgba(37, 99, 235, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(37, 99, 235, 1)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        r: {
+                            beginAtZero: true,
+                            max: 20,
+                            ticks: {
+                                stepSize: 5,
+                                display: false
+                            },
+                            pointLabels: {
+                                font: { size: 11 }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+        }
         
         // 加载测试
         async function init() {
@@ -942,6 +1016,16 @@
                     result.career.map(c => `<span class="career-tag">${c}</span>`).join('');
             } else {
                 careerSec.style.display = 'none';
+            }
+            
+            // 绘制雷达图
+            if (result.radar) {
+                // 如果是数组直接用，如果是对象则转换
+                let chartData = result.radar;
+                if (typeof result.radar === 'object' && !Array.isArray(result.radar)) {
+                    chartData = Object.values(result.radar);
+                }
+                drawRadarChart(chartData);
             }
             
             // 保存历史
