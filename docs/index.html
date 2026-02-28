@@ -491,19 +491,23 @@
         
         // 加载配置
         function loadTests() {
+            console.log('loadTests called');
+            
             // 从 config.js 读取
             let config = {};
             try {
                 config = window.APP_CONFIG || {};
+                console.log('config loaded:', !!config.tests);
             } catch(e) {
                 console.error('Config load error:', e);
             }
             
             let tests = [];
-            if (config.tests) {
+            if (config.tests && config.tests.length > 0) {
                 tests = config.tests;
+                console.log('Using config tests:', tests.length);
             } else {
-                // Fallback: 直接内联测试列表（如果 config.js 加载失败）
+                // Fallback: 直接内联测试列表
                 tests = [
                     {id: 'mbti-pro', title: 'MBTI 人格测试', category: 'MBTI', questionCount: 12, enabled: true},
                     {id: 'mbti-full', title: 'MBTI 深度人格测评', category: 'MBTI', questionCount: 28, enabled: true},
@@ -516,7 +520,7 @@
                     {id: 'cow-horse', title: '牛马类型测试', category: '趣味', questionCount: 8, enabled: true},
                     {id: 'talent-test', title: '天赋测试', category: '趣味', questionCount: 10, enabled: true}
                 ];
-                console.log('Using fallback test list');
+                console.log('Using fallback test list:', tests.length);
             }
             
             // 只显示已启用的测试
@@ -633,6 +637,9 @@
         
         // 页面加载
         window.addEventListener('load', loadTests);
+        
+        // 直接调用一次（立即执行，避免依赖 load 事件）
+        loadTests();
     </script>
 </body>
 </html>
