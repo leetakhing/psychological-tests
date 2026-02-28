@@ -389,6 +389,9 @@
             .test-badge { padding: 2px 6px; font-size: 0.6em; top: 6px; left: 6px; }
         }
     </style>
+    
+    <!-- 配置文件 -->
+    <script src="config.js"></script>
 </head>
 <body>
     <div class="container">
@@ -486,24 +489,31 @@
             '其他': ''
         };
         
-        // 加载测试列表 - 优先从 config.js 读取
+        // 加载配置
         function loadTests() {
-            // 优先从 config.js 读取
-            if (window.TESTS_CONFIG) {
-                allTests = window.TESTS_CONFIG;
-            } else {
-                // 没有 config.js 则用默认列表
-                allTests = [
-                    { id: 'mbti-pro', title: 'MBTI 人格测试', category: 'MBTI', questionCount: 12 },
-                    { id: 'mbti-full', title: 'MBTI 深度人格测评', category: 'MBTI', questionCount: 28 },
-                    { id: 'constellation-guardian', title: '星座守护神测试', category: '星座', questionCount: 12 },
-                    { id: 'iq-test', title: 'IQ 智商测试', category: 'IQ', questionCount: 30 },
-                    { id: 'love-personality', title: '爱情性格测试', category: '情感', questionCount: 15 },
-                    { id: 'eq-test', title: 'EQ 情商测试', category: '情商', questionCount: 20 },
-                    { id: 'career-test', title: '职业性格测试', category: '职场', questionCount: 18 },
-                    { id: 'social-phobia', title: '社恐等级测试', category: '趣味', questionCount: 10 },
-                    { id: 'cow-horse', title: '牛马类型测试', category: '趣味', questionCount: 8 }
-                ];
+            // 从 config.js 读取
+            const config = window.APP_CONFIG || {};
+            const tests = config.tests || [];
+            
+            // 只显示已启用的测试
+            allTests = tests.filter(t => t.enabled !== false);
+            
+            // 更新统计
+            if (config.stats) {
+                if (config.stats.totalTests) {
+                    document.querySelector('.stat-item:first-child .stat-value').textContent = config.stats.totalTests;
+                }
+                if (config.stats.satisfaction) {
+                    document.querySelector('.stat-item:last-child .stat-value').textContent = config.stats.satisfaction;
+                }
+            }
+            
+            // 更新标题
+            if (config.siteName) {
+                document.querySelector('.logo-text').textContent = config.siteName;
+            }
+            if (config.siteSubtitle) {
+                document.querySelector('.subtitle').innerHTML = config.siteSubtitle.replace('\n', '<br>');
             }
             
             document.getElementById('testCount').textContent = allTests.length;
