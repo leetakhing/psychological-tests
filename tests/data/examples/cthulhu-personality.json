@@ -8,178 +8,178 @@
   "questions": [
     {
       "id": 1,
-      "question": "深夜独自走在海边，你最可能：",
+      "question": "深夜独自走在印斯茅斯海岸，你最可能：",
       "options": [
-        {"id": "S", "text": "聆听海浪声，感到无比平静", "san": 2, "pow": 0, "edu": 1, "int": 1, "str": 0, "app": 0, "con": 1, "dex": 0, "luc": 1, "spot": 1, "stealth": 0, "mythos": 0},
-        {"id": "P", "text": "总觉得水下有什么在注视着我", "san": -1, "pow": 2, "edu": 0, "int": 0, "str": 1, "app": 0, "con": 1, "dex": 0, "luc": -1, "spot": 2, "stealth": 0, "mythos": 1},
-        {"id": "O", "text": "注意到远处有奇怪的光点", "san": 0, "pow": 1, "edu": 1, "int": 2, "str": 0, "app": 0, "con": 0, "dex": 1, "luc": 0, "spot": 3, "stealth": 1, "mythos": 0},
-        {"id": "M", "text": "想起某个远古的召唤", "san": -2, "pow": 3, "edu": 1, "int": 0, "str": 2, "app": -1, "con": 2, "dex": 0, "luc": -2, "spot": 1, "stealth": -1, "mythos": 3}
+        {"id": "S", "text": "欣赏月光下的海浪，认为这是个普通的夜晚", "san": 3, "pow": 0, "edu": 1, "int": 1, "str": 0, "app": 1, "con": 1, "dex": 0, "luc": 2, "spot": 0, "stealth": 0, "mythos": -1},
+        {"id": "P", "text": "注意到水下似乎有鳞片闪烁，脑中闪过不详的念头", "san": -1, "pow": 1, "edu": 0, "int": 0, "str": 1, "app": 0, "con": 0, "dex": 0, "luc": -1, "spot": 2, "stealth": 0, "mythos": 1},
+        {"id": "O", "text": "用望远镜观察星空，思考宇宙的渺小", "san": 1, "pow": 0, "edu": 2, "int": 2, "str": 0, "app": 1, "con": 0, "dex": 1, "luc": 1, "spot": 1, "stealth": 1, "mythos": 0},
+        {"id": "M", "text": "听到远古的低语在召唤我投身入海，那里才是真正的归宿", "san": -3, "pow": 3, "edu": 0, "int": -1, "str": 2, "app": -2, "con": 2, "dex": 0, "luc": -3, "spot": 1, "stealth": -2, "mythos": 4}
       ]
     },
     {
       "id": 2,
-      "question": "当你得知世界上有隐藏的真相时：",
+      "question": "你得到了一本名为《死灵之书》的古籍，你会：",
       "options": [
-        {"id": "S", "text": "迫不及待想要揭开", "san": 1, "pow": 0, "edu": 2, "int": 2, "str": 0, "app": 1, "con": 0, "dex": 0, "luc": 1, "spot": 0, "stealth": 0, "mythos": 0},
-        {"id": "P", "text": "感到恐惧但又好奇", "san": 0, "pow": 1, "edu": 1, "int": 1, "str": 0, "app": 0, "con": 0, "dex": 0, "luc": 0, "spot": 1, "stealth": 0, "mythos": 1},
-        {"id": "O", "text": "假装没听到", "san": 1, "pow": 0, "edu": 0, "int": 0, "str": 0, "app": 0, "con": 1, "dex": 0, "luc": 1, "spot": 0, "stealth": 2, "mythos": 0},
-        {"id": "M", "text": "那是我的宿命", "san": -2, "pow": 2, "edu": 0, "int": 0, "str": 1, "app": 0, "con": 1, "dex": 0, "luc": -1, "spot": 0, "stealth": 0, "mythos": 3}
+        {"id": "S", "text": "将其送给大学的图书馆，认为这是珍贵的文物", "san": 2, "pow": 0, "edu": 3, "int": 2, "str": 0, "app": 1, "con": 1, "dex": 0, "luc": 1, "spot": 0, "stealth": 0, "mythos": 0},
+        {"id": "P", "text": "好奇地随手翻阅，却感到莫名的心悸和不安", "san": 0, "pow": 0, "edu": 1, "int": 1, "str": 0, "app": 0, "con": -1, "dex": 0, "luc": 0, "spot": 1, "stealth": 0, "mythos": 1},
+        {"id": "O", "text": "仔细研究其中的符号和图案，记录下来作为学术资料", "san": 1, "pow": 0, "edu": 3, "int": 3, "str": 0, "app": 1, "con": 0, "dex": 1, "luc": 1, "spot": 1, "stealth": 1, "mythos": 0},
+        {"id": "M", "text": "大声朗读其中的咒语，感受到伟大的存在在回应我", "san": -4, "pow": 4, "edu": 1, "int": -1, "str": 1, "app": -1, "con": 2, "dex": 0, "luc": -3, "spot": 0, "stealth": -1, "mythos": 5}
       ]
     },
     {
       "id": 3,
-      "question": "你的梦境通常是：",
+      "question": "你连续三天做了同一个梦：梦见自己在拉莱耶的石材宫殿中聆听主的宣讲",
       "options": [
-        {"id": "S", "text": "现实的延续", "san": 2, "pow": 0, "edu": 1, "int": 1, "str": 0, "app": 1, "con": 1, "dex": 0, "luc": 2, "spot": 0, "stealth": 0, "mythos": 0},
-        {"id": "P", "text": "光怪陆离的混沌", "san": -1, "pow": 1, "edu": 0, "int": 0, "str": 0, "app": 0, "con": 0, "dex": 1, "luc": -1, "spot": 1, "stealth": 0, "mythos": 2},
-        {"id": "O", "text": "重复的相同场景", "san": 0, "pow": 0, "edu": 1, "int": 1, "str": 0, "app": 0, "con": 0, "dex": 0, "luc": 0, "spot": 2, "stealth": 1, "mythos": 1},
-        {"id": "M", "text": "从未记住过", "san": -1, "pow": 1, "edu": 0, "int": -1, "str": 1, "app": 0, "con": 1, "dex": 0, "luc": 0, "spot": 0, "stealth": 0, "mythos": 2}
+        {"id": "S", "text": "只是奇怪的巧合，继续正常生活", "san": 2, "pow": 0, "edu": 1, "int": 1, "str": 0, "app": 1, "con": 1, "dex": 0, "luc": 1, "spot": 0, "stealth": 0, "mythos": 0},
+        {"id": "P", "text": "开始怀疑自己的精神状态，考虑去看医生", "san": 0, "pow": 0, "edu": 0, "int": 0, "str": 0, "app": 0, "con": -1, "dex": 0, "luc": 0, "spot": 1, "stealth": 0, "mythos": 1},
+        {"id": "O", "text": "记录下梦的细节，分析其中的象征意义", "san": 1, "pow": 0, "edu": 2, "int": 2, "str": 0, "app": 0, "con": 0, "dex": 1, "luc": 1, "spot": 2, "stealth": 1, "mythos": 0},
+        {"id": "M", "text": "那是克苏鲁在梦中与我对话！我必须找到唤醒他的方法！", "san": -4, "pow": 3, "edu": 0, "int": -1, "str": 1, "app": -1, "con": 2, "dex": 0, "luc": -3, "spot": 1, "stealth": -1, "mythos": 5}
       ]
     },
     {
       "id": 4,
-      "question": "面对不可理解的事物时：",
+      "question": "你在阿卡姆镇的旧书店发现一本禁书，封面写着危险警告，你会：",
       "options": [
-        {"id": "S", "text": "试图用科学解释", "san": 2, "pow": 0, "edu": 3, "int": 2, "str": 0, "app": 1, "con": 0, "dex": 0, "luc": 1, "spot": 0, "stealth": 0, "mythos": -1},
-        {"id": "P", "text": "感到深深的不安", "san": 0, "pow": 0, "edu": 0, "int": 0, "str": 0, "app": 0, "con": -1, "dex": 0, "luc": 0, "spot": 1, "stealth": 0, "mythos": 1},
-        {"id": "O", "text": "接受并融入", "san": 1, "pow": 1, "edu": 0, "int": 1, "str": 1, "app": 0, "con": 1, "dex": 1, "luc": 1, "spot": 0, "stealth": 1, "mythos": 0},
-        {"id": "M", "text": "那是神的领域", "san": -3, "pow": 3, "edu": 0, "int": -1, "str": 2, "app": -1, "con": 2, "dex": 0, "luc": -2, "spot": 0, "stealth": -1, "mythos": 4}
+        {"id": "S", "text": "立即通知有关部门这是危险物品", "san": 2, "pow": 0, "edu": 2, "int": 1, "str": 0, "app": 1, "con": 1, "dex": 0, "luc": 2, "spot": 0, "stealth": 0, "mythos": 0},
+        {"id": "P", "text": "感到害怕但又忍不住好奇，悄悄翻开一角", "san": -1, "pow": 0, "edu": 0, "int": 1, "str": 0, "app": 0, "con": -1, "dex": 0, "luc": 0, "spot": 1, "stealth": 0, "mythos": 1},
+        {"id": "O", "text": "理性地分析这可能是某种心理暗示或营销手段", "san": 2, "pow": 0, "edu": 2, "int": 3, "str": 0, "app": 1, "con": 1, "dex": 0, "luc": 2, "spot": 0, "stealth": 1, "mythos": -1},
+        {"id": "M", "text": "这正是为我准备的！传说中只有被选中的人才能阅读此书！", "san": -4, "pow": 3, "edu": 0, "int": -1, "str": 1, "app": -1, "con": 2, "dex": 0, "luc": -3, "spot": 0, "stealth": -1, "mythos": 5}
       ]
     },
     {
       "id": 5,
-      "question": "你相信命运吗？",
+      "question": "你听说邻居最近行为古怪，经常在午夜对着大海祈祷，自称是深潜者的仆人",
       "options": [
-        {"id": "S", "text": "命运掌握在自己手中", "san": 2, "pow": 0, "edu": 1, "int": 1, "str": 1, "app": 1, "con": 1, "dex": 1, "luc": 2, "spot": 0, "stealth": 0, "mythos": 0},
-        {"id": "P", "text": "冥冥中自有注定", "san": 0, "pow": 1, "edu": 0, "int": 0, "str": 0, "app": 0, "con": 0, "dex": 0, "luc": 0, "spot": 1, "stealth": 0, "mythos": 1},
-        {"id": "O", "text": "命运是用来打破的", "san": 1, "pow": 0, "edu": 1, "int": 2, "str": 0, "app": 1, "con": 0, "dex": 1, "luc": 1, "spot": 0, "stealth": 1, "mythos": 0},
-        {"id": "M", "text": "我只是棋局中的一子", "san": -2, "pow": 2, "edu": 0, "int": 0, "str": 1, "app": 0, "con": 1, "dex": 0, "luc": -1, "spot": 0, "stealth": 0, "mythos": 3}
+        {"id": "S", "text": "关心地询问是否需要帮助，建议他去看心理医生", "san": 2, "pow": 0, "edu": 1, "int": 1, "str": 0, "app": 2, "con": 1, "dex": 0, "luc": 2, "spot": 0, "stealth": 0, "mythos": 0},
+        {"id": "P", "text": "开始躲着他，觉得毛骨悚然", "san": 0, "pow": 0, "edu": 0, "int": 0, "str": 0, "app": 0, "con": -1, "dex": 0, "luc": 0, "spot": 1, "stealth": 1, "mythos": 0},
+        {"id": "O", "text": "暗中观察并记录这可能是某种仪式的一部分", "san": 1, "pow": 0, "edu": 1, "int": 2, "str": 0, "app": 0, "con": 0, "dex": 1, "luc": 1, "spot": 2, "stealth": 2, "mythos": 0},
+        {"id": "M", "text": "原来这世上真的有同类！我也应该加入他们！", "san": -3, "pow": 2, "edu": 0, "int": 0, "str": 1, "app": 0, "con": 1, "dex": 0, "luc": -2, "spot": 1, "stealth": 0, "mythos": 4}
       ]
     },
     {
       "id": 6,
-      "question": "如果你发现亲人隐瞒了秘密：",
+      "question": "你在南极考古时发现了巨大的非人类化石，皮肤呈灰绿色，头部类似章鱼",
       "options": [
-        {"id": "S", "text": "直接询问", "san": 2, "pow": 0, "edu": 1, "int": 1, "str": 0, "app": 2, "con": 0, "dex": 0, "luc": 1, "spot": 0, "stealth": 0, "mythos": 0},
-        {"id": "P", "text": "暗中调查", "san": 0, "pow": 1, "edu": 0, "int": 2, "str": 0, "app": 0, "con": 0, "dex": 2, "luc": 0, "spot": 2, "stealth": 2, "mythos": 0},
-        {"id": "O", "text": "选择遗忘", "san": 1, "pow": 0, "edu": 0, "int": 0, "str": 0, "app": 0, "con": 1, "dex": 0, "luc": 2, "spot": 0, "stealth": 0, "mythos": 0},
-        {"id": "M", "text": "那一定是伟大的秘密", "san": -2, "pow": 2, "edu": 1, "int": 0, "str": 1, "app": 0, "con": 1, "dex": 0, "luc": -1, "spot": 1, "stealth": 0, "mythos": 3}
+        {"id": "S", "text": "拍照记录并上报给学术机构，这是重大发现", "san": 2, "pow": 0, "edu": 3, "int": 2, "str": 0, "app": 1, "con": 1, "dex": 0, "luc": 2, "spot": 0, "stealth": 0, "mythos": 0},
+        {"id": "P", "text": "感到说不出的恐惧，决定尽快离开这里", "san": -1, "pow": 0, "edu": 0, "int": 0, "str": 0, "app": 0, "con": -2, "dex": 1, "luc": -1, "spot": 1, "stealth": 0, "mythos": 1},
+        {"id": "O", "text": "这是未知的古生物物种！进行深入研究并撰写论文", "san": 1, "pow": 0, "edu": 3, "int": 3, "str": 0, "app": 0, "con": 0, "dex": 1, "luc": 1, "spot": 2, "stealth": 0, "mythos": 0},
+        {"id": "M", "text": "伟大的克苏鲁！我终于找到您的起源了！", "san": -3, "pow": 3, "edu": 1, "int": 0, "str": 1, "app": -1, "con": 2, "dex": 0, "luc": -2, "spot": 1, "stealth": 0, "mythos": 5}
       ]
     },
     {
       "id": 7,
-      "question": "你对疯狂的看法是：",
+      "question": "你的朋友从阿卡姆精神病院逃出来，向你哭诉它们真的存在，你会：",
       "options": [
-        {"id": "S", "text": "一种疾病", "san": 2, "pow": 0, "edu": 2, "int": 1, "str": 0, "app": 1, "con": 1, "dex": 0, "luc": 1, "spot": 0, "stealth": 0, "mythos": -1},
-        {"id": "P", "text": "通往真相的途径", "san": -1, "pow": 1, "edu": 1, "int": 1, "str": 0, "app": 0, "con": 0, "dex": 0, "luc": 0, "spot": 1, "stealth": 0, "mythos": 2},
-        {"id": "O", "text": "逃避现实的方式", "san": 1, "pow": 0, "edu": 0, "int": 0, "str": 0, "app": 0, "con": 0, "dex": 1, "luc": 1, "spot": 0, "stealth": 1, "mythos": 0},
-        {"id": "M", "text": "与神的对话", "san": -3, "pow": 3, "edu": 0, "int": -1, "str": 2, "app": -1, "con": 2, "dex": 0, "luc": -2, "spot": 0, "stealth": -1, "mythos": 4}
+        {"id": "S", "text": "安抚他的情绪，帮他联系更好的精神科医生", "san": 2, "pow": 0, "edu": 1, "int": 1, "str": 1, "app": 2, "con": 1, "dex": 0, "luc": 2, "spot": 0, "stealth": 0, "mythos": 0},
+        {"id": "P", "text": "表面安慰他，但内心开始发毛", "san": 0, "pow": 0, "edu": 0, "int": 0, "str": 0, "app": 0, "con": -1, "dex": 0, "luc": 0, "spot": 1, "stealth": 0, "mythos": 0},
+        {"id": "O", "text": "认真询问细节，理性分析他的幻觉来源", "san": 1, "pow": 0, "edu": 2, "int": 2, "str": 0, "app": 1, "con": 0, "dex": 0, "luc": 1, "spot": 1, "stealth": 1, "mythos": 0},
+        {"id": "M", "text": "别说了！我全都明白了！这个世界的真相就是如此！", "san": -4, "pow": 3, "edu": 0, "int": -1, "str": 1, "app": -1, "con": 2, "dex": 0, "luc": -3, "spot": 1, "stealth": -1, "mythos": 5}
       ]
     },
     {
       "id": 8,
-      "question": "深夜听到奇怪的声音：",
+      "question": "你在整理祖父遗物时，发现了一本神秘的手稿，上面记载着召唤仪式",
       "options": [
-        {"id": "S", "text": "起床查看", "san": 2, "pow": 0, "edu": 1, "int": 1, "str": 1, "app": 1, "con": 1, "dex": 2, "luc": 1, "spot": 1, "stealth": 0, "mythos": 0},
-        {"id": "P", "text": "躲进被子", "san": 0, "pow": 0, "edu": 0, "int": 0, "str": 0, "app": 0, "con": -1, "dex": 0, "luc": 0, "spot": 0, "stealth": 1, "mythos": 1},
-        {"id": "O", "text": "冷静分析声源", "san": 2, "pow": 0, "edu": 2, "int": 3, "str": 0, "app": 1, "con": 1, "dex": 1, "luc": 2, "spot": 2, "stealth": 0, "mythos": 0},
-        {"id": "M", "text": "那是旧日在召唤", "san": -3, "pow": 3, "edu": 0, "int": -1, "str": 2, "app": -1, "con": 2, "dex": 0, "luc": -2, "spot": 1, "stealth": -1, "mythos": 4}
+        {"id": "S", "text": "这是祖父的收藏品，妥善保管作为纪念", "san": 2, "pow": 0, "edu": 1, "int": 1, "str": 0, "app": 1, "con": 1, "dex": 0, "luc": 2, "spot": 0, "stealth": 0, "mythos": 0},
+        {"id": "P", "text": "感到不安，决定把这东西处理掉", "san": 0, "pow": 0, "edu": 0, "int": 0, "str": 0, "app": 0, "con": -1, "dex": 0, "luc": 0, "spot": 0, "stealth": 1, "mythos": 0},
+        {"id": "O", "text": "研究其中的符号体系，作为人类学资料保存", "san": 1, "pow": 0, "edu": 3, "int": 2, "str": 0, "app": 0, "con": 0, "dex": 1, "luc": 1, "spot": 1, "stealth": 1, "mythos": 0},
+        {"id": "M", "text": "这是家族的使命！我要用这个仪式召唤伟大存在！", "san": -4, "pow": 4, "edu": 0, "int": -1, "str": 1, "app": -1, "con": 2, "dex": 0, "luc": -3, "spot": 0, "stealth": -1, "mythos": 5}
       ]
     },
     {
       "id": 9,
-      "question": "你会在海边做什么：",
+      "question": "你发现自己开始做同一个预知梦，梦中的景象后来都真实发生了",
       "options": [
-        {"id": "S", "text": "游泳、晒太阳", "san": 2, "pow": 1, "edu": 0, "int": 0, "str": 2, "app": 2, "con": 2, "dex": 2, "luc": 2, "spot": 0, "stealth": 0, "mythos": 0},
-        {"id": "P", "text": "收集奇怪的贝壳", "san": 0, "pow": 1, "edu": 1, "int": 1, "str": 0, "app": 0, "con": 0, "dex": 1, "luc": 0, "spot": 2, "stealth": 0, "mythos": 1},
-        {"id": "O", "text": "思考存在的意义", "san": 1, "pow": 0, "edu": 2, "int": 2, "str": 0, "app": 1, "con": 1, "dex": 0, "luc": 1, "spot": 1, "stealth": 1, "mythos": 0},
-        {"id": "M", "text": "进行某种仪式", "san": -3, "pow": 3, "edu": 1, "int": 0, "str": 1, "app": -1, "con": 2, "dex": 0, "luc": -2, "spot": 1, "stealth": -1, "mythos": 4}
+        {"id": "S", "text": "只是巧合罢了，继续正常生活", "san": 2, "pow": 0, "edu": 1, "int": 1, "str": 0, "app": 1, "con": 1, "dex": 0, "luc": 1, "spot": 0, "stealth": 0, "mythos": 0},
+        {"id": "P", "text": "感到害怕，担心自己是不是要疯了", "san": -1, "pow": 0, "edu": 0, "int": 0, "str": 0, "app": 0, "con": -2, "dex": 0, "luc": -1, "spot": 1, "stealth": 0, "mythos": 1},
+        {"id": "O", "text": "记录下这些梦境，分析其中的模式和联系", "san": 1, "pow": 0, "edu": 2, "int": 2, "str": 0, "app": 0, "con": 0, "dex": 1, "luc": 1, "spot": 2, "stealth": 1, "mythos": 0},
+        {"id": "M", "text": "这是伟大存在在向我传递时空之外的讯息！", "san": -4, "pow": 3, "edu": 0, "int": -1, "str": 1, "app": -1, "con": 2, "dex": 0, "luc": -3, "spot": 1, "stealth": -1, "mythos": 5}
       ]
     },
     {
       "id": 10,
-      "question": "面对古老的典籍：",
+      "question": "你出海时遭遇了暴风雨，浪涛中隐约浮现巨大的触手和蠕动的肉块",
       "options": [
-        {"id": "S", "text": "当作历史文献研究", "san": 2, "pow": 0, "edu": 3, "int": 2, "str": 0, "app": 1, "con": 1, "dex": 0, "luc": 1, "spot": 1, "stealth": 0, "mythos": 0},
-        {"id": "P", "text": "感觉不安但想看", "san": 0, "pow": 0, "edu": 1, "int": 1, "str": 0, "app": 0, "con": 0, "dex": 0, "luc": 0, "spot": 1, "stealth": 0, "mythos": 1},
-        {"id": "O", "text": "抵制阅读", "san": 1, "pow": 0, "edu": 0, "int": 0, "str": 0, "app": 0, "con": 1, "dex": 0, "luc": 1, "spot": 0, "stealth": 1, "mythos": 0},
-        {"id": "M", "text": "那是知识的源泉", "san": -2, "pow": 2, "edu": 2, "int": 1, "str": 1, "app": 0, "con": 1, "dex": 0, "luc": -1, "spot": 1, "stealth": 0, "mythos": 4}
+        {"id": "S", "text": "全力驾驶船只逃离，这只是海市蜃楼", "san": 2, "pow": 1, "edu": 1, "int": 1, "str": 2, "app": 1, "con": 2, "dex": 2, "luc": 1, "spot": 0, "stealth": 0, "mythos": 0},
+        {"id": "P", "text": "惊恐万状，认为自己看到了幻觉", "san": -2, "pow": 0, "edu": 0, "int": 0, "str": 0, "app": 0, "con": -2, "dex": 0, "luc": -2, "spot": 1, "stealth": 0, "mythos": 1},
+        {"id": "O", "text": "冷静分析，这可能是某种巨大的海洋生物", "san": 2, "pow": 0, "edu": 2, "int": 2, "str": 1, "app": 1, "con": 1, "dex": 1, "luc": 2, "spot": 1, "stealth": 0, "mythos": 0},
+        {"id": "M", "text": "是大衮！深潜者的主神！我必须献上祭品！", "san": -4, "pow": 4, "edu": 0, "int": -1, "str": 2, "app": -2, "con": 3, "dex": 0, "luc": -4, "spot": 2, "stealth": -2, "mythos": 5}
       ]
     },
     {
       "id": 11,
-      "question": "如果你能许一个愿：",
+      "question": "你偶然进入了一个隐藏的地下密室，墙上画满了不可名状的生物和邪教仪式",
       "options": [
-        {"id": "S", "text": "世界和平", "san": 2, "pow": 0, "edu": 1, "int": 1, "str": 0, "app": 1, "con": 1, "dex": 0, "luc": 2, "spot": 0, "stealth": 0, "mythos": 0},
-        {"id": "P", "text": "无尽的财富", "san": 1, "pow": 1, "edu": 0, "int": 1, "str": 1, "app": 1, "con": 1, "dex": 0, "luc": 1, "spot": 0, "stealth": 0, "mythos": 0},
-        {"id": "O", "text": "获得真相", "san": 0, "pow": 0, "edu": 2, "int": 3, "str": 0, "app": 0, "con": 0, "dex": 0, "luc": 0, "spot": 1, "stealth": 0, "mythos": 1},
-        {"id": "M", "text": "成为神的一部分", "san": -3, "pow": 4, "edu": 0, "int": -1, "str": 2, "app": -1, "con": 2, "dex": 0, "luc": -3, "spot": 0, "stealth": -1, "mythos": 5}
+        {"id": "S", "text": "立即离开并报警，这里很危险", "san": 2, "pow": 0, "edu": 1, "int": 1, "str": 0, "app": 1, "con": 1, "dex": 0, "luc": 2, "spot": 0, "stealth": 0, "mythos": 0},
+        {"id": "P", "text": "感到极度不适，头痛欲裂", "san": -2, "pow": 0, "edu": 0, "int": 0, "str": 0, "app": 0, "con": -2, "dex": 0, "luc": -1, "spot": 1, "stealth": 0, "mythos": 1},
+        {"id": "O", "text": "仔细记录这些壁画，这可能是失落文明的遗迹", "san": 1, "pow": 0, "edu": 3, "int": 2, "str": 0, "app": 0, "con": 0, "dex": 1, "luc": 1, "spot": 2, "stealth": 1, "mythos": 0},
+        {"id": "M", "text": "这些图案在向我诉说宇宙的真相！我开始理解了！", "san": -4, "pow": 3, "edu": 1, "int": 0, "str": 1, "app": -1, "con": 2, "dex": 0, "luc": -3, "spot": 2, "stealth": -1, "mythos": 5}
       ]
     },
     {
       "id": 12,
-      "question": "最后，选择你的图腾：",
+      "question": "最后，选择你愿意为之献身的伟大存在：",
       "options": [
-        {"id": "S", "text": "星星 - 象征理性与希望", "san": 3, "pow": 0, "edu": 2, "int": 2, "str": 0, "app": 2, "con": 1, "dex": 0, "luc": 3, "spot": 0, "stealth": 0, "mythos": -2},
-        {"id": "P", "text": "海洋 - 象征深邃与未知", "san": 0, "pow": 2, "edu": 0, "int": 0, "str": 2, "app": 0, "con": 2, "dex": 1, "luc": 0, "spot": 2, "stealth": 0, "mythos": 2},
-        {"id": "O", "text": "眼睛 - 象征观察与洞察", "san": 1, "pow": 0, "edu": 1, "int": 3, "str": 0, "app": 1, "con": 0, "dex": 1, "luc": 1, "spot": 3, "stealth": 2, "mythos": 0},
-        {"id": "M", "text": "触手 - 象征远古与力量", "san": -3, "pow": 4, "edu": 0, "int": -1, "str": 3, "app": -1, "con": 3, "dex": 0, "luc": -2, "spot": 1, "stealth": -1, "mythos": 5}
+        {"id": "S", "text": "科学！我相信终有一天人类能解开宇宙的所有奥秘", "san": 3, "pow": 0, "edu": 3, "int": 3, "str": 0, "app": 2, "con": 1, "dex": 0, "luc": 3, "spot": 0, "stealth": 0, "mythos": -2},
+        {"id": "P", "text": "艺术！只有美才能拯救这个疯狂的世界", "san": 1, "pow": 0, "edu": 1, "int": 1, "str": 0, "app": 3, "con": 0, "dex": 1, "luc": 2, "spot": 1, "stealth": 1, "mythos": 0},
+        {"id": "O", "text": "知识和真理！即使为此付出代价也在所不惜", "san": 0, "pow": 0, "edu": 3, "int": 3, "str": 0, "app": 1, "con": 0, "dex": 1, "luc": 1, "spot": 2, "stealth": 1, "mythos": 1},
+        {"id": "M", "text": "伟大的克苏鲁！沉睡之主！愿您的意志降临这个世界！", "san": -5, "pow": 5, "edu": 0, "int": -2, "str": 2, "app": -2, "con": 3, "dex": 0, "luc": -5, "spot": 1, "stealth": -2, "mythos": 6}
       ]
     }
   ],
   "results": {
     "sane_scholar": {
       "title": "【理性的研究者】",
-      "description": "你是一个理性而冷静的研究者，相信科学可以解释一切。虽然偶尔会接触到克苏鲁神话的边缘，但你始终保持清醒的头脑。你适合从事学术研究，也许有一天你能揭开宇宙的真相——但要小心，知道的越多，越危险。",
+      "description": "你是一个理性而冷静的研究者，相信科学可以解释一切。虽然偶尔会接触到克苏鲁神话的边缘，但你始终保持清醒的头脑。在阿卡姆镇的传说中，你是那种会在图书馆里查阅原始手稿，然后冷静地在脚注中标注这不可能的学者。",
       "radar": [18, 8, 16, 18, 10, 16, 14, 8, 16, 10, 6, 2],
       "traits": ["理性", "求知", "冷静", "谨慎"],
-      "tips": "保持理性是你的优势，但不要忽视直觉的警告"
+      "tips": "保持理性是你的优势，但有些门一旦打开就再也关不上"
     },
     "sensitive_artist": {
       "title": "【敏感的艺术家】",
-      "description": "你拥有细腻的灵魂和敏锐的感知，常常被梦境和直觉所困扰。你的精神世界丰富多彩，但也因此更容易被克苏鲁神话的疯狂所影响。你的艺术天赋让你能看到常人看不到的东西——那是祝福也是诅咒。",
+      "description": "你拥有细腻的灵魂和敏锐的感知，常常被梦境和直觉所困扰。你的艺术天赋让你能看到常人看不到的东西。你可能就是那种在梦中看到拉莱耶的画家，醒来后只能把那些不可名状的形状画在画布上。",
       "radar": [10, 12, 10, 14, 8, 12, 8, 10, 8, 14, 10, 10],
       "traits": ["敏感", "艺术", "直觉", "梦幻"],
-      "tips": "创作是你释放压力的方式，但小心不要沉迷太深"
+      "tips": "创作是你释放压力的方式，但小心别沉迷太深"
     },
     "detached_watcher": {
       "title": "【冷漠的观察者】",
-      "description": "你对一切都保持着冷漠的距离，仿佛与世界隔着一层看不见的墙。这层保护让你免受疯狂的侵袭，但也让你难以与他人建立联系。你就像一个观察者，静静地看着人类文明的兴衰。",
+      "description": "你对一切都保持着冷漠的距离，仿佛与世界隔着一层看不见的墙。这层保护让你免受疯狂的侵袭，但也让你难以与他人建立联系。你就像印斯茅斯事件中唯一存活下来，却对一切都无动于衷的目击者。",
       "radar": [14, 10, 12, 12, 12, 10, 12, 10, 14, 12, 12, 8],
       "traits": ["冷漠", "理性", "超然", "独立"],
       "tips": "适度的冷漠是保护，过度的疏离会伤害自己"
     },
     "innsmouth_blood": {
       "title": "【印斯茅斯的后裔】",
-      "description": "你的血脉中流淌着古老的诅咒。表面上你与常人无异，但每到月圆之夜，你就能听到大海的召唤。你的祖先与深潜者做了交易，而你正在逐渐觉醒。那鱼腥味和鳞片，是时候面对了。",
+      "description": "你的血脉中流淌着古老的诅咒。表面上你与常人无异，但每到月圆之夜，你就能听到大海的召唤。你的祖先与深潜者做了交易，而你正在逐渐觉醒。你可能已经在发现自己浴室有鳞片时，才意识到家族的真相。",
       "radar": [8, 16, 10, 10, 14, 8, 14, 12, 8, 14, 8, 14],
       "traits": ["血脉", "觉醒", "两栖", "传承"],
       "tips": "你的命运早已写在血脉中，接受还是反抗，在于选择"
     },
     "chaos_avatar": {
       "title": "【伏行的混沌】",
-      "description": "你如同那位奈亚拉托提普，表面上理智幽默，实际上是旧日支配者的忠实仆从。你善于伪装和操纵，在人类社会中游刃有余。你的真实形态可能连自己都不知道——但总有一天会显现。",
+      "description": "你如同那位奈亚拉托提普，表面上理智幽默，实际上是旧日支配者的忠实仆从。你善于伪装和操纵。你可能就是那种在聚会上讲着有趣笑话，但实际上正在暗中策划着什么的家伙。",
       "radar": [12, 14, 12, 18, 14, 12, 10, 14, 10, 14, 12, 14],
       "traits": ["伪装", "智慧", "迷惑", "忠诚"],
       "tips": "你既是观察者，也是参与者，真相往往出人意料"
     },
     "time_wanderer": {
       "title": "【时空的流浪者】",
-      "description": "时间和空间对你而言只是错觉。你能感知到过去、现在和未来的重叠，仿佛站在时间之外。知识的代价是理智，但你已经不在乎了。当你闭上眼睛，你能看到所有的时空——那既是祝福也是诅咒。",
+      "description": "时间和空间对你而言只是错觉。你能感知到过去、现在和未来的重叠，仿佛站在时间之外。知识的代价是理智，但你已经不在乎了。你可能就是那种说着我好像在哪里见过你然后开始流泪的陌生人。",
       "radar": [6, 10, 16, 16, 14, 6, 6, 10, 12, 14, 14, 16],
       "traits": ["永恒", "全知", "超越", "无形"],
       "tips": "你已经超越了凡人的局限，看到的是终极真相"
     },
     "dark_priest": {
       "title": "【混沌的祭司】",
-      "description": "在混沌的王座上，无意识的鼓声永不停息。你是那盲目痴愚之神的下仆，在梦中为其演奏疯狂的旋律。世界只是幻象，真正的实在只有在彻底的毁灭中才能触及。",
+      "description": "在混沌的王座上，无意识的鼓声永不停息。你是那盲目痴愚之神的下仆，在梦中为其演奏疯狂的旋律。世界只是幻象，真正的实在只有在彻底的毁灭中才能触及。你可能就是那种在午夜突然开始敲击某种不存在乐器的疯子。",
       "radar": [4, 18, 4, 8, 16, 4, 6, 6, 4, 16, 16, 18],
       "traits": ["混沌", "毁灭", "疯狂", "无意识"],
       "tips": "你是宇宙混沌的一部分，毁灭即重生"
     },
     "fertility_cultist": {
       "title": "【黑暗的选民】",
-      "description": "黑色的繁殖之网是你出生的摇篮。你是那千面之羊的后裔，拥有强大的生命力和繁殖能力。在你的血管里流淌着古老的诅咒——你的后代将延续这疯狂的传承。",
+      "description": "黑色的繁殖之网是你出生的摇篮。你是那千面之羊的后裔，拥有强大的生命力和繁殖能力。在你的血管里流淌着古老的诅咒。你可能就是那种生育了太多孩子，自己都记不清名字的母亲。",
       "radar": [8, 14, 6, 8, 14, 10, 16, 10, 8, 12, 14, 16],
       "traits": ["繁殖", "诅咒", "生命", "黑暗"],
       "tips": "你的血脉是诅咒也是力量，善用它"
@@ -193,24 +193,24 @@
     },
     "wandering_seeker": {
       "title": "【迷雾中的求道者】",
-      "description": "你站在理智与疯狂的边界上，迷茫地探索着存在的意义。克苏鲁神话对你来说还是模糊的影子，但命运的齿轮已经开始转动。前方是光明还是深渊，取决于你的选择。",
+      "description": "你站在理智与疯狂的边界上，迷茫地探索着存在的意义。克苏鲁神话对你来说还是模糊的影子，但命运的齿轮已经开始转动。你可能就是那种在凌晨三点突然思考我是谁我在哪里然后发现自己站在海边的普通人。",
       "radar": [12, 10, 12, 12, 10, 12, 10, 10, 12, 12, 10, 10],
       "traits": ["迷茫", "探索", "中立", "成长"],
       "tips": "你还有选择的机会，理性还是疯狂，在于一心"
     },
     "elder_priest": {
       "title": "【大衮的高阶祭司】",
-      "description": "你是深海之神大衮的忠实信徒，在海底的宫殿中侍奉着古老的神明。你拥有与海洋生物沟通的能力，你的皮肤正在逐渐变成鳞片。海洋终将吞没一切，而我们将成为新的主宰。",
+      "description": "你是深海之神大衮的忠实信徒，在海底的宫殿中侍奉着古老的神明。你拥有与海洋生物沟通的能力，你的皮肤正在逐渐变成鳞片。海洋终将吞没一切，而我们将成为新的主宰。你可能就是那种坚持要你多吃鱼的邻居。",
       "radar": [6, 20, 8, 8, 18, 6, 16, 14, 6, 10, 6, 16],
       "traits": ["深海", "侍奉", "鳞化", "忠诚"],
       "tips": "当大海咆哮之时，便是你效忠之日"
     },
     "mad_prophet": {
       "title": "【疯狂的预言家】",
-      "description": "你曾是正统的学者，直到你看穿了现实的本质。疯狂如同潮水般涌来，带走了理智，却留下了真相。你在癫狂中看到了世界的未来——毁灭，或者新生。",
+      "description": "你曾是正统的学者，直到你看穿了现实的本质。疯狂如同潮水般涌来，带走了理智，却留下了真相。你在癫狂中看到了世界的未来——毁灭，或者新生。你在精神病院的墙上写满了无人能懂的预言。",
       "radar": [2, 14, 12, 12, 12, 4, 4, 8, 2, 18, 18, 20],
       "traits": ["预言", "癫狂", "洞察", "毁灭"],
-      "tips": "疯狂是打开真理之门的钥匙"
+      "tips": "疯狂是打开真理之门的钥匙——但门后面的东西，你确定想看吗？"
     }
   }
 }
