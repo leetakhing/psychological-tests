@@ -990,41 +990,87 @@
         
         // 显示结果
         function showResult() {
-            // 计算得分
-            const scores = {};
-            Object.values(answers).forEach(a => scores[a] = (scores[a] || 0) + 1);
+            // 计算雷达图各维度得分
+            const radarKeys = ['san', 'pow', 'edu', 'int', 'str', 'app', 'con', 'dex', 'luc', 'spot', 'stealth', 'mythos'];
+            const radarScores = {};
+            radarKeys.forEach(k => radarScores[k] = 10); // 默认中间值
             
-            // 计算结果类型
-            let resultType;
-            if (testData.category === 'MBTI') {
-                resultType = 
-                    (scores['E'] >= scores['I'] ? 'E' : 'I') +
-                    (scores['N'] >= scores['S'] ? 'N' : 'S') +
-                    (scores['T'] >= scores['F'] ? 'T' : 'F') +
-                    (scores['J'] >= scores['P'] ? 'J' : 'P');
-            } else {
-                // 非 MBTI：根据答案分布构建结果key
-                // 按出现次数排序，取前4个答案
-                const sorted = Object.entries(scores)
-                    .sort((a, b) => b[1] - a[1])
-                    .map(entry => entry[0]);
+            // 累加每个答案的维度值
+            Object.values(answers).forEach(answerId => {
+                // 找到对应的选项
+                const option = testData.questions
+                    .flatMap(q => q.options)
+                    .find(o => o.id === answerId);
                 
-                // 取前4个（如果不够就重复）
-                while (sorted.length < 4) {
-                    sorted.push(sorted[0] || 'A');
+                if (option) {
+                    radarKeys.forEach(k => {
+                        if (option[k] !== undefined) {
+                            radarScores[k] = (radarScores[k] || 10) + option[k];
+                        }
+                    });
                 }
-                resultType = sorted.slice(0, 4).join('');
+            });
+            
+            // 确保值在 0-20 范围内
+            radarKeys.forEach(k => {
+                radarScores[k] = Math.max(0, Math.min(20, radarScores[k]));
+            });
+            
+            // 根据雷达图数据匹配最相似的结果
+            const results = Object.entries(testData.results);
+            let bestMatch = null;
+            let bestScore = -Infinity;
+            
+            // 计算相似度
+            results.forEach(([key, result]) => {
+                if (!result.radar || !Array.isArray(result.radar)) return;
+                
+                let similarity = 0;
+                for (let i = 0; i < 12 && i < result.radar.length; i++) {
+                    const diff = 20 - Math.abs(radarScores[radarKeys[i]] - result.radar[i]);
+                    similarity += diff;
+                }
+                
+                if (similarity > bestScore) {
+                    bestScore = similarity;
+                    bestMatch = { key, ...result };
+                }
+            });
+            
+            // 如果没有匹配到，使用 SAN 值来选择不同的结果
+            if (!bestMatch || bestScore < 0) {
+                const san = radarScores['san'];
+                // SAN 从高到低选择不同的结果
+                const sanKeys = ['sane_scholar', 'sensitive_artist', 'detached_watcher', 'wandering_seeker', 
+                               'innsmouth_blood', 'chaos_avatar', 'sleeping_messenger', 'fertility_cultist',
+                               'time_wanderer', 'elder_priest', 'dark_priest', 'mad_prophet'];
+                
+                let idx = 0;
+                if (san < 4) idx = 11;        // 疯狂
+                else if (san < 6) idx = 10;   // 混沌祭司
+                else if (san < 8) idx = 9;    // 大衮
+                else if (san < 10) idx = 8;   // 选民
+                else if (san < 12) idx = 7;   // 代言人
+                else if (san < 14) idx = 6;   // 流浪者
+                else if (san < 16) idx = 5;   // 奈亚
+                else if (san < 18) idx = 4;   // 印斯茅斯
+                else idx = Math.floor(Math.random() * 4); // 理性
+                
+                const fallbackKey = sanKeys[idx];
+                bestMatch = testData.results[fallbackKey] || Object.values(testData.results)[0];
             }
             
-            const result = testData.results[resultType] || Object.values(testData.results)[0];
+            const result = bestMatch || Object.values(testData.results)[0];
+            const resultType = bestMatch?.key || 'wandering_seeker';
+            const finalRadar = Object.values(radarScores);
             
             // 隐藏测试页，显示结果页
             document.getElementById('testPage').style.display = 'none';
             const resultPage = document.getElementById('resultPage');
             resultPage.classList.add('active');
             
-            // 填充结果
-            document.getElementById('resultType').textContent = resultType;
+            // 填充结果 - 隐藏类型key，只显示标题
+            document.getElementById('resultType').style.display = 'none';
             document.getElementById('resultName').textContent = result.title || '';
             document.getElementById('resultDesc').textContent = result.description || '';
             document.getElementById('resultTips').textContent = result.tips ? result.tips : '暂无建议';
@@ -1045,15 +1091,8 @@
                 careerSec.style.display = 'none';
             }
             
-            // 绘制雷达图
-            if (result.radar) {
-                // 如果是数组直接用，如果是对象则转换
-                let chartData = result.radar;
-                if (typeof result.radar === 'object' && !Array.isArray(result.radar)) {
-                    chartData = Object.values(result.radar);
-                }
-                drawRadarChart(chartData, testId);
-            }
+            // 绘制雷达图 - 使用计算出的实际值
+            drawRadarChart(finalRadar, testId);
             
             // 保存历史
             const history = JSON.parse(localStorage.getItem('testHistory') || '[]');

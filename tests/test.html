@@ -1021,10 +1021,10 @@
             let bestMatch = null;
             let bestScore = -Infinity;
             
+            // 计算相似度
             results.forEach(([key, result]) => {
                 if (!result.radar || !Array.isArray(result.radar)) return;
                 
-                // 计算与该结果的相似度
                 let similarity = 0;
                 for (let i = 0; i < 12 && i < result.radar.length; i++) {
                     const diff = 20 - Math.abs(radarScores[radarKeys[i]] - result.radar[i]);
@@ -1037,19 +1037,40 @@
                 }
             });
             
+            // 如果没有匹配到，使用 SAN 值来选择不同的结果
+            if (!bestMatch || bestScore < 0) {
+                const san = radarScores['san'];
+                // SAN 从高到低选择不同的结果
+                const sanKeys = ['sane_scholar', 'sensitive_artist', 'detached_watcher', 'wandering_seeker', 
+                               'innsmouth_blood', 'chaos_avatar', 'sleeping_messenger', 'fertility_cultist',
+                               'time_wanderer', 'elder_priest', 'dark_priest', 'mad_prophet'];
+                
+                let idx = 0;
+                if (san < 4) idx = 11;        // 疯狂
+                else if (san < 6) idx = 10;   // 混沌祭司
+                else if (san < 8) idx = 9;    // 大衮
+                else if (san < 10) idx = 8;   // 选民
+                else if (san < 12) idx = 7;   // 代言人
+                else if (san < 14) idx = 6;   // 流浪者
+                else if (san < 16) idx = 5;   // 奈亚
+                else if (san < 18) idx = 4;   // 印斯茅斯
+                else idx = Math.floor(Math.random() * 4); // 理性
+                
+                const fallbackKey = sanKeys[idx];
+                bestMatch = testData.results[fallbackKey] || Object.values(testData.results)[0];
+            }
+            
             const result = bestMatch || Object.values(testData.results)[0];
             const resultType = bestMatch?.key || 'wandering_seeker';
             const finalRadar = Object.values(radarScores);
-            
-            const result = testData.results[resultType] || Object.values(testData.results)[0];
             
             // 隐藏测试页，显示结果页
             document.getElementById('testPage').style.display = 'none';
             const resultPage = document.getElementById('resultPage');
             resultPage.classList.add('active');
             
-            // 填充结果
-            document.getElementById('resultType').textContent = resultType;
+            // 填充结果 - 隐藏类型key，只显示标题
+            document.getElementById('resultType').style.display = 'none';
             document.getElementById('resultName').textContent = result.title || '';
             document.getElementById('resultDesc').textContent = result.description || '';
             document.getElementById('resultTips').textContent = result.tips ? result.tips : '暂无建议';
