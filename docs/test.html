@@ -647,9 +647,9 @@
         </div>
         
         <!-- 错误 -->
-        <div class="error" id="error" style="display:none;">
-            <h2>加载失败</h2>
-            <p id="errorMsg">请稍后重试</p>
+        <div class="error" id="error" style="display:none; padding:40px; text-align:center; background:#fee; color:#c00;">
+            <h2 style="color:#c00;">⚠️ 加载失败</h2>
+            <p id="errorMsg" style="font-size:16px; line-height:2;">请稍后重试</p>
             <a href="index.html" class="btn btn-primary" style="display:inline-block;margin-top:16px;">返回首页</a>
         </div>
         
@@ -865,12 +865,19 @@
         
         // 加载测试
         async function init() {
+            const testId = getTestId();
+            
+            // 强制显示加载信息
+            document.getElementById('loading').innerHTML = '<p>正在加载: ' + testId + '</p><p>如果长时间无响应请刷新</p>';
+            
             console.log('Loading test:', testId);
             
             try {
-                // 添加时间戳防止缓存
-                const cacheBust = '_=' + Date.now();
-                const jsonUrl = `data/examples/${testId}.json${testId.includes('?') ? '&' : '?'}${cacheBust}`;
+                // 构建完整的 JSON URL
+                const baseUrl = window.location.origin + window.location.pathname.replace(/test\.html$/, '');
+                const jsonUrl = baseUrl + 'data/examples/' + testId + '.json?_=' + Date.now();
+                console.log('Fetching:', jsonUrl);
+                
                 const res = await fetch(jsonUrl);
                 if (!res.ok) throw new Error('加载失败: ' + res.status);
                 
@@ -885,7 +892,12 @@
                 console.error(e);
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('error').style.display = 'block';
-                document.getElementById('errorMsg').textContent = e.message + ' (testId: ' + testId + ')';
+                // 详细错误信息
+                document.getElementById('errorMsg').innerHTML = 
+                    '<strong>加载失败</strong><br>' +
+                    '测试ID: ' + testId + '<br>' +
+                    '错误: ' + e.message + '<br><br>' +
+                    '<a href="?test=cthulhu-personality">点击重试克苏鲁测试</a>';
             }
         }
         
