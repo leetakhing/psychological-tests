@@ -1,209 +1,209 @@
 {
   "id": "cthulhu-personality",
-  "title": "克苏鲁人格测试",
-  "subtitle": "Lovecraft 12维度命运评估",
-  "description": "测出你在克苏鲁神话中的定位——是旧日支配者？还是疯狂的信徒？",
-  "category": "趣味",
-  "duration": "10分钟",
+  "title": "Cthulhu Personality Test",
+  "subtitle": "Lovecraft 12-Dimension Fate Assessment",
+  "description": "Find your place in Cthulhu Mythos - Great Old One or crazy cultist?",
+  "category": "Fun",
+  "duration": "10 minutes",
   "questions": [
     {
       "id": 1,
-      "question": "深夜独自走在海边，你最可能：",
+      "question": "Late at night walking alone by the sea, you would most likely:",
       "options": [
-        {"id": "A", "text": "聆听海浪声，感到无比平静"},
-        {"id": "B", "text": "总觉得水下有什么在注视着我"},
-        {"id": "C", "text": "注意到远处有奇怪的光点"},
-        {"id": "D", "text": "想起某个远古的召唤"}
+        {"id": "A", "text": "Listen to the waves and feel peaceful"},
+        {"id": "B", "text": "Feel something watching from below"},
+        {"id": "C", "text": "Notice strange lights in the distance"},
+        {"id": "D", "text": "Recall an ancient summoning"}
       ]
     },
     {
       "id": 2,
-      "question": "当你得知世界上有隐藏的真相时：",
+      "question": "When you learn there are hidden truths in this world:",
       "options": [
-        {"id": "A", "text": "迫不及待想要揭开"},
-        {"id": "B", "text": "感到恐惧但又好奇"},
-        {"id": "C", "text": "假装没听到"},
-        {"id": "D", "text": "那是我的宿命"}
+        {"id": "A", "text": "Eager to uncover them"},
+        {"id": "B", "text": "Scared but curious"},
+        {"id": "C", "text": "Pretend you never heard"},
+        {"id": "D", "text": "It's my destiny"}
       ]
     },
     {
       "id": 3,
-      "question": "你的梦境通常是：",
+      "question": "Your dreams are usually:",
       "options": [
-        {"id": "A", "text": "现实的延续"},
-        {"id": "B", "text": "光怪陆离的混沌"},
-        {"id": "C", "text": "重复的相同场景"},
-        {"id": "D", "text": "从未记住过"}
+        {"id": "A", "text": "Continuations of reality"},
+        {"id": "B", "text": "Bizarre chaotic scenes"},
+        {"id": "C", "text": "Repeating same scenes"},
+        {"id": "D", "text": "Never remembered"}
       ]
     },
     {
       "id": 4,
-      "question": "面对不可理解的事物时：",
+      "question": "When facing incomprehensible things:",
       "options": [
-        {"id": "A", "text": "试图用科学解释"},
-        {"id": "B", "text": "感到深深的不安"},
-        {"id": "C", "text": "接受并融入"},
-        {"id": "D", "text": "那是神的领域"}
+        {"id": "A", "text": "Try to explain scientifically"},
+        {"id": "B", "text": "Feel deeply uneasy"},
+        {"id": "C", "text": "Accept and integrate"},
+        {"id": "D", "text": "That's the realm of gods"}
       ]
     },
     {
       "id": 5,
-      "question": "你相信命运吗？",
+      "question": "Do you believe in fate?",
       "options": [
-        {"id": "A", "text": "命运掌握在自己手中"},
-        {"id": "B", "text": "冥冥中自有注定"},
-        {"id": "C", "text": "命运是用来打破的"},
-        {"id": "D", "text": "我只是棋局中的一子"}
+        {"id": "A", "text": "Fate is in my own hands"},
+        {"id": "B", "text": "Destiny is predetermined"},
+        {"id": "C", "text": "Fate is meant to be broken"},
+        {"id": "D", "text": "I'm just a piece in the game"}
       ]
     },
     {
       "id": 6,
-      "question": "如果你发现亲人隐瞒了秘密：",
+      "question": "If you discover a family member is hiding secrets:",
       "options": [
-        {"id": "A", "text": "直接询问"},
-        {"id": "B", "text": "暗中调查"},
-        {"id": "C", "text": "选择遗忘"},
-        {"id": "D", "text": "那一定是伟大的秘密"}
+        {"id": "A", "text": "Ask directly"},
+        {"id": "B", "text": "Investigate secretly"},
+        {"id": "C", "text": "Choose to forget"},
+        {"id": "D", "text": "It must be a great secret"}
       ]
     },
     {
       "id": 7,
-      "question": "你对疯狂的看法是：",
+      "question": "Your view on madness:",
       "options": [
-        {"id": "A", "text": "一种疾病"},
-        {"id": "B", "text": "通往真相的途径"},
-        {"id": "C", "text": "避免的方式"},
-        {"id": "D", "text": "是与神的对话"}
+        {"id": "A", "text": "A kind of illness"},
+        {"id": "B", "text": "Pathway to truth"},
+        {"id": "C", "text": "Way to avoid reality"},
+        {"id": "D", "text": "Dialogue with gods"}
       ]
     },
     {
       "id": 8,
-      "question": "深夜听到奇怪的声音：",
+      "question": "Hearing strange sounds at night:",
       "options": [
-        {"id": "A", "text": "起床查看"},
-        {"id": "B", "text": "躲进被子"},
-        {"id": "C", "text": "冷静分析声源"},
-        {"id": "D", "text": "那是旧日在召唤"}
+        {"id": "A", "text": "Get up to check"},
+        {"id": "B", "text": "Hide under covers"},
+        {"id": "C", "text": "Analyze calmly"},
+        {"id": "D", "text": "The Old Ones are calling"}
       ]
     },
     {
       "id": 9,
-      "question": "你会在海边做什么：",
+      "question": "What would you do at the beach:",
       "options": [
-        {"id": "A", "text": "游泳、晒太阳"},
-        {"id": "B", "text": "收集奇怪的贝壳"},
-        {"id": "C", "text": "思考存在的意义"},
-        {"id": "D", "text": "进行某种仪式"}
+        {"id": "A", "text": "Swim and sunbathe"},
+        {"id": "B", "text": "Collect strange shells"},
+        {"id": "C", "text": "Meditate on meaning of existence"},
+        {"id": "D", "text": "Perform some ritual"}
       ]
     },
     {
       "id": 10,
-      "question": "面对古老的典籍：",
+      "question": "When facing ancient texts:",
       "options": [
-        {"id": "A", "text": "当作历史文献研究"},
-        {"id": "B", "text": "感觉不安但想看"},
-        {"id": "C", "text": "抵制阅读"},
-        {"id": "D", "text": "那是知识的源泉"}
+        {"id": "A", "text": "Study as historical documents"},
+        {"id": "B", "text": "Feel uneasy but want to read"},
+        {"id": "C", "text": "Resist reading"},
+        {"id": "D", "text": "Source of forbidden knowledge"}
       ]
     },
     {
       "id": 11,
-      "question": "如果你能许一个愿：",
+      "question": "If you could make one wish:",
       "options": [
-        {"id": "A", "text": "世界和平"},
-        {"id": "B", "text": "无尽的财富"},
-        {"id": "C", "text": "获得真相"},
-        {"id": "D", "text": "成为神的一部分"}
+        {"id": "A", "text": "World peace"},
+        {"id": "B", "text": "Endless wealth"},
+        {"id": "C", "text": "Obtain the truth"},
+        {"id": "D", "text": "Become part of a god"}
       ]
     },
     {
       "id": 12,
-      "question": "最后，选择你的图腾：",
+      "question": "Finally, choose your totem:",
       "options": [
-        {"id": "A", "text": "星星 - 象征理性与希望"},
-        {"id": "B", "text": "海洋 - 象征深邃与未知"},
-        {"id": "C", "text": "眼睛 - 象征观察与洞察"},
-        {"id": "D", "text": "触手 - 象征远古与力量"}
+        {"id": "A", "text": "Star - symbol of reason and hope"},
+        {"id": "B", "text": "Ocean - symbol of depth and unknown"},
+        {"id": "C", "text": "Eye - symbol of observation and insight"},
+        {"id": "D", "text": "Tentacles - symbol of ancient power"}
       ]
     }
   ],
   "results": {
     "AAAA": {
-      "title": "【理性的研究者】",
-      "description": "你是一个理性而冷静的研究者，相信科学可以解释一切。虽然偶尔会接触到克苏鲁神话的边缘，但你始终保持清醒的头脑。你适合从事学术研究，也许有一天你能揭开宇宙的真相——但要小心，知道的越多，越危险。",
+      "title": "Rational Researcher",
+      "description": "You are a rational and calm researcher who believes science can explain everything. Though occasionally exposed to Cthulhu Mythos, you always keep a clear mind. You are suitable for academic research - maybe one day you'll uncover the truth of the universe. But beware, the more you know, the more dangerous it becomes.",
       "radar": [18, 16, 14, 18, 12, 14, 16, 14, 14, 10, 8, 6],
-      "traits": ["理性", "求知", "冷静", "谨慎"],
-      "tips": "保持理性是你的优势，但不要忽视直觉的警告"
+      "traits": ["Rational", "Inquisitive", "Calm", "Cautious"],
+      "tips": "Your rationality is your strength, but don't ignore warnings from your intuition"
     },
     "BBBB": {
-      "title": "【敏感的艺术家】",
-      "description": "你拥有细腻的灵魂和敏锐的感知，常常被梦境和直觉所困扰。你的精神世界丰富多彩，但也因此更容易被克苏鲁神话的疯狂所影响。你的艺术天赋让你能看到常人看不到的东西——那是祝福也是诅咒。",
+      "title": "Sensitive Artist",
+      "description": "You have a delicate soul and keen perception, often troubled by dreams and intuition. Your rich inner world makes you more susceptible to the madness of Cthulhu Mythos. Your artistic talent lets you see what others cannot - both blessing and curse.",
       "radar": [8, 14, 10, 14, 12, 16, 10, 12, 18, 14, 12, 10],
-      "traits": ["敏感", "艺术", "直觉", "梦幻"],
-      "tips": "创作是你释放压力的方式，但小心不要沉迷太深"
+      "traits": ["Sensitive", "Artistic", "Intuitive", "Dreamy"],
+      "tips": "Creation is your way to release pressure, but don't fall too deep"
     },
     "CCCC": {
-      "title": "【冷漠的局外人】",
-      "description": "你对一切都保持着冷漠的距离，仿佛与世界隔着一层看不见的墙。这层保护让你免受疯狂的侵袭，但也让你难以与他人建立联系。你就像一个观察者，静静地看着人类文明的兴衰。",
+      "title": "Detached Outsider",
+      "description": "You maintain a cold distance from everything, as if separated from the world by an invisible wall. This protection shields you from madness but also makes it hard to connect with others. Like an observer, you watch the rise and fall of human civilization.",
       "radar": [12, 12, 12, 12, 16, 10, 12, 12, 12, 12, 14, 12],
-      "traits": ["冷漠", "理性", "超然", "独立"],
-      "tips": "适度的冷漠是保护，过度的疏离会伤害自己"
+      "traits": ["Detached", "Rational", "Detached", "Independent"],
+      "tips": "Moderate detachment is protection, excessive isolation hurts yourself"
     },
     "DDDD": {
-      "title": "【疯狂的信徒】",
-      "description": "你已经跨越了那条线。理性崩溃的瞬间，你看到了真实的宇宙——没有意义，没有秩序，只有无尽的混沌与恐怖。但在这疯狂中，你获得了前所未有的自由。你成为了伟大存在的一部分。",
+      "title": "Crazy Cultist",
+      "description": "You have crossed the line. When rationality collapsed, you saw the true universe - no meaning, no order, only endless chaos and terror. But in this madness, you gained unprecedented freedom. You have become part of the Great Old Ones.",
       "radar": [4, 18, 6, 12, 20, 8, 6, 10, 10, 18, 20, 20],
-      "traits": ["疯狂", "虔诚", "觉醒", "混沌"],
-      "tips": "你已经看到了真相，是福是祸，只有你自己知道"
+      "traits": ["Mad", "Devoted", "Awakened", "Chaotic"],
+      "tips": "You've seen the truth - only you know if it's blessing or curse"
     },
     "AABB": {
-      "title": "【印斯茅斯的后裔】",
-      "description": "你的血脉中流淌着古老的诅咒。表面上你与常人无异，但每到月圆之夜，你就能听到大海的召唤。你的祖先与深潜者做了交易，而你正在逐渐觉醒。那鱼腥味和鳞片，是时候面对了。",
+      "title": "Innsmouth Descendant",
+      "description": "Ancient curse flows in your blood. You appear normal on the surface, but every full moon you hear the sea calling. Your ancestors made a pact with the Deep Ones, and you are awakening. Time to face the fishy smell and scales.",
       "radar": [10, 20, 12, 12, 14, 12, 14, 16, 12, 12, 14, 16],
-      "traits": ["血脉", "觉醒", "两栖", "传承"],
-      "tips": "你的命运早已写在血脉中，接受还是反抗，在于选择"
+      "traits": ["Bloodline", "Awakening", "Amphibian", "Legacy"],
+      "tips": "Your fate is written in your blood - accept or resist, the choice is yours"
     },
     "ABAB": {
-      "title": "【奈亚拉托提普的化身】",
-      "description": "你如同那位伏行之混沌，表面上理智幽默，实际上是旧日支配者的忠实仆从。你善于伪装和操纵，在人类社会中游刃有余。你的真实形态可能连自己都不知道——但总有一天会显现。",
+      "title": "Nyarlathotep Avatar",
+      "description": "You are like the Crawling Chaos - rational and humorous on the surface, but actually a faithful servant of the Great Old One. You excel at disguise and manipulation in human society. Your true form may be unknown even to yourself - but one day it will manifest.",
       "radar": [14, 14, 16, 20, 16, 14, 12, 16, 14, 16, 14, 14],
-      "traits": ["伪装", "智慧", "迷惑", "忠诚"],
-      "tips": "你既是观察者，也是参与者，真相往往出人意料"
+      "traits": ["Disguise", "Wisdom", "Deception", "Loyalty"],
+      "tips": "You are both observer and participant, truth often surprises"
     },
     "BADD": {
-      "title": "【犹格·索托斯的门徒】",
-      "description": "时间和空间对你而言只是错觉。你能感知到过去、现在和未来的重叠，仿佛站在时间之外。知识的代价是理智，但你已经不在乎了。当你闭上眼睛，你能看到所有的时空——那既是祝福也是诅咒。",
+      "title": "Yog-Sothoth Disciple",
+      "description": "Time and space are just illusions to you. You can perceive the overlap of past, present and future, as if standing outside of time. The cost of knowledge is sanity, but you no longer care. When you close your eyes, you see all of time and space - both blessing and curse.",
       "radar": [6, 10, 20, 18, 18, 10, 8, 12, 16, 16, 18, 18],
-      "traits": ["永恒", "全知", "超越", "无形"],
-      "tips": "你已经超越了凡人的局限，看到的是终极真相"
+      "traits": ["Eternal", "Omniscient", "Transcendent", "Formless"],
+      "tips": "You've transcended mortal limitations, seeing ultimate truth"
     },
     "DADA": {
-      "title": "【阿撒托斯的祭司】",
-      "description": "在混沌的王座上，无意识的鼓声永不停息。你是那盲目痴愚之神的下仆，在梦中为其演奏疯狂的旋律。世界只是幻象，真正的实在只有在彻底的毁灭中才能触及。",
+      "title": "Azathoth Priest",
+      "description": "On the throne of chaos, the unconscious drum beat never stops. You are the servant of the Blind Idiot God, playing mad melodies in dreams. The world is mere illusion; true reality can only be touched in complete destruction.",
       "radar": [8, 20, 4, 8, 20, 6, 8, 8, 8, 20, 20, 20],
-      "traits": ["混沌", "毁灭", "疯狂", "无意识"],
-      "tips": "你是宇宙混沌的一部分，毁灭即重生"
+      "traits": ["Chaos", "Destruction", "Madness", "Unconscious"],
+      "tips": "You are part of cosmic chaos - destruction is rebirth"
     },
     "BDAB": {
-      "title": "【修普诺斯的选民】",
-      "description": "黑色的繁殖之网是你出生的摇篮。你是那千面之羊的后裔，拥有强大的生命力和繁殖能力。在你的血管里流淌着古老的诅咒——你的后代将延续这疯狂的传承。",
+      "title": "Shub-Niggurath's Chosen",
+      "description": "The black breeding net is your birthplace. You are descendant of the Goat of a Thousand Young, possessing powerful vitality and reproductive ability. An ancient curse flows in your veins - your descendants will continue this mad legacy.",
       "radar": [10, 16, 8, 10, 16, 12, 18, 12, 12, 14, 16, 18],
-      "traits": ["繁殖", "诅咒", "生命", "黑暗"],
-      "tips": "你的血脉是诅咒也是力量，善用它"
+      "traits": ["Breeding", "Curse", "Life", "Darkness"],
+      "tips": "Your bloodline is both curse and power, use it wisely"
     },
     "ABBA": {
-      "title": "【克苏鲁的代言人】",
-      "description": "在大西洋的深处，伟大的克苏鲁正在沉睡。你是他在人间的代言人，传播着关于他的知识，等待着那伟大的苏醒。当星星归位之时，你将引领新世界。拉莱耶之城将从海底升起。",
+      "title": "Cthulhu's Messenger",
+      "description": "In the depths of Atlantic, great Cthulhu lies sleeping. You are His messenger on earth, spreading knowledge about Him while waiting for the Great Awakening. When stars align, you will lead the new world. R'lyeh will rise from the ocean.",
       "radar": [12, 18, 12, 14, 16, 14, 14, 14, 14, 14, 16, 20],
-      "traits": ["沉睡", "预示", "深海", "古老"],
-      "tips": "你是伟大存在与人类世界的桥梁，使命重大"
+      "traits": ["Sleeping", "Prophecy", "Deep Sea", "Ancient"],
+      "tips": "You are the bridge between Great One and human world, your mission is great"
     },
     "default": {
-      "title": "【迷雾中的求道者】",
-      "description": "你站在理智与疯狂的边界上，迷茫地探索着存在的意义。克苏鲁神话对你来说还是模糊的影子，但命运的齿轮已经开始转动。前方是光明还是深渊，取决于你的选择。",
+      "title": "Wanderer in the Mist",
+      "description": "You stand on the boundary between sanity and madness, confusedly exploring the meaning of existence. Cthulhu Mythos is still a blur to you, but the wheels of fate have started turning. Light or abyss ahead depends on your choice.",
       "radar": [12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12],
-      "traits": ["迷茫", "探索", "中立", "成长"],
-      "tips": "你还有选择的机会，理性还是疯狂，在于一心"
+      "traits": ["Confused", "Exploring", "Neutral", "Growing"],
+      "tips": "You still have a choice - sanity or madness, it's your call"
     }
   }
 }
