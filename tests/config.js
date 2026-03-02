@@ -77,24 +77,10 @@ window.APP_CONFIG = {
             enabled: true
         },
         {
-            id: 'social-phobia',
-            title: '社恐等级测试',
-            category: '趣味',
-            questionCount: 10,
-            enabled: true
-        },
-        {
             id: 'talent-test',
             title: '天赋测试',
             category: '趣味',
             questionCount: 10,
-            enabled: true
-        },
-        {
-            id: 'cow-horse',
-            title: '牛马类型测试',
-            category: '趣味',
-            questionCount: 8,
             enabled: true
         },
         {

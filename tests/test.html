@@ -8,11 +8,11 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <meta name="description" content="专业心理测试平台">
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
-    
+
     <style>
         :root {
             --primary: #2563EB;
@@ -20,40 +20,40 @@
             --primary-light: #3B82F6;
             --accent: #F59E0B;
             --success: #10B981;
-            
+
             --bg-gradient-start: #0F172A;
             --bg-gradient-end: #1E3A5F;
-            
+
             --card-bg: #ffffff;
-            
+
             --text-primary: #1E293B;
             --text-secondary: #64748B;
             --text-light: #94A3B8;
-            
+
             --space-xs: 4px;
             --space-sm: 8px;
             --space-md: 16px;
             --space-lg: 24px;
             --space-xl: 32px;
-            
+
             --radius-sm: 8px;
             --radius-md: 12px;
             --radius-lg: 16px;
             --radius-xl: 20px;
-            
+
             --shadow-lg: 0 10px 40px rgba(0,0,0,0.15);
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         html, body {
             height: 100%;
         }
-        
+
         body {
             font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
             background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
@@ -62,7 +62,7 @@
             line-height: 1.5;
             padding: var(--space-md);
         }
-        
+
         .container {
             max-width: 600px;
             margin: 0 auto;
@@ -70,7 +70,7 @@
             display: flex;
             flex-direction: column;
         }
-        
+
         /* 顶部 */
         .header {
             display: flex;
@@ -79,7 +79,7 @@
             padding: var(--space-sm) 0;
             margin-bottom: var(--space-md);
         }
-        
+
         .back-btn {
             display: flex;
             align-items: center;
@@ -93,21 +93,21 @@
             border: none;
             cursor: pointer;
         }
-        
+
         .back-btn:hover {
             background: rgba(255,255,255,0.2);
         }
-        
+
         .test-label {
             color: rgba(255,255,255,0.7);
             font-size: 0.85em;
         }
-        
+
         /* 进度条 */
         .progress-wrap {
             margin-bottom: var(--space-lg);
         }
-        
+
         .progress-info {
             display: flex;
             justify-content: space-between;
@@ -115,21 +115,21 @@
             font-size: 0.85em;
             margin-bottom: var(--space-xs);
         }
-        
+
         .progress-bar {
             height: 6px;
             background: rgba(255,255,255,0.15);
             border-radius: 10px;
             overflow: hidden;
         }
-        
+
         .progress-fill {
             height: 100%;
             background: linear-gradient(90deg, var(--primary), var(--accent));
             border-radius: 10px;
             transition: width 0.3s ease;
         }
-        
+
         /* 测试卡片 */
         .test-card {
             background: var(--card-bg);
@@ -141,23 +141,23 @@
             flex-direction: column;
             overflow: hidden;
         }
-        
+
         .test-title {
             text-align: center;
             margin-bottom: var(--space-md);
         }
-        
+
         .test-title h1 {
             font-size: 1.3em;
             color: var(--text-primary);
             margin-bottom: var(--space-xs);
         }
-        
+
         .test-title p {
             color: var(--text-secondary);
             font-size: 0.85em;
         }
-        
+
         /* 问题区域 */
         .question-area {
             flex: 1;
@@ -165,7 +165,7 @@
             flex-direction: column;
             min-height: 0;
         }
-        
+
         .question-num {
             display: inline-flex;
             align-items: center;
@@ -179,7 +179,7 @@
             font-size: 0.8em;
             margin-bottom: var(--space-sm);
         }
-        
+
         .question-text {
             font-size: 1.15em;
             color: var(--text-primary);
@@ -187,7 +187,7 @@
             margin-bottom: var(--space-lg);
             font-weight: 500;
         }
-        
+
         /* 选项 */
         .options {
             display: flex;
@@ -196,7 +196,7 @@
             flex: 1;
             overflow-y: auto;
         }
-        
+
         .option {
             padding: var(--space-md);
             background: #F8FAFC;
@@ -208,17 +208,17 @@
             align-items: center;
             gap: var(--space-md);
         }
-        
+
         .option:hover {
             border-color: var(--primary);
             background: #EFF6FF;
         }
-        
+
         .option.selected {
             border-color: var(--primary);
             background: linear-gradient(135deg, #EFF6FF, #DBEAFE);
         }
-        
+
         .option-letter {
             display: flex;
             align-items: center;
@@ -232,18 +232,18 @@
             font-size: 0.8em;
             flex-shrink: 0;
         }
-        
+
         .option.selected .option-letter {
             background: var(--primary);
             color: white;
         }
-        
+
         .option-text {
             font-size: 0.95em;
             color: var(--text-primary);
             line-height: 1.5;
         }
-        
+
         /* 导航按钮 */
         .nav-buttons {
             display: flex;
@@ -252,7 +252,7 @@
             padding-top: var(--space-md);
             border-top: 1px solid #E2E8F0;
         }
-        
+
         .nav-btn {
             display: flex;
             align-items: center;
@@ -268,42 +268,42 @@
             color: var(--text-secondary);
             transition: all 0.3s ease;
         }
-        
+
         .nav-btn:hover:not(:disabled) {
             border-color: var(--primary);
             color: var(--primary);
             transform: translateX(-5px);
             box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
         }
-        
+
         .nav-btn:disabled {
             opacity: 0.3;
             cursor: not-allowed;
         }
-        
+
         .nav-btn svg {
             width: 18px;
             height: 18px;
         }
-        
+
         /* 结果页 */
         #resultPage {
             display: none;
             height: 100%;
             overflow-y: auto;
         }
-        
+
         #resultPage.active {
             display: block;
         }
-        
+
         .result-header {
             text-align: center;
             padding: var(--space-lg) 0;
             border-bottom: 1px solid #E2E8F0;
             margin-bottom: var(--space-lg);
         }
-        
+
         .result-type {
             font-size: 2.2em;
             font-weight: 700;
@@ -312,13 +312,13 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        
+
         .result-name {
             font-size: 1.2em;
             color: var(--text-primary);
             margin-top: var(--space-xs);
         }
-        
+
         .result-desc {
             color: var(--text-secondary);
             font-size: 0.95em;
@@ -330,23 +330,23 @@
             margin-bottom: var(--space-lg);
             border-left: 3px solid var(--primary);
         }
-        
+
         .result-section {
             margin-bottom: var(--space-lg);
         }
-        
+
         .result-section h3 {
             font-size: 1em;
             color: var(--text-primary);
             margin-bottom: var(--space-sm);
         }
-        
+
         .tags {
             display: flex;
             flex-wrap: wrap;
             gap: var(--space-xs);
         }
-        
+
         .tag {
             padding: var(--space-xs) var(--space-md);
             background: linear-gradient(135deg, var(--primary), var(--primary-light));
@@ -354,45 +354,45 @@
             border-radius: 50px;
             font-size: 0.8em;
         }
-        
+
         .tips-box {
             background: #FFFBEB;
             border: 1px solid #FDE68A;
             border-radius: var(--radius-md);
             padding: var(--space-md);
         }
-        
+
         .tips-box h4 {
             color: #B45309;
             font-size: 0.9em;
             margin-bottom: var(--space-xs);
         }
-        
+
         .tips-box p {
             color: #92400E;
             font-size: 0.9em;
             line-height: 1.6;
         }
-        
+
         .career-box {
             background: #F0FDF4;
             border: 1px solid #BBF7D0;
             border-radius: var(--radius-md);
             padding: var(--space-md);
         }
-        
+
         .career-box h4 {
             color: #166534;
             font-size: 0.9em;
             margin-bottom: var(--space-sm);
         }
-        
+
         .career-tags {
             display: flex;
             flex-wrap: wrap;
             gap: var(--space-xs);
         }
-        
+
         .career-tag {
             padding: var(--space-xs) var(--space-sm);
             background: white;
@@ -401,14 +401,14 @@
             font-size: 0.8em;
             border: 1px solid #BBF7D0;
         }
-        
+
         .result-actions {
             display: flex;
             gap: var(--space-sm);
             margin-top: var(--space-lg);
             flex-wrap: wrap;
         }
-        
+
         .btn {
             flex: 1;
             padding: var(--space-md);
@@ -421,44 +421,44 @@
             border: none;
             min-width: 100px;
         }
-        
+
         .btn-primary {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
         }
-        
+
         .btn-secondary {
             background: #64748B;
             color: white;
         }
-        
+
         .btn-outline {
             background: white;
             color: var(--primary);
             border: 2px solid var(--primary);
         }
-        
+
         /* 测试介绍页 */
         #introPage {
             display: none;
         }
-        
+
         #introPage.active {
             display: block;
         }
-        
+
         .intro-card {
             background: var(--card-bg);
             border-radius: var(--radius-xl);
             padding: var(--space-xl);
             box-shadow: var(--shadow-lg);
         }
-        
+
         .intro-header {
             text-align: center;
             margin-bottom: var(--space-xl);
         }
-        
+
         .intro-icon {
             width: 80px;
             height: 80px;
@@ -470,19 +470,19 @@
             margin: 0 auto var(--space-md);
             font-size: 2em;
         }
-        
+
         .intro-title {
             font-size: 1.5em;
             color: var(--text-primary);
             margin-bottom: var(--space-sm);
         }
-        
+
         .intro-subtitle {
             color: var(--primary);
             font-size: 1em;
             margin-bottom: var(--space-md);
         }
-        
+
         .intro-desc {
             color: var(--text-secondary);
             font-size: 0.95em;
@@ -490,7 +490,7 @@
             text-align: left;
             margin-bottom: var(--space-xl);
         }
-        
+
         .intro-stats {
             display: flex;
             justify-content: center;
@@ -500,26 +500,26 @@
             background: #F8FAFC;
             border-radius: var(--radius-md);
         }
-        
+
         .intro-stat {
             text-align: center;
         }
-        
+
         .intro-stat-value {
             font-size: 1.5em;
             font-weight: 700;
             color: var(--primary);
         }
-        
+
         .intro-stat-label {
             font-size: 0.8em;
             color: var(--text-secondary);
         }
-        
+
         .intro-features {
             margin-bottom: var(--space-xl);
         }
-        
+
         .intro-feature {
             display: flex;
             align-items: center;
@@ -528,7 +528,7 @@
             color: var(--text-secondary);
             font-size: 0.9em;
         }
-        
+
         .intro-feature-icon {
             width: 24px;
             height: 24px;
@@ -541,14 +541,14 @@
             font-size: 0.8em;
             flex-shrink: 0;
         }
-        
+
         /* 加载 */
         .loading {
             text-align: center;
             padding: var(--space-2xl);
             color: rgba(255,255,255,0.8);
         }
-        
+
         .spinner {
             width: 40px;
             height: 40px;
@@ -558,23 +558,23 @@
             margin: 0 auto var(--space-md);
             animation: spin 1s linear infinite;
         }
-        
+
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
-        
+
         /* 错误 */
         .error {
             text-align: center;
             padding: var(--space-2xl);
             color: white;
         }
-        
+
         .error h2 {
             color: #FCA5A5;
             margin-bottom: var(--space-md);
         }
-        
+
         /* Debug 按钮 */
         .debug-btn {
             position: fixed;
@@ -590,72 +590,72 @@
             z-index: 9999;
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
-        
+
         /* 响应式 */
         @media (max-width: 480px) {
             body {
                 padding: var(--space-sm);
             }
-            
+
             .test-card {
                 padding: var(--space-md);
                 border-radius: var(--radius-lg);
             }
-            
+
             .question-text {
                 font-size: 1.05em;
             }
-            
+
             .option {
                 padding: var(--space-sm) var(--space-md);
             }
-            
+
             .option-text {
                 font-size: 0.9em;
             }
         }
-        
+
         /* 雷达图 */
         .radar-container {
             display: flex;
             justify-content: center;
             margin: 20px 0;
         }
-        
+
         .radar-chart {
             width: 100%;
             max-width: 300px;
             aspect-ratio: 1 / 1;
         }
-        
+
         @media (max-width: 480px) {
             .radar-chart {
                 max-width: 280px;
             }
         }
     </style>
-    
+
     <!-- Chart.js 雷达图 -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <!-- Debug 按钮 -->
     <button class="debug-btn" onclick="debugMode()">🔧 Debug</button>
-    
+
     <div class="container">
         <!-- 加载 -->
         <div class="loading" id="loading">
             <div class="spinner"></div>
             <p id="loadingText">正在加载...</p>
         </div>
-        
+
         <!-- 错误 -->
         <div class="error" id="error" style="display:none; padding:40px; text-align:center; background:#fee; color:#c00;">
             <h2 style="color:#c00;">⚠️ 加载失败</h2>
             <p id="errorMsg" style="font-size:16px; line-height:2;">请稍后重试</p>
             <a href="index.html" class="btn btn-primary" style="display:inline-block;margin-top:16px;">返回首页</a>
         </div>
-        
+
         <!-- 测试介绍页 -->
         <div id="introPage">
             <div class="intro-card">
@@ -664,11 +664,11 @@
                     <h1 class="intro-title" id="introTitle">测试标题</h1>
                     <div class="intro-subtitle" id="introSubtitle">副标题</div>
                 </div>
-                
+
                 <div class="intro-desc" id="introDesc">
                     测试描述
                 </div>
-                
+
                 <div class="intro-stats">
                     <div class="intro-stat">
                         <div class="intro-stat-value" id="introCount">0</div>
@@ -679,28 +679,28 @@
                         <div class="intro-stat-label">分钟</div>
                     </div>
                 </div>
-                
+
                 <div class="intro-features" id="introFeatures">
                     <!-- 特点 -->
                 </div>
-                
+
                 <button class="btn btn-primary" onclick="startTest()" style="width:100%;">
                     开始测试
                 </button>
-                
+
                 <div style="text-align:center;margin-top:var(--space-md);">
                     <a href="index.html" style="color:var(--text-secondary);font-size:0.9em;">返回首页</a>
                 </div>
             </div>
         </div>
-        
+
         <!-- 测试页面 -->
         <div id="testPage" style="display:none;height:100%;flex-direction:column;">
             <div class="header">
                 <button class="back-btn" onclick="goBack()">← 返回</button>
                 <span class="test-label" id="testLabel">测试</span>
             </div>
-            
+
             <div class="progress-wrap">
                 <div class="progress-info">
                     <span id="progressText">1/12</span>
@@ -710,22 +710,22 @@
                     <div class="progress-fill" id="progressFill" style="width:8%"></div>
                 </div>
             </div>
-            
+
             <div class="test-card">
                 <div class="test-title">
                     <h1 id="testTitle">测试</h1>
                     <p>选择最符合你的答案</p>
                 </div>
-                
+
                 <div class="question-area">
                     <div class="question-num" id="questionNum">1</div>
                     <p class="question-text" id="questionText">加载中...</p>
-                    
+
                     <div class="options" id="options">
                         <!-- 选项 -->
                     </div>
                 </div>
-                
+
                 <!-- 导航按钮 -->
                 <div class="nav-buttons">
                     <button class="nav-btn" id="prevBtn" onclick="prevQuestion()" disabled>
@@ -738,7 +738,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- 结果页面 -->
         <div id="resultPage">
             <div class="test-card">
@@ -747,35 +747,35 @@
                     <!-- 隐藏了结果类型 -->
                     <div class="result-name" id="resultName">战略策划者</div>
                 </div>
-                
+
                 <!-- 雷达图 -->
                 <div class="radar-container">
                     <canvas id="radarChart" class="radar-chart"></canvas>
                 </div>
-                
+
                 <div class="result-desc" id="resultDesc">
                     结果描述
                 </div>
-                
+
                 <div class="result-section">
                     <h3>性格特质</h3>
                     <div class="tags" id="resultTraits"></div>
                 </div>
-                
+
                 <div class="result-section">
                     <div class="tips-box">
                         <h4>💡 发展建议</h4>
                         <p id="resultTips">建议内容</p>
                     </div>
                 </div>
-                
+
                 <div class="result-section" id="careerSection" style="display:none;">
                     <div class="career-box">
                         <h4>💼 适合职业</h4>
                         <div class="career-tags" id="resultCareer"></div>
                     </div>
                 </div>
-                
+
                 <div class="result-actions">
                     <button class="btn btn-primary" onclick="shareResult()">📤 分享结果</button>
                     <button class="btn btn-secondary" onclick="restartTest()">🔄 重新测试</button>
@@ -801,15 +801,15 @@
         }
         let testId = getTestId();
         console.log('Initial testId:', testId);
-        
+
         // 绘制雷达图
         function drawRadarChart(data, testId) {
             const ctx = document.getElementById('radarChart');
             if (!ctx) return;
-            
+
             // 确保数据是数组
             let values = Array.isArray(data) ? data : Object.values(data);
-            
+
             // 根据测试类型选择标签
             let labels;
             if (testId === 'cthulhu-personality') {
@@ -819,15 +819,15 @@
                 // 默认天赋 10 维度
                 labels = ['语言', '逻辑', '操作', '人际', '创意', '音乐', '自然', '空间', '内省', '美学'];
             }
-            
+
             // 确保有足够的数据点
             while (values.length < labels.length) {
                 values.push(10);
             }
             values = values.slice(0, labels.length);
-            
+
             const datasetLabel = testId === 'cthulhu-personality' ? '你的属性值' : '你的天赋值';
-            
+
             new Chart(ctx, {
                 type: 'radar',
                 data: {
@@ -865,34 +865,34 @@
                 }
             });
         }
-        
+
         // 加载测试
         async function init() {
             const testId = getTestId();
-            
+
             // 强制显示加载信息
             document.getElementById('loadingText').textContent = '正在加载: ' + testId;
-            
+
             // 调试信息
             console.log('=== DEBUG ===');
             console.log('URL:', window.location.href);
             console.log('testId:', testId);
             console.log('=============');
-            
+
             try {
                 // 构建完整的 JSON URL
                 const baseUrl = window.location.origin + window.location.pathname.replace(/test\.html$/, '');
                 const jsonUrl = baseUrl + 'data/examples/' + testId + '.json?_=' + Date.now();
                 console.log('Fetching:', jsonUrl);
-                
+
                 const res = await fetch(jsonUrl);
                 if (!res.ok) throw new Error('加载失败: ' + res.status);
-                
+
                 testData = await res.json();
                 console.log('Loaded test:', testData.title);
-                
+
                 document.getElementById('loading').style.display = 'none';
-                
+
                 // 显示介绍页
                 showIntro();
             } catch (e) {
@@ -900,37 +900,37 @@
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('error').style.display = 'block';
                 // 详细错误信息
-                document.getElementById('errorMsg').innerHTML = 
+                document.getElementById('errorMsg').innerHTML =
                     '<strong>加载失败</strong><br>' +
                     '测试ID: ' + testId + '<br>' +
                     '错误: ' + e.message + '<br><br>' +
                     '<a href="?test=cthulhu-personality">点击重试克苏鲁测试</a>';
             }
         }
-        
+
         // 显示介绍页
         function showIntro() {
             document.getElementById('introPage').classList.add('active');
-            
+
             // 调试：显示当前加载的测试
             console.log('Showing intro for:', testData.title);
             document.title = testData.title + ' | 心灵方舟';
-            
+
             document.getElementById('introTitle').textContent = testData.title || '心理测试';
             document.getElementById('introSubtitle').textContent = testData.subtitle || '';
             document.getElementById('introDesc').textContent = testData.description || '';
-            
+
             // 题数和时长
             const qCount = testData.questions ? testData.questions.length : 0;
             const duration = testData.duration || Math.ceil(qCount * 0.5) + '分钟';
             document.getElementById('introCount').textContent = qCount + '题';
             document.getElementById('introDuration').textContent = duration;
-            
+
             // 图标
             const icons = {'MBTI': '🧠', 'IQ': '🧩', '情感': '💕', '职场': '💼', '性格': '👤'};
             const category = testData.category || 'MBTI';
             document.getElementById('introIcon').textContent = icons[category] || '📝';
-            
+
             // 特点
             const features = [
                 '基于科学心理学理论',
@@ -945,59 +945,59 @@
                 </div>
             `).join('');
         }
-        
+
         // 开始测试
         function startTest() {
             document.getElementById('introPage').classList.remove('active');
             document.getElementById('testPage').style.display = 'flex';
-            
+
             document.getElementById('testLabel').textContent = testData.title || '心理测试';
             document.getElementById('testTitle').textContent = testData.title || '测试';
-            
+
             isIntroView = false;
             renderQuestion();
         }
-        
+
         // 渲染问题
         function renderQuestion() {
             const q = testData.questions[currentQ];
             const total = testData.questions.length;
-            
+
             // 更新进度
             const pct = Math.round(((currentQ + 1) / total) * 100);
             document.getElementById('progressText').textContent = `${currentQ + 1}/${total}`;
             document.getElementById('percentText').textContent = `${pct}%`;
             document.getElementById('progressFill').style.width = `${pct}%`;
-            
+
             // 显示问题
             document.getElementById('questionNum').textContent = currentQ + 1;
             document.getElementById('questionText').textContent = q.question;
-            
+
             // 渲染选项
             const opts = document.getElementById('options');
             opts.innerHTML = q.options.map((opt, i) => `
-                <div class="option ${answers[currentQ] === opt.id ? 'selected' : ''}" 
+                <div class="option ${answers[currentQ] === opt.id ? 'selected' : ''}"
                      data-id="${opt.id}" onclick="selectOption('${opt.id}')">
                     <span class="option-letter">${String.fromCharCode(65 + i)}</span>
                     <span class="option-text">${opt.text}</span>
                 </div>
             `).join('');
-            
+
             // 更新上一题按钮状态
             document.getElementById('prevBtn').disabled = currentQ === 0;
         }
-        
+
         // 选择选项 - 自动进入下一题
         function selectOption(optId) {
             answers[currentQ] = optId;
-            
+
             // 立即显示选中效果
             document.querySelectorAll('.option').forEach(el => {
                 el.classList.toggle('selected', el.dataset.id === optId);
             });
-            
+
             // 自动进入下一题
-            setTimeout(() => { 
+            setTimeout(() => {
                 if (currentQ < testData.questions.length - 1) {
                     nextQuestion();
                 } else {
@@ -1005,7 +1005,7 @@
                 }
             }, 300);
         }
-        
+
         // 上一题
         function prevQuestion() {
             if (currentQ > 0) {
@@ -1013,11 +1013,11 @@
                 renderQuestion();
             }
         }
-        
+
         // 下一题
         function nextQuestion() {
             if (answers[currentQ] === undefined) return;
-            
+
             if (currentQ < testData.questions.length - 1) {
                 currentQ++;
                 renderQuestion();
@@ -1025,12 +1025,9 @@
                 showResult();
             }
         }
-        
+
         // 显示结果
         function showResult() {
-            // 调试
-            alert('showResult called!\ntestData: ' + (testData ? testData.title : 'NULL') + '\nresultType: ' + (testData ? testData.resultType : 'NULL'));
-            
             // 确保测试数据已加载
             if (!testData || !testData.results) {
                 alert('测试数据加载失败，请刷新页面重试');
@@ -1038,29 +1035,28 @@
             }
             
             const resultType = testData.resultType || 'default';
-            alert('resultType: ' + resultType);
             let resultKey;
             let finalRadar;
-            
+
             if (resultType === 'cthulhu') {
                 // 克苏鲁测试：基于 S/P/O/M 选项统计
                 const counts = {};
                 Object.values(answers).forEach(a => counts[a] = (counts[a] || 0) + 1);
-                
+
                 const validAnswers = ['S', 'P', 'O', 'M'];
                 const hasValid = validAnswers.some(a => counts[a]);
                 if (!hasValid) {
                     alert('答案数据异常');
                     return;
                 }
-                
+
                 const total = Object.values(answers).length || 1;
                 const mCount = counts['M'] || 0;
                 const pCount = counts['P'] || 0;
                 const oCount = counts['O'] || 0;
                 const sCount = counts['S'] || 0;
                 const mRatio = mCount / total;
-                
+
                 if (mRatio >= 0.5) {
                     const madResults = ['mad_prophet', 'dark_priest', 'elder_priest', 'chaos_avatar'];
                     resultKey = madResults[Math.floor(Math.random() * madResults.length)];
@@ -1077,12 +1073,12 @@
                 } else {
                     resultKey = 'wandering_seeker';
                 }
-                
+
                 // 雷达图
                 const radarKeys = ['san', 'pow', 'edu', 'int', 'str', 'app', 'con', 'dex', 'luc', 'spot', 'stealth', 'mythos'];
                 const radarScores = {};
                 radarKeys.forEach(k => radarScores[k] = 10);
-                
+
                 Object.values(answers).forEach(answerId => {
                     const option = testData.questions
                         .flatMap(q => q.options)
@@ -1095,93 +1091,93 @@
                         });
                     }
                 });
-                
+
                 radarKeys.forEach(k => {
                     radarScores[k] = Math.max(0, Math.min(20, radarScores[k]));
                 });
                 finalRadar = Object.values(radarScores);
-                
+
             } else if (resultType === 'mbti') {
                 // MBTI测试：统计 E/I, S/N, T/F, J/P
                 const dims = {E:0, I:0, S:0, N:0, T:0, F:0, J:0, P:0};
                 Object.values(answers).forEach(a => {
                     if (dims.hasOwnProperty(a)) dims[a]++;
                 });
-                
+
                 const mbti = (dims.E >= dims.I ? 'E' : 'I') +
                             (dims.S >= dims.N ? 'S' : 'N') +
                             (dims.T >= dims.F ? 'T' : 'F') +
                             (dims.J >= dims.P ? 'J' : 'P');
                 resultKey = mbti;
-                
+
                 // MBTI雷达图
-                finalRadar = [dims.E+dims.I, dims.S+dims.N, dims.T+dims.F, dims.J+dims.P, 
+                finalRadar = [dims.E+dims.I, dims.S+dims.N, dims.T+dims.F, dims.J+dims.P,
                              dims.E+dims.I, dims.S+dims.N, dims.T+dims.F, dims.J+dims.P,
                              dims.E+dims.I, dims.S+dims.N];
-                
+
             } else {
                 // 默认：使用第一个结果的key
                 resultKey = Object.keys(testData.results)[0];
-                
+
                 // 简单雷达图
                 const allOptions = testData.questions.flatMap(q => q.options);
                 const counts = {};
                 Object.values(answers).forEach(a => counts[a] = (counts[a] || 0) + 1);
                 finalRadar = Object.values(counts).map(c => c * 2);
             }
-            
+
             const result = testData.results[resultKey] || Object.values(testData.results)[0];
-            
+
             // 隐藏测试页，显示结果页
             document.getElementById('testPage').style.display = 'none';
             const resultPage = document.getElementById('resultPage');
             resultPage.classList.add('active');
-            
+
             // 填充结果 - 隐藏类型key，只显示标题
             document.getElementById('resultType').style.display = 'none';
             document.getElementById('resultName').textContent = result.title || '';
             document.getElementById('resultDesc').textContent = result.description || '';
             document.getElementById('resultTips').textContent = result.tips ? result.tips : '暂无建议';
-            
+
             // 特质标签
             if (result.traits && result.traits.length) {
-                document.getElementById('resultTraits').innerHTML = 
+                document.getElementById('resultTraits').innerHTML =
                     result.traits.map(t => `<span class="tag">${t}</span>`).join('');
             }
-            
+
             // 职业推荐
             const careerSec = document.getElementById('careerSection');
             if (result.career && result.career.length) {
                 careerSec.style.display = 'block';
-                document.getElementById('resultCareer').innerHTML = 
+                document.getElementById('resultCareer').innerHTML =
                     result.career.map(c => `<span class="career-tag">${c}</span>`).join('');
             } else {
                 careerSec.style.display = 'none';
             }
-            
+
             // 绘制雷达图 - 使用计算出的实际值
             drawRadarChart(finalRadar, testId);
-            
+
             // 保存历史
             const history = JSON.parse(localStorage.getItem('testHistory') || '[]');
             history.unshift({ testId, type: resultType, title: result.title, date: new Date().toISOString() });
             localStorage.setItem('testHistory', JSON.stringify(history.slice(0, 10)));
         }
-        
+
         // 分享
         function shareResult() {
             const type = document.getElementById('resultType').textContent;
             const name = document.getElementById('resultName').textContent;
             const testUrl = window.location.origin + window.location.pathname + '?test=' + testId;
             const text = `我在心灵方舟做了【${testData.title}】，结果是【${type}】${name}！\n\n你也来测测吧：${testUrl}`;
-            
+
             navigator.clipboard.writeText(text).then(() => {
                 alert('结果已复制，快去分享吧！');
             }).catch(() => {
                 alert(text);
             });
         }
-        
+
         // 重新测试
         function restartTest() {
             currentQ = 0;
@@ -1190,7 +1186,7 @@
             document.getElementById('testPage').style.display = 'flex';
             renderQuestion();
         }
-        
+
         // 返回
         function goBack() {
             if (isIntroView) {
@@ -1201,25 +1197,25 @@
                 }
             }
         }
-        
+
         // Debug 模式
         function debugMode() {
             if (!confirm('确认进入 Debug 模式？将自动完成所有题目。')) return;
-            
+
             testData.questions.forEach((q, i) => {
                 if (q.options && q.options.length > 0) {
                     answers[i] = q.options[0].id;
                 }
             });
-            
+
             // 跳过介绍页
             document.getElementById('introPage').classList.remove('active');
             document.getElementById('testPage').style.display = 'flex';
             isIntroView = false;
-            
+
             showResult();
         }
-        
+
         // 启动
         init();
     </script>

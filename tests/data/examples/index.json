@@ -56,19 +56,19 @@
     "enabled": true
   },
   {
-    "id": "social-phobia",
-    "file": "social-phobia.json",
-    "title": "社恐等级测试",
+    "id": "talent-test",
+    "file": "talent-test.json",
+    "title": "天赋测试",
     "category": "趣味",
     "questionCount": 10,
     "enabled": true
   },
   {
-    "id": "cow-horse",
-    "file": "cow-horse.json",
-    "title": "牛马类型测试",
+    "id": "cthulhu-personality",
+    "file": "cthulhu-personality.json",
+    "title": "克苏鲁人格测试",
     "category": "趣味",
-    "questionCount": 8,
+    "questionCount": 12,
     "enabled": true
   }
 ]
