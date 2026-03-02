@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>克苏鲁人格测试</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: linear-gradient(135deg, #1a1a2e, #16213e); min-height: 100vh; color: #fff; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .card { background: rgba(255,255,255,0.1); border-radius: 16px; padding: 24px; margin-bottom: 16px; backdrop-filter: blur(10px); }
+        h1 { text-align: center; font-size: 24px; margin-bottom: 8px; }
+        .subtitle { text-align: center; color: #aaa; margin-bottom: 24px; }
+        .question { font-size: 18px; margin-bottom: 20px; line-height: 1.6; }
+        .option { background: rgba(255,255,255,0.05); padding: 16px; border-radius: 12px; margin-bottom: 12px; cursor: pointer; border: 2px solid transparent; transition: all 0.2s; }
+        .option:hover { background: rgba(255,255,255,0.1); }
+        .option.selected { border-color: #667eea; background: rgba(102,126,234,0.2); }
+        .progress { height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; margin-bottom: 20px; }
+        .progress-fill { height: 100%; background: #667eea; border-radius: 2px; transition: width 0.3s; }
+        .btn { width: 100%; padding: 16px; background: #667eea; color: white; border: none; border-radius: 12px; font-size: 16px; cursor: pointer; margin-top: 20px; }
+        .result-title { font-size: 28px; text-align: center; color: #ffd700; margin-bottom: 16px; }
+        .result-desc { line-height: 1.8; color: #ddd; white-space: pre-wrap; }
+        .radar-container { display: flex; justify-content: center; margin: 20px 0; }
+        canvas { max-width: 100%; }
+    </style>
+</head>
+<body>
+    <div class="container" id="app"></div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+    // 测试数据直接内嵌
+    const testData = {
+        id: "cthulhu-personality",
+        title: "克苏鲁人格测试",
+        resultType: "cthulhu",
+        questions: [
+            {id:1,question:"深夜独自走在印斯茅斯海岸，你最可能：",options:[
+                {id:"S",text:"欣赏月光下的海浪，认为这是个普通的夜晚"},
+                {id:"P",text:"注意到水下似乎有鳞片闪烁，脑中闪过不详的念头"},
+                {id:"O",text:"用望远镜观察星空，思考宇宙的渺小"},
+                {id:"M",text:"听到远古的低语在召唤我投身入海，那里才是真正的归宿"}
+            ]},
+            {id:2,question:"你得到了一本名为《死灵之书》的古籍，你会：",options:[
+                {id:"S",text:"将其送给大学的图书馆，认为这是珍贵的文物"},
+                {id:"P",text:"好奇地随手翻阅，却感到莫名的心悸和不安"},
+                {id:"O",text:"仔细研究其中的符号和图案，记录下来作为学术资料"},
+                {id:"M",text:"大声朗读其中的咒语，感受到伟大的存在在回应我"}
+            ]},
+            {id:3,question:"你连续三天做了同一个梦：梦见自己在拉莱耶的石材宫殿中聆听主的宣讲",options:[
+                {id:"S",text:"只是奇怪的巧合，继续正常生活"},
+                {id:"P",text:"开始怀疑自己的精神状态，考虑去看医生"},
+                {id:"O",text:"记录下梦的细节，分析其中的象征意义"},
+                {id:"M",text:"那是克苏鲁在梦中与我对话！我必须找到唤醒他的方法！"}
+            ]},
+            {id:4,question:"你在阿卡姆镇的旧书店发现一本禁书，封面写着危险警告，你会：",options:[
+                {id:"S",text:"立即通知有关部门这是危险物品"},
+                {id:"P",text:"感到害怕但又忍不住好奇，悄悄翻开一角"},
+                {id:"O",text:"理性地分析这可能是某种心理暗示或营销手段"},
+                {id:"M",text:"这正是为我准备的！传说中只有被选中的人才能阅读此书！"}
+            ]},
+            {id:5,question:"你听说邻居最近行为古怪，经常在午夜对着大海祈祷，自称是深潜者的仆人",options:[
+                {id:"S",text:"关心地询问是否需要帮助，建议他去看心理医生"},
+                {id:"P",text:"开始躲着他，觉得毛骨悚然"},
+                {id:"O",text:"暗中观察并记录这可能是某种仪式的一部分"},
+                {id:"M",text:"原来这世上真的有同类！我也应该加入他们！"}
+            ]},
+            {id:6,question:"你在南极考古时发现了巨大的非人类化石，皮肤呈灰绿色，头部类似章鱼",options:[
+                {id:"S",text:"拍照记录并上报给学术机构，这是重大发现"},
+                {id:"P",text:"感到说不出的恐惧，决定尽快离开这里"},
+                {id:"O",text:"这是未知的古生物物种！进行深入研究并撰写论文"},
+                {id:"M",text:"伟大的克苏鲁！我终于找到您的起源了！"}
+            ]},
+            {id:7,question:"你的朋友从阿卡姆精神病院逃出来，向你哭诉它们真的存在，你会：",options:[
+                {id:"S",text:"安抚他的情绪，帮他联系更好的精神科医生"},
+                {id:"P",text:"表面安慰他，但内心开始发毛"},
+                {id:"O",text:"认真询问细节，理性分析他的幻觉来源"},
+                {id:"M",text:"别说了！我全都明白了！这个世界的真相就是如此！"}
+            ]},
+            {id:8,question:"你在整理祖父遗物时，发现了一本神秘的手稿，上面记载着召唤仪式",options:[
+                {id:"S",text:"这是祖父的收藏品，妥善保管作为纪念"},
+                {id:"P",text:"感到不安，决定把这东西处理掉"},
+                {id:"O",text:"研究其中的符号体系，作为人类学资料保存"},
+                {id:"M",text:"这是家族的使命！我要用这个仪式召唤伟大存在！"}
+            ]},
+            {id:9,question:"你发现自己开始做同一个预知梦，梦中的景象后来都真实发生了",options:[
+                {id:"S",text:"只是巧合罢了，继续正常生活"},
+                {id:"P",text:"感到害怕，担心自己是不是要疯了"},
+                {id:"O",text:"记录下这些梦境，分析其中的模式和联系"},
+                {id:"M",text:"这是伟大存在在向我传递时空之外的讯息！"}
+            ]},
+            {id:10,question:"你出海时遭遇了暴风雨，浪涛中隐约浮现巨大的触手和蠕动的肉块",options:[
+                {id:"S",text:"全力驾驶船只逃离，这只是海市蜃楼"},
+                {id:"P",text:"惊恐万状，认为自己看到了幻觉"},
+                {id:"O",text:"冷静分析，这可能是某种巨大的海洋生物"},
+                {id:"M",text:"是大衮！深潜者的主神！我必须献上祭品！"}
+            ]},
+            {id:11,question:"你偶然进入了一个隐藏的地下密室，墙上画满了不可名状的生物和邪教仪式",options:[
+                {id:"S",text:"立即离开并报警，这里很危险"},
+                {id:"P",text:"感到极度不适，头痛欲裂"},
+                {id:"O",text:"仔细记录这些壁画，这可能是失落文明的遗迹"},
+                {id:"M",text:"这些图案在向我诉说宇宙的真相！我开始理解了！"}
+            ]},
+            {id:12,question:"最后，选择你愿意为之献身的伟大存在：",options:[
+                {id:"S",text:"科学！我相信终有一天人类能解开宇宙的所有奥秘"},
+                {id:"P",text:"艺术！只有美才能拯救这个疯狂的世界"},
+                {id:"O",text:"知识和真理！即使为此付出代价也在所不惜"},
+                {id:"M",text:"伟大的克苏鲁！沉睡之主！愿您的意志降临这个世界！"}
+            ]}
+        ],
+        results: {
+            sane_scholar: {title:"【理性的研究者】",description:"你是一个理性而冷静的研究者，相信科学可以解释一切。虽然偶尔会接触到克苏鲁神话的边缘，但你始终保持清醒的头脑。",traits:["理性","求知","冷静","谨慎"]},
+            sensitive_artist: {title:"【敏感的艺术家】",description:"你拥有细腻的灵魂和敏锐的感知，常常被梦境和直觉所困扰。你的艺术天赋让你能看到常人看不到的东西。",traits:["敏感","艺术","直觉","梦幻"]},
+            detached_watcher: {title:"【冷漠的观察者】",description:"你对一切都保持着冷漠的距离，仿佛与世界隔着一层看不见的墙。这层保护让你免受疯狂的侵袭。",traits:["冷漠","理性","超然","独立"]},
+            innsmouth_blood: {title:"【印斯茅斯的后裔】",description:"你的血脉中流淌着古老的诅咒。表面上你与常人无异，但每到月圆之夜，你就能听到大海的召唤。",traits:["血脉","觉醒","两栖","传承"]},
+            chaos_avatar: {title:"【伏行的混沌】",description:"你如同那位奈亚拉托提普，表面上理智幽默，实际上是旧日支配者的忠实仆从。",traits:["伪装","智慧","迷惑","忠诚"]},
+            time_wanderer: {title:"【时空的流浪者】",description:"时间和空间对你而言只是错觉。你能感知到过去、现在和未来的重叠，仿佛站在时间之外。",traits:["永恒","全知","超越","无形"]},
+            dark_priest: {title:"【混沌的祭司】",description:"在混沌的王座上，无意识的鼓声永不停息。你是那盲目痴愚之神的下仆。",traits:["混沌","毁灭","疯狂","无意识"]},
+            fertility_cultist: {title:"【黑暗的选民】",description:"黑色的繁殖之网是你出生的摇篮。你是那千面之羊的后裔，拥有强大的生命力和繁殖能力。",traits:["繁殖","诅咒","生命","黑暗"]},
+            sleeping_messenger: {title:"【沉睡的代言人】",description:"在大西洋的深处，伟大的克苏鲁正在沉睡。你是他在人间的代言人，传播着关于他的知识。",traits:["沉睡","预示","深海","古老"]},
+            wandering_seeker: {title:"【迷雾中的求道者】",description:"你站在理智与疯狂的边界上，迷茫地探索着存在的意义。克苏鲁神话对你来说还是模糊的影子。",traits:["迷茫","探索","中立","成长"]},
+            elder_priest: {title:"【大衮的高阶祭司】",description:"你是深海之神大衮的忠实信徒，在海底的宫殿中侍奉着古老的神明。你拥有与海洋生物沟通的能力。",traits:["深海","侍奉","鳞化","忠诚"]},
+            mad_prophet: {title:"【疯狂的预言家】",description:"你曾是正统的学者，直到你看穿了现实的本质。疯狂如同潮水般涌来，带走了理智，却留下了真相。",traits:["预言","癫狂","洞察","毁灭"]}
+        }
+    };
+
+    let currentQ = 0;
+    let answers = {};
+
+    function render() {
+        const app = document.getElementById('app');
+        if (currentQ >= testData.questions.length) {
+            showResult(app);
+            return;
+        }
+        const q = testData.questions[currentQ];
+        const progress = ((currentQ) / testData.questions.length) * 100;
+        app.innerHTML = `
+            <div class="card">
+                <div class="progress"><div class="progress-fill" style="width:${progress}%"></div></div>
+                <div class="question">${currentQ+1}. ${q.question}</div>
+                ${q.options.map((o,i) => `
+                    <div class="option ${answers[q.id]===o.id?'selected':''}" onclick="select(${q.id},'${o.id}')">${o.text}</div>
+                `).join('')}
+            </div>
+            <button class="btn" onclick="next()">${currentQ===testData.questions.length-1?'查看结果':'下一题'}</button>
+        `;
+    }
+
+    function select(qid, oid) {
+        answers[qid] = oid;
+        render();
+    }
+
+    function next() {
+        const q = testData.questions[currentQ];
+        if (!answers[q.id]) {
+            alert('请选择一个答案');
+            return;
+        }
+        currentQ++;
+        render();
+    }
+
+    function showResult(app) {
+        // 计算结果
+        const counts = {S:0,P:0,O:0,M:0};
+        Object.values(answers).forEach(a => counts[a] = (counts[a]||0)+1);
+        const total = Object.values(answers).length;
+        const mRatio = counts.M / total;
+        
+        let resultKey;
+        if (mRatio >= 0.5) {
+            const madResults = ['mad_prophet','dark_priest','elder_priest','chaos_avatar'];
+            resultKey = madResults[Math.floor(Math.random()*madResults.length)];
+        } else if (mRatio >= 0.3) {
+            const chaosResults = ['chaos_avatar','dark_priest','time_wanderer','sleeping_messenger'];
+            resultKey = chaosResults[Math.floor(Math.random()*chaosResults.length)];
+        } else if (mRatio >= 0.2 || counts.P/total >= 0.4) {
+            const sensitiveResults = ['sensitive_artist','innsmouth_blood','fertility_cultist'];
+            resultKey = sensitiveResults[Math.floor(Math.random()*sensitiveResults.length)];
+        } else if (counts.O/total >= 0.4) {
+            resultKey = 'detached_watcher';
+        } else if (counts.S/total >= 0.6) {
+            resultKey = 'sane_scholar';
+        } else {
+            resultKey = 'wandering_seeker';
+        }
+        
+        const result = testData.results[resultKey];
+        
+        const app2 = document.getElementById('app');
+        app2.innerHTML = `
+            <div class="card">
+                <h1>${testData.title}</h1>
+                <div class="subtitle">测试完成</div>
+            </div>
+            <div class="card">
+                <div class="result-title">${result.title}</div>
+                <div class="result-desc">${result.description}</div>
+                <div style="margin-top:16px;">
+                    ${result.traits.map(t => `<span style="display:inline-block;background:rgba(102,126,234,0.3);padding:4px 12px;border-radius:20px;margin:4px;">${t}</span>`).join('')}
+                </div>
+            </div>
+            <div class="card">
+                <div class="radar-container">
+                    <canvas id="radar" width="300" height="300"></canvas>
+                </div>
+            </div>
+            <button class="btn" onclick="location.reload()">重新测试</button>
+        `;
+        
+        // 绘制雷达图
+        const ctx = document.getElementById('radar').getContext('2d');
+        const radarKeys = ['SAN','POW','EDU','INT','STR','APP','CON','DEX','LUC','侦查','潜行','神话'];
+        const scores = {};
+        radarKeys.forEach(k => scores[k] = 10);
+        
+        Object.entries(answers).forEach(([qid, oid]) => {
+            const q = testData.questions.find(q => q.id == qid);
+            const opt = q.options.find(o => o.id === oid);
+            if (opt) {
+                ['S','P','O','M'].forEach((k,i) => {
+                    if (opt.id === k) scores[radarKeys[i]] += (k==='M'?3:k==='S'?2:k==='P'?1:0);
+                });
+            }
+        });
+        
+        new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: radarKeys,
+                datasets:[{label:'属性值',data:Object.values(scores),backgroundColor:'rgba(102,126,234,0.3)',borderColor:'#667eea',pointBackgroundColor:'#fff'}]
+            },
+            options:{scales:{r:{min:0,max:20,beginAtZero:true,ticks:{display:false},pointLabels:{color:'#fff',font:{size:12}}},grid:{color:'rgba(255,255,255,0.1)'}}}},legend:{display:false}}
+        });
+    }
+
+    render();
+    </script>
+</body>
+</html>
