@@ -788,8 +788,7 @@
         let answers = {};
         let isIntroView = true; // 是否显示介绍页
         
-        const urlParams = new URLSearchParams(window.location.search);
-        const testId = urlParams.get('test') || 'mbti-pro';
+        // 获取测试ID
         
         // 绘制雷达图
         function drawRadarChart(data, testId) {
@@ -857,11 +856,21 @@
         
         // 加载测试
         async function init() {
+            // 确保使用正确的testId
+            const urlParams = new URLSearchParams(window.location.search);
+            const testId = urlParams.get('test') || 'mbti-pro';
+            
+            console.log('Loading test:', testId);
+            
             try {
-                const res = await fetch(`data/examples/${testId}.json`);
-                if (!res.ok) throw new Error('加载失败');
+                // 添加时间戳防止缓存
+                const cacheBust = '_=' + Date.now();
+                const jsonUrl = `data/examples/${testId}.json${testId.includes('?') ? '&' : '?'}${cacheBust}`;
+                const res = await fetch(jsonUrl);
+                if (!res.ok) throw new Error('加载失败: ' + res.status);
                 
                 testData = await res.json();
+                console.log('Loaded test:', testData.title);
                 
                 document.getElementById('loading').style.display = 'none';
                 
@@ -871,7 +880,7 @@
                 console.error(e);
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('error').style.display = 'block';
-                document.getElementById('errorMsg').textContent = e.message;
+                document.getElementById('errorMsg').textContent = e.message + ' (testId: ' + testId + ')';
             }
         }
         
