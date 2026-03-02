@@ -991,9 +991,23 @@
         
         // 显示结果
         function showResult() {
+            // 确保测试数据已加载
+            if (!testData || !testData.results) {
+                alert('测试数据加载失败，请刷新页面重试');
+                return;
+            }
+            
             // 简单粗暴：统计每个选项出现的次数
             const counts = {};
             Object.values(answers).forEach(a => counts[a] = (counts[a] || 0) + 1);
+            
+            // 如果答案里没有 S/P/O/M，可能是测试数据没加载
+            const validAnswers = ['S', 'P', 'O', 'M'];
+            const hasValid = validAnswers.some(a => counts[a]);
+            if (!hasValid) {
+                alert('答案数据异常: ' + JSON.stringify(counts));
+                return;
+            }
             
             // 找出最多的选项
             let maxCount = 0;
