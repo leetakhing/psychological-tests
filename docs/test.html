@@ -787,8 +787,7 @@
         let currentQ = 0;
         let answers = {};
         let isIntroView = true; // 是否显示介绍页
-        
-        // 获取测试ID
+        let testId = new URLSearchParams(window.location.search).get('test') || 'mbti-pro';
         
         // 绘制雷达图
         function drawRadarChart(data, testId) {
@@ -856,10 +855,6 @@
         
         // 加载测试
         async function init() {
-            // 确保使用正确的testId
-            const urlParams = new URLSearchParams(window.location.search);
-            const testId = urlParams.get('test') || 'mbti-pro';
-            
             console.log('Loading test:', testId);
             
             try {
