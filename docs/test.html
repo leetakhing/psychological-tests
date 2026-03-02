@@ -620,8 +620,15 @@
         }
         
         .radar-chart {
-            max-width: 300px;
             width: 100%;
+            max-width: 300px;
+            aspect-ratio: 1 / 1;
+        }
+        
+        @media (max-width: 480px) {
+            .radar-chart {
+                max-width: 280px;
+            }
         }
     </style>
     
@@ -996,7 +1003,17 @@
                     (scores['T'] >= scores['F'] ? 'T' : 'F') +
                     (scores['J'] >= scores['P'] ? 'J' : 'P');
             } else {
-                resultType = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+                // 非 MBTI：根据答案分布构建结果key
+                // 按出现次数排序，取前4个答案
+                const sorted = Object.entries(scores)
+                    .sort((a, b) => b[1] - a[1])
+                    .map(entry => entry[0]);
+                
+                // 取前4个（如果不够就重复）
+                while (sorted.length < 4) {
+                    sorted.push(sorted[0] || 'A');
+                }
+                resultType = sorted.slice(0, 4).join('');
             }
             
             const result = testData.results[resultType] || Object.values(testData.results)[0];
