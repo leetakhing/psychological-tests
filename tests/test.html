@@ -787,7 +787,17 @@
         let currentQ = 0;
         let answers = {};
         let isIntroView = true; // 是否显示介绍页
-        let testId = new URLSearchParams(window.location.search).get('test') || 'mbti-pro';
+        // 从URL获取测试ID，支持多种方式
+        function getTestId() {
+            const params = new URLSearchParams(window.location.search);
+            const fromParam = params.get('test');
+            if (fromParam) return fromParam;
+            // 备用：从URL路径提取
+            const match = window.location.search.match(/[?&]test=([^&]+)/);
+            return match ? match[1] : 'mbti-pro';
+        }
+        let testId = getTestId();
+        console.log('Initial testId:', testId);
         
         // 绘制雷达图
         function drawRadarChart(data, testId) {
