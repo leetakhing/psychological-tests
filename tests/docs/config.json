@@ -1,0 +1,25 @@
+{
+  "siteName": "心理测试中心",
+  "siteSubtitle": "探索自我，发现内心的秘密",
+  "author": "OpenClaw",
+  "version": "1.0.0",
+  "colors": {
+    "gradientStart": "#667eea",
+    "gradientEnd": "#764ba2"
+  },
+  "features": {
+    "showQuestionCount": true,
+    "showResultTraits": true,
+    "enableShare": false,
+    "enableFeedback": false
+  },
+  "analytics": {
+    "enabled": false,
+    "trackingId": ""
+  },
+  "testConfig": {
+    "autoAdvance": true,
+    "showProgress": true,
+    "randomizeOptions": false
+  }
+}

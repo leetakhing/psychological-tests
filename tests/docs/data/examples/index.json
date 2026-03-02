@@ -1,0 +1,74 @@
+[
+  {
+    "id": "mbti-pro",
+    "file": "mbti-pro.json",
+    "title": "MBTI 人格测试",
+    "category": "MBTI",
+    "questionCount": 12,
+    "enabled": true
+  },
+  {
+    "id": "mbti-full",
+    "file": "mbti-full.json",
+    "title": "MBTI 深度人格测评",
+    "category": "MBTI",
+    "questionCount": 28,
+    "enabled": true
+  },
+  {
+    "id": "constellation-guardian",
+    "file": "constellation-guardian.json",
+    "title": "星座守护神测试",
+    "category": "星座",
+    "questionCount": 12,
+    "enabled": true
+  },
+  {
+    "id": "iq-test",
+    "file": "iq-test.json",
+    "title": "IQ 智商测试",
+    "category": "IQ",
+    "questionCount": 30,
+    "enabled": true
+  },
+  {
+    "id": "love-personality",
+    "file": "love-personality.json",
+    "title": "爱情性格测试",
+    "category": "情感",
+    "questionCount": 15,
+    "enabled": true
+  },
+  {
+    "id": "eq-test",
+    "file": "eq-test.json",
+    "title": "EQ 情商测试",
+    "category": "情商",
+    "questionCount": 20,
+    "enabled": true
+  },
+  {
+    "id": "career-test",
+    "file": "career-test.json",
+    "title": "职业性格测试",
+    "category": "职场",
+    "questionCount": 18,
+    "enabled": true
+  },
+  {
+    "id": "talent-test",
+    "file": "talent-test.json",
+    "title": "天赋测试",
+    "category": "趣味",
+    "questionCount": 10,
+    "enabled": true
+  },
+  {
+    "id": "cthulhu-personality",
+    "file": "cthulhu-personality.json",
+    "title": "克苏鲁人格测试",
+    "category": "趣味",
+    "questionCount": 12,
+    "enabled": true
+  }
+]
