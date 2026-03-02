@@ -643,7 +643,7 @@
         <!-- 加载 -->
         <div class="loading" id="loading">
             <div class="spinner"></div>
-            <p>正在加载...</p>
+            <p id="loadingText">正在加载...</p>
         </div>
         
         <!-- 错误 -->
@@ -868,7 +868,10 @@
             const testId = getTestId();
             
             // 强制显示加载信息
-            document.getElementById('loading').innerHTML = '<p>正在加载: ' + testId + '</p><p>如果长时间无响应请刷新</p>';
+            document.getElementById('loadingText').textContent = '正在加载: ' + testId;
+            if (document.getElementById('loadingTestId')) {
+                document.getElementById('loadingTestId').textContent = '如果长时间无响应请刷新页面';
+            }
             
             console.log('Loading test:', testId);
             
@@ -904,6 +907,10 @@
         // 显示介绍页
         function showIntro() {
             document.getElementById('introPage').classList.add('active');
+            
+            // 调试：显示当前加载的测试
+            console.log('Showing intro for:', testData.title);
+            document.title = testData.title + ' | 心灵方舟';
             
             document.getElementById('introTitle').textContent = testData.title || '心理测试';
             document.getElementById('introSubtitle').textContent = testData.subtitle || '';
