@@ -990,18 +990,66 @@
         
         // 显示结果
         function showResult() {
-            // 计算雷达图各维度得分
+            // 简单粗暴：统计每个选项出现的次数
+            const counts = {};
+            Object.values(answers).forEach(a => counts[a] = (counts[a] || 0) + 1);
+            
+            // 找出最多的选项
+            let maxCount = 0;
+            let mostCommon = 'S';
+            Object.entries(counts).forEach(([k, v]) => {
+                if (v > maxCount) {
+                    maxCount = v;
+                    mostCommon = k;
+                }
+            });
+            
+            // 根据最常见的选项决定结果
+            // S = 理性研究者, P = 敏感艺术家, O = 观察者, M = 疯狂
+            let resultKey;
+            const total = Object.values(answers).length || 1;
+            const mCount = counts['M'] || 0;
+            const pCount = counts['P'] || 0;
+            const oCount = counts['O'] || 0;
+            const sCount = counts['S'] || 0;
+            
+            // M(疯狂)选项占比决定结果
+            const mRatio = mCount / total;
+            
+            if (mRatio >= 0.5) {
+                // 超过50%选M = 疯狂
+                const madResults = ['mad_prophet', 'dark_priest', 'elder_priest', 'chaos_avatar'];
+                resultKey = madResults[Math.floor(Math.random() * madResults.length)];
+            } else if (mRatio >= 0.3) {
+                // 30-50% = 混沌
+                const chaosResults = ['chaos_avatar', 'dark_priest', 'time_wanderer', 'sleeping_messenger'];
+                resultKey = chaosResults[Math.floor(Math.random() * chaosResults.length)];
+            } else if (mRatio >= 0.2 || pCount / total >= 0.4) {
+                // 20-30% M 或 40%以上 P = 敏感
+                const sensitiveResults = ['sensitive_artist', 'innsmouth_blood', 'fertility_cultist'];
+                resultKey = sensitiveResults[Math.floor(Math.random() * sensitiveResults.length)];
+            } else if (oCount / total >= 0.4) {
+                // 40%以上 O = 观察者
+                resultKey = 'detached_watcher';
+            } else if (sCount / total >= 0.6) {
+                // 60%以上 S = 理性
+                resultKey = 'sane_scholar';
+            } else {
+                // 其他 = 求道者
+                resultKey = 'wandering_seeker';
+            }
+            
+            const result = testData.results[resultKey] || Object.values(testData.results)[0];
+            
+            // 计算雷达图 - 基于实际选择
             const radarKeys = ['san', 'pow', 'edu', 'int', 'str', 'app', 'con', 'dex', 'luc', 'spot', 'stealth', 'mythos'];
             const radarScores = {};
-            radarKeys.forEach(k => radarScores[k] = 10); // 默认中间值
+            radarKeys.forEach(k => radarScores[k] = 10);
             
-            // 累加每个答案的维度值
             Object.values(answers).forEach(answerId => {
-                // 找到对应的选项
                 const option = testData.questions
                     .flatMap(q => q.options)
                     .find(o => o.id === answerId);
-                
                 if (option) {
                     radarKeys.forEach(k => {
                         if (option[k] !== undefined) {
@@ -1011,57 +1059,10 @@
                 }
             });
             
-            // 确保值在 0-20 范围内
             radarKeys.forEach(k => {
                 radarScores[k] = Math.max(0, Math.min(20, radarScores[k]));
             });
             
-            // 根据雷达图数据匹配最相似的结果
-            const results = Object.entries(testData.results);
-            let bestMatch = null;
-            let bestScore = -Infinity;
-            
-            // 计算相似度
-            results.forEach(([key, result]) => {
-                if (!result.radar || !Array.isArray(result.radar)) return;
-                
-                let similarity = 0;
-                for (let i = 0; i < 12 && i < result.radar.length; i++) {
-                    const diff = 20 - Math.abs(radarScores[radarKeys[i]] - result.radar[i]);
-                    similarity += diff;
-                }
-                
-                if (similarity > bestScore) {
-                    bestScore = similarity;
-                    bestMatch = { key, ...result };
-                }
-            });
-            
-            // 如果没有匹配到，使用 SAN 值来选择不同的结果
-            if (!bestMatch || bestScore < 0) {
-                const san = radarScores['san'];
-                // SAN 从高到低选择不同的结果
-                const sanKeys = ['sane_scholar', 'sensitive_artist', 'detached_watcher', 'wandering_seeker', 
-                               'innsmouth_blood', 'chaos_avatar', 'sleeping_messenger', 'fertility_cultist',
-                               'time_wanderer', 'elder_priest', 'dark_priest', 'mad_prophet'];
-                
-                let idx = 0;
-                if (san < 4) idx = 11;        // 疯狂
-                else if (san < 6) idx = 10;   // 混沌祭司
-                else if (san < 8) idx = 9;    // 大衮
-                else if (san < 10) idx = 8;   // 选民
-                else if (san < 12) idx = 7;   // 代言人
-                else if (san < 14) idx = 6;   // 流浪者
-                else if (san < 16) idx = 5;   // 奈亚
-                else if (san < 18) idx = 4;   // 印斯茅斯
-                else idx = Math.floor(Math.random() * 4); // 理性
-                
-                const fallbackKey = sanKeys[idx];
-                bestMatch = testData.results[fallbackKey] || Object.values(testData.results)[0];
-            }
-            
-            const result = bestMatch || Object.values(testData.results)[0];
-            const resultType = bestMatch?.key || 'wandering_seeker';
             const finalRadar = Object.values(radarScores);
             
             // 隐藏测试页，显示结果页
