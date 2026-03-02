@@ -28,6 +28,14 @@
     "session-memory": {
       "version": "1.1.0",
       "installedAt": 1772276293098
+    },
+    "token-manager": {
+      "version": "1.2.0",
+      "installedAt": 1772340781331
+    },
+    "agent-browser": {
+      "version": "0.2.0",
+      "installedAt": 1772442486087
     }
   }
 }

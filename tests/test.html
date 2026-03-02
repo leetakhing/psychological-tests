@@ -784,27 +784,37 @@
         const testId = urlParams.get('test') || 'mbti-pro';
         
         // 绘制雷达图
-        function drawRadarChart(data) {
+        function drawRadarChart(data, testId) {
             const ctx = document.getElementById('radarChart');
             if (!ctx) return;
             
             // 确保数据是数组
             let values = Array.isArray(data) ? data : Object.values(data);
             
-            // 确保有10个数据点，不足则填充
-            while (values.length < 10) {
+            // 根据测试类型选择标签
+            let labels;
+            if (testId === 'cthulhu-personality') {
+                // 克苏鲁神话 12 维度
+                labels = ['SAN', 'POW', 'EDU', 'INT', 'STR', 'APP', 'CON', 'DEX', 'LUC', '侦查', '潜行', '克苏鲁神话'];
+            } else {
+                // 默认天赋 10 维度
+                labels = ['语言', '逻辑', '操作', '人际', '创意', '音乐', '自然', '空间', '内省', '美学'];
+            }
+            
+            // 确保有足够的数据点
+            while (values.length < labels.length) {
                 values.push(10);
             }
-            values = values.slice(0, 10);
+            values = values.slice(0, labels.length);
             
-            const labels = ['语言', '逻辑', '操作', '人际', '创意', '音乐', '自然', '空间', '内省', '美学'];
+            const datasetLabel = testId === 'cthulhu-personality' ? '你的属性值' : '你的天赋值';
             
             new Chart(ctx, {
                 type: 'radar',
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: '你的天赋值',
+                        label: datasetLabel,
                         data: values,
                         backgroundColor: 'rgba(37, 99, 235, 0.2)',
                         borderColor: 'rgba(37, 99, 235, 1)',
@@ -1025,7 +1035,7 @@
                 if (typeof result.radar === 'object' && !Array.isArray(result.radar)) {
                     chartData = Object.values(result.radar);
                 }
-                drawRadarChart(chartData);
+                drawRadarChart(chartData, testId);
             }
             
             // 保存历史

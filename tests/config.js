@@ -96,6 +96,13 @@ window.APP_CONFIG = {
             category: '趣味',
             questionCount: 8,
             enabled: true
+        },
+        {
+            id: 'cthulhu-personality',
+            title: '克苏鲁人格测试',
+            category: '趣味',
+            questionCount: 12,
+            enabled: true
         }
     ],
     
